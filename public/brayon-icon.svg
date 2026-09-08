@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs>
+    <linearGradient id="brayonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0066FF" />
+      <stop offset="50%" stop-color="#00D2FF" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="28" fill="#0A1128" stroke="#1E293B" stroke-width="2" />
+  <path d="M36 28 H66 C78 28 86 36 86 47 C86 54 81 60 74 62 C83 65 88 72 88 81 C88 93 78 100 64 100 H36 V28 Z M48 40 V57 H64 C70 57 74 53 74 48.5 C74 44 70 40 64 40 H48 Z M48 69 V88 H65 C72 88 76 84 76 78.5 C76 73 72 69 65 69 H48 Z" fill="url(#brayonGrad)" />
+</svg>
