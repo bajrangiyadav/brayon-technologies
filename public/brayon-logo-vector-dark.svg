@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" fill="none">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D2FF" />
+      <stop offset="50%" stop-color="#0066FF" />
+      <stop offset="100%" stop-color="#0047BA" />
+    </linearGradient>
+    <linearGradient id="arrowGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00D2FF" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+    <linearGradient id="aChevron" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D2FF" />
+      <stop offset="100%" stop-color="#0066FF" />
+    </linearGradient>
+    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- ICON MARK (Left) -->
+  <g transform="translate(6, 6) scale(0.68)">
+    <!-- Top Loop of B -->
+    <path d="M18 10 H58 C72 10 82 18 82 32 C82 43 74 50 63 53 L32 53 L18 53 Z" fill="#0E224E" />
+    <path d="M26 18 H56 C65 18 72 23 72 32 C72 40 65 45 56 45 H38 Z" fill="#0A1128" />
+
+    <!-- Bottom Loop of B -->
+    <path d="M18 53 H65 C80 53 90 62 90 77 C90 92 78 102 61 102 H18 Z" fill="url(#blueGlow)" />
+    <path d="M26 62 H60 C71 62 78 68 78 77 C78 86 71 92 60 92 H26 Z" fill="#070B19" />
+
+    <!-- Back Spine -->
+    <path d="M16 10 H30 V102 H16 Z" fill="url(#blueGlow)" />
+
+    <!-- Aerodynamic Rocket / Arrow Cutting Through -->
+    <path d="M4 68 Q40 48 88 24 L82 14 L114 10 L108 42 L100 32 Q54 55 12 74 Z" fill="url(#arrowGrad)" filter="url(#subtleGlow)" />
+  </g>
+
+  <!-- WORDMARK: BRAYON -->
+  <g transform="translate(94, 16)">
+    <!-- B -->
+    <path d="M0 0 H18 C26 0 31 3.5 31 10 C31 14.5 28 17.5 24 19 C29 20.5 32 24.5 32 30 C32 37 26 41 18 41 H0 V0 Z M8.5 7.5 V15.5 H17 C21 15.5 23 13.5 23 11.5 C23 9.5 21 7.5 17 7.5 H8.5 Z M8.5 23.5 V33.5 H18 C22 33.5 24 31 24 28.5 C24 26 22 23.5 18 23.5 H8.5 Z" fill="#FFFFFF" />
+
+    <!-- R -->
+    <path d="M40 0 H58 C67 0 73 5 73 14 C73 21 68 25 61 26.5 L74 41 H62.5 L51 27 H48.5 V41 H40 V0 Z M48.5 7.5 V19.5 H57 C61.5 19.5 64 17.5 64 13.5 C64 9.5 61.5 7.5 57 7.5 H48.5 Z" fill="#FFFFFF" />
+
+    <!-- A (Signature Chevron Peak) -->
+    <g transform="translate(80, 0)">
+      <path d="M19 0 L38 41 H27.5 L19 21 L10.5 41 H0 L19 0 Z" fill="url(#aChevron)" filter="url(#subtleGlow)" />
+      <polygon points="19,16 13,29 25,29" fill="#070B19" />
+    </g>
+
+    <!-- Y -->
+    <path d="M126 0 L137.5 20 L149 0 H159 L142.5 26 V41 H134 V26 L117.5 0 H126 Z" fill="#FFFFFF" />
+
+    <!-- O -->
+    <path d="M165 20.5 C165 9 174 0 186.5 0 C199 0 208 9 208 20.5 C208 32 199 41 186.5 41 C174 41 165 32 165 20.5 Z M174 20.5 C174 27.5 179 33.5 186.5 33.5 C194 33.5 199 27.5 199 20.5 C199 13.5 194 7.5 186.5 7.5 C179 7.5 174 13.5 174 20.5 Z" fill="#FFFFFF" />
+
+    <!-- N -->
+    <path d="M217 0 H225.5 L245 28 V0 H253.5 V41 H245 L225.5 13 V41 H217 V0 Z" fill="#FFFFFF" />
+  </g>
+
+  <!-- SUBTEXT: TECHNOLOGIES -->
+  <g transform="translate(95, 68)">
+    <line x1="0" y1="-5" x2="35" y2="-5" stroke="#0066FF" stroke-width="1.8" />
+    <text x="46" y="0" fill="#94A3B8" font-family="'Plus Jakarta Sans', Inter, -apple-system, sans-serif" font-weight="700" font-size="10" letter-spacing="4.2">TECHNOLOGIES</text>
+    <line x1="218" y1="-5" x2="253" y2="-5" stroke="#0066FF" stroke-width="1.8" />
+    <text x="264" y="0" fill="#38BDF8" font-family="'Plus Jakarta Sans', Inter, -apple-system, sans-serif" font-weight="800" font-size="8.5" letter-spacing="2">BEYOND.</text>
+  </g>
+</svg>

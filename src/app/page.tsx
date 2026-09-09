@@ -501,24 +501,15 @@ export default function HomePage() {
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-[#070B19]/90 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           {/* Brand Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="relative h-11 w-14 flex items-center justify-center">
+          <a href="#" className="flex items-center group">
+            <div className="relative h-12 w-56 sm:w-64">
               <Image
-                src="/brayon-icon.png"
-                alt="BRAYON Technologies"
-                width={70}
-                height={42}
-                className="object-contain group-hover:scale-105 transition-transform drop-shadow-[0_0_12px_rgba(0,102,255,0.4)]"
+                src="/brayon-logo-vector-dark.svg"
+                alt="BRAYON Technologies - Technology. Innovation. Beyond."
+                fill
+                className="object-contain object-left group-hover:scale-[1.02] transition-transform"
                 priority
               />
-            </div>
-            <div>
-              <div className="font-extrabold text-xl tracking-tight text-white flex items-center gap-1.5">
-                BRAYON <span className="text-blue-400 font-semibold text-sm">Technologies</span>
-              </div>
-              <div className="text-[9.5px] tracking-widest text-slate-400 font-mono uppercase">
-                Technology. Innovation. Beyond.
-              </div>
             </div>
           </a>
 
@@ -1475,10 +1466,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
             <div className="md:col-span-1 space-y-4">
-              <div className="relative w-44 h-16">
+              <div className="relative w-56 h-14">
                 <Image
-                  src="/brayon-logo-dark.png"
-                  alt="BRAYON Technologies"
+                  src="/brayon-logo-vector-dark.svg"
+                  alt="BRAYON Technologies - Technology. Innovation. Beyond."
                   fill
                   className="object-contain object-left"
                 />
