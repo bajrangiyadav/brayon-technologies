@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://brayontech.com"),
   title: "BRAYON Technologies | Technology. Innovation. Beyond.",
   description:
     "Enterprise software development, modern web applications, high-performance cloud solutions, and custom business automation engineered for ambitious brands.",
@@ -28,12 +29,24 @@ export const metadata: Metadata = {
     "Bajrangi Yadav",
   ],
   authors: [{ name: "Bajrangi Yadav" }],
+  icons: {
+    icon: "/brayon-icon-square.png",
+    apple: "/brayon-icon-square.png",
+  },
   openGraph: {
     title: "BRAYON Technologies | Technology. Innovation. Beyond.",
     description:
       "Enterprise software development, modern web applications, and custom business automation engineered for scale.",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/brayon-logo.png",
+        width: 1024,
+        height: 682,
+        alt: "BRAYON Technologies - Technology. Innovation. Beyond.",
+      },
+    ],
   },
 };
 

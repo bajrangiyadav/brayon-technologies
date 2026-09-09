@@ -502,13 +502,13 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           {/* Brand Logo */}
           <a href="#" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10">
+            <div className="relative h-11 w-14 flex items-center justify-center">
               <Image
-                src="/brayon-icon.svg"
-                alt="BRAYON Technologies Icon"
-                width={40}
-                height={40}
-                className="group-hover:scale-105 transition-transform"
+                src="/brayon-icon.png"
+                alt="BRAYON Technologies"
+                width={70}
+                height={42}
+                className="object-contain group-hover:scale-105 transition-transform drop-shadow-[0_0_12px_rgba(0,102,255,0.4)]"
                 priority
               />
             </div>
@@ -579,13 +579,26 @@ export default function HomePage() {
       </header>
 
       {/* 3. HERO SECTION */}
-      <section className="relative pt-20 pb-24 overflow-hidden border-b border-slate-800/80">
+      <section className="relative pt-16 pb-24 overflow-hidden border-b border-slate-800/80">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[380px] bg-blue-600/15 blur-[130px] pointer-events-none rounded-full" />
         <div className="absolute top-1/3 left-1/4 w-[350px] h-[250px] bg-cyan-500/10 blur-[100px] pointer-events-none rounded-full" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* Official Emblem */}
+          <div className="flex justify-center mb-6">
+            <div className="relative w-52 sm:w-64 h-24 sm:h-28">
+              <Image
+                src="/brayon-logo-dark.png"
+                alt="BRAYON Technologies - Technology. Innovation. Beyond."
+                fill
+                className="object-contain drop-shadow-[0_0_30px_rgba(0,102,255,0.45)]"
+                priority
+              />
+            </div>
+          </div>
+
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/25 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/25 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-6">
             <Sparkles className="w-3.5 h-3.5 text-blue-400" />
             BRAYON TECHNOLOGIES • ENTERPRISE ENGINEERING & CLOUD
           </div>
@@ -1242,8 +1255,14 @@ export default function HomePage() {
               {/* Founder Avatar & Badge */}
               <div className="lg:col-span-4 text-center lg:text-left flex flex-col items-center lg:items-start">
                 <div className="w-36 h-36 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-400 p-1 shadow-2xl shadow-blue-500/30">
-                  <div className="w-full h-full rounded-2xl bg-[#0A1128] flex items-center justify-center font-black text-5xl text-blue-400">
-                    BY
+                  <div className="w-full h-full rounded-2xl bg-[#0A1128] p-4 flex items-center justify-center">
+                    <Image
+                      src="/brayon-icon.png"
+                      alt="BRAYON Technologies Icon"
+                      width={120}
+                      height={70}
+                      className="object-contain drop-shadow-[0_0_15px_rgba(0,102,255,0.6)]"
+                    />
                   </div>
                 </div>
                 <h3 className="mt-6 text-2xl font-bold text-white">Bajrangi Yadav</h3>
@@ -1455,12 +1474,14 @@ export default function HomePage() {
       <footer className="bg-[#03060E] border-t border-slate-900 py-16 text-slate-400 text-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-            <div className="md:col-span-1 space-y-3">
-              <div className="flex items-center gap-2.5">
-                <div className="relative w-7 h-7">
-                  <Image src="/brayon-icon.svg" alt="BRAYON" width={28} height={28} />
-                </div>
-                <span className="font-extrabold text-white text-base">BRAYON Technologies</span>
+            <div className="md:col-span-1 space-y-4">
+              <div className="relative w-44 h-16">
+                <Image
+                  src="/brayon-logo-dark.png"
+                  alt="BRAYON Technologies"
+                  fill
+                  className="object-contain object-left"
+                />
               </div>
               <p className="text-slate-400 text-xs leading-relaxed">
                 Technology. Innovation. Beyond. High-performance custom software engineering, scalable cloud systems, and
