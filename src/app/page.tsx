@@ -1793,12 +1793,52 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 16. CORPORATE FOOTER */}
-      <footer className="bg-[#03060E] border-t border-slate-900 py-12 sm:py-16 text-slate-400 text-xs overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-10 sm:mb-12">
-            <div className="sm:col-span-2 lg:col-span-1 space-y-4">
-              <div className="relative w-44 sm:w-52 h-11">
+      {/* 16. CORPORATE BENTO-CARD FOOTER */}
+      <footer className="relative pt-6 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+        {/* Main Bento Card */}
+        <div className="relative rounded-3xl bg-gradient-to-b from-[#0B1430] via-[#070D22] to-[#040814] border border-slate-800/90 p-8 sm:p-12 lg:p-14 shadow-2xl overflow-hidden">
+          {/* Ambient Lighting Gradients */}
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/15 blur-[120px] pointer-events-none rounded-full" />
+          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-cyan-500/10 blur-[100px] pointer-events-none rounded-full" />
+
+          {/* Card Top: Quick Connect Callout */}
+          <div className="relative pb-10 mb-10 border-b border-slate-800/80 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                <Sparkles className="w-3.5 h-3.5" />
+                Let&apos;s Build Something Extraordinary
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                Ready to accelerate your technology roadmap?
+              </h3>
+              <p className="text-slate-400 text-xs sm:text-sm mt-1 max-w-xl">
+                Skip account managers. Discuss your project directly with Founder & Technology Lead Bajrangi Yadav.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+              <a
+                href="#contact"
+                className="w-full sm:w-auto px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-lg shadow-blue-600/30 text-center"
+              >
+                Claim Free 5-Point Audit
+              </a>
+              <a
+                href="https://wa.me/917385121432"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-5 py-3 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 hover:text-emerald-200 font-semibold text-xs tracking-wider transition-all flex items-center justify-center gap-2 text-center"
+              >
+                <MessageSquare className="w-4 h-4" />
+                WhatsApp Direct
+              </a>
+            </div>
+          </div>
+
+          {/* 4 Bento Columns */}
+          <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 mb-10">
+            {/* Column 1: Brand & Status (4 cols) */}
+            <div className="sm:col-span-2 lg:col-span-4 space-y-4">
+              <div className="relative w-48 sm:w-56 h-12">
                 <Image
                   src="/brayon-logo-horizontal.png"
                   alt="BRAYON Technologies - Technology. Innovation. Beyond."
@@ -1808,91 +1848,119 @@ export default function HomePage() {
                 />
               </div>
               <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
-                Technology. Innovation. Beyond. High-performance custom software engineering, scalable cloud systems, and
-                business automation.
+                Technology. Innovation. Beyond. High-performance custom software engineering, scalable cloud systems, and business automation.
               </p>
+              <div className="pt-2 space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] text-slate-300">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                  <span>Accepting 2 client projects for current sprint</span>
+                </div>
+                <div className="text-[11px] text-slate-400">
+                  Senior Engineering Leadership • 100% Code Ownership
+                </div>
+              </div>
             </div>
 
-            <div>
-              <div className="font-bold text-white uppercase tracking-wider text-[11px] mb-3">
-                Solutions & Services
+            {/* Column 2: Core Solutions (2 cols) */}
+            <div className="lg:col-span-2 space-y-3">
+              <div className="font-bold text-white uppercase tracking-wider text-[11px]">
+                Solutions
               </div>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2.5 text-xs text-slate-400">
                 <li><a href="#services" className="hover:text-blue-400 transition-colors">Custom Web Platforms</a></li>
                 <li><a href="#services" className="hover:text-blue-400 transition-colors">Enterprise ERP Systems</a></li>
                 <li><a href="#services" className="hover:text-blue-400 transition-colors">Headless E-Commerce</a></li>
-                <li><a href="#demos" className="hover:text-blue-400 transition-colors">BRAYON Demo Platforms</a></li>
+                <li><a href="#demos" className="hover:text-blue-400 transition-colors">Interactive Live Demos</a></li>
+                <li><a href="#services" className="hover:text-blue-400 transition-colors">Cloud & API Systems</a></li>
               </ul>
             </div>
 
-            <div>
-              <div className="font-bold text-white uppercase tracking-wider text-[11px] mb-3">
-                Company & Process
+            {/* Column 3: Company & Trust (2 cols) */}
+            <div className="lg:col-span-2 space-y-3">
+              <div className="font-bold text-white uppercase tracking-wider text-[11px]">
+                Company
               </div>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2.5 text-xs text-slate-400">
                 <li><a href="#case-studies" className="hover:text-blue-400 transition-colors">5 Core Case Studies</a></li>
-                <li><a href="#pricing" className="hover:text-blue-400 transition-colors">Packages & Pricing</a></li>
-                <li><a href="#faq" className="hover:text-blue-400 transition-colors">FAQ & Code Ownership</a></li>
+                <li><a href="#pricing" className="hover:text-blue-400 transition-colors">Milestone Pricing</a></li>
+                <li><a href="#faq" className="hover:text-blue-400 transition-colors">FAQ & IP Rights</a></li>
                 <li><a href="#founder" className="hover:text-blue-400 transition-colors">Founder Leadership</a></li>
                 <li><a href="#process" className="hover:text-blue-400 transition-colors">5-Step Sprint Method</a></li>
               </ul>
             </div>
 
-            <div className="sm:col-span-2 lg:col-span-1">
-              <div className="font-bold text-white uppercase tracking-wider text-[11px] mb-3">
-                Direct Contact & Inboxes
-              </div>
-              <div className="space-y-2.5 text-slate-300">
-                <a
-                  href="tel:+917385121432"
-                  className="flex items-center gap-2.5 hover:text-blue-400 transition-colors group"
-                >
-                  <Phone className="w-3.5 h-3.5 text-blue-400 shrink-0 group-hover:scale-110 transition-transform" />
-                  <span className="font-medium">+91 73851 21432</span>
-                </a>
-                <a
-                  href="https://wa.me/917385121432"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 hover:text-emerald-400 transition-colors group"
-                >
-                  <MessageSquare className="w-3.5 h-3.5 text-emerald-400 shrink-0 group-hover:scale-110 transition-transform" />
-                  <span className="font-medium">WhatsApp: +91 73851 21432</span>
-                </a>
-                <a
-                  href="mailto:bajrangiyadav330@gmail.com"
-                  className="flex items-center gap-2.5 hover:text-blue-400 transition-colors group min-w-0"
-                >
-                  <Mail className="w-3.5 h-3.5 text-blue-400 shrink-0 group-hover:scale-110 transition-transform" />
-                  <span className="break-all font-mono text-[11px] text-slate-300 group-hover:text-blue-300">
-                    bajrangiyadav330@gmail.com
+            {/* Column 4: Direct Founder Connect Inner Card (4 cols) */}
+            <div className="sm:col-span-2 lg:col-span-4">
+              <div className="p-5 rounded-2xl bg-[#091128]/80 border border-blue-500/20 backdrop-blur-sm space-y-3.5 shadow-lg">
+                <div className="flex items-center justify-between">
+                  <div className="font-bold text-white text-xs uppercase tracking-wider">
+                    Direct Founder Hotline
+                  </div>
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/25">
+                    Active
                   </span>
-                </a>
-                <a
-                  href="mailto:bajrangi@brayontech.com"
-                  className="flex items-center gap-2.5 hover:text-blue-400 transition-colors group min-w-0"
-                >
-                  <Mail className="w-3.5 h-3.5 text-blue-400 shrink-0 group-hover:scale-110 transition-transform" />
-                  <span className="break-all font-mono text-[11px] text-slate-300 group-hover:text-blue-300">
-                    bajrangi@brayontech.com
-                  </span>
-                </a>
-                <div className="flex items-center gap-2.5 text-slate-400 pt-1 text-[11px]">
-                  <Globe className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                  <span>brayontech.com</span>
+                </div>
+
+                <div className="space-y-2 text-xs">
+                  <a
+                    href="https://wa.me/917385121432"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2.5 p-2.5 rounded-xl bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-500/30 text-emerald-300 font-semibold transition-all group"
+                  >
+                    <MessageSquare className="w-4 h-4 text-emerald-400 shrink-0 group-hover:scale-110 transition-transform" />
+                    <span>WhatsApp: +91 73851 21432</span>
+                  </a>
+
+                  <a
+                    href="tel:+917385121432"
+                    className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-800/50 text-slate-300 hover:text-white transition-colors group"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-blue-400 shrink-0 group-hover:scale-110 transition-transform" />
+                    <span className="font-medium">+91 73851 21432 (Call Direct)</span>
+                  </a>
+
+                  <a
+                    href="mailto:bajrangiyadav330@gmail.com"
+                    className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-800/50 text-slate-300 hover:text-blue-400 transition-colors group min-w-0"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-blue-400 shrink-0 group-hover:scale-110 transition-transform" />
+                    <span className="break-all font-mono text-[11px]">
+                      bajrangiyadav330@gmail.com
+                    </span>
+                  </a>
+
+                  <a
+                    href="mailto:bajrangi@brayontech.com"
+                    className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-800/50 text-slate-300 hover:text-blue-400 transition-colors group min-w-0"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-blue-400 shrink-0 group-hover:scale-110 transition-transform" />
+                    <span className="break-all font-mono text-[11px]">
+                      bajrangi@brayontech.com
+                    </span>
+                  </a>
+                </div>
+
+                <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+                  <div className="flex items-center gap-1.5">
+                    <Globe className="w-3 h-3 text-blue-400" />
+                    <span>brayontech.com</span>
+                  </div>
+                  <span className="text-[10px] text-slate-400">India • US • UK • UAE</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-slate-900/90 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400 text-center sm:text-left">
+          {/* Bottom Card Bar */}
+          <div className="relative pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400 text-center sm:text-left">
             <div>
               © {new Date().getFullYear()} BRAYON Technologies. All rights reserved.
             </div>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               <a href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-blue-400 transition-colors">Master Services Agreement (MSA)</a>
-              <a href="#" className="hover:text-blue-400 transition-colors">Security Hygiene</a>
+              <a href="#" className="hover:text-blue-400 transition-colors">Security Standards</a>
             </div>
           </div>
         </div>
