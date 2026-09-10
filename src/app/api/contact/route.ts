@@ -121,7 +121,7 @@ Looking forward to connecting with you.`;
 </head>
 <body>
   <div class="card">
-    <div class="badge">🚀 New Client Lead Captured</div>
+    <div class="badge">New Client Lead Captured</div>
     <h1>BRAYON Technologies Lead</h1>
     <p style="color: #94A3B8; font-size: 14px; margin-bottom: 24px;">A prospect just submitted a project inquiry on <a href="https://brayontech.com" style="color: #38BDF8;">brayontech.com</a>.</p>
 
@@ -172,7 +172,7 @@ Looking forward to connecting with you.`;
           from: `"BRAYON Leads" <${gmailUser}>`,
           to: "bajrangiyadav330@gmail.com",
           replyTo: newLead.email,
-          subject: `🚀 New Lead: ${newLead.name} - ${newLead.service} [${newLead.budget}]`,
+          subject: `New Lead: ${newLead.name} - ${newLead.service} [${newLead.budget}]`,
           html: htmlEmail,
         });
 

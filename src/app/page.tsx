@@ -1426,7 +1426,7 @@ export default function HomePage() {
 
         {/* Payment Milestone Notice */}
         <div className="mt-12 p-6 rounded-2xl bg-blue-950/30 border border-blue-900/40 text-center max-w-3xl mx-auto text-xs text-slate-300">
-          <span className="font-semibold text-blue-300">🛡️ Fair Milestone Payment Terms:</span> Standard projects are split into 50% Advance & 50% on UAT Approval. Larger enterprise projects operate on a 30% / 30% / 30% / 10% milestone structure.
+          <span className="font-semibold text-blue-300">Fair Milestone Payment Terms:</span> Standard projects are split into 50% Advance & 50% on UAT Approval. Larger enterprise projects operate on a 30% / 30% / 30% / 10% milestone structure.
         </div>
       </section>
 

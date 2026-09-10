@@ -1,5 +1,29 @@
 [
   {
+    "id": "LEAD-1789022101282",
+    "timestamp": "2026-09-10T06:35:01.282Z",
+    "name": "Sarah Jenkins",
+    "email": "sarah.jenkins@fintechcloud.io",
+    "company": "Fintech Cloud Ltd (London, UK)",
+    "service": "Web & SaaS Development",
+    "budget": "₹1.5 Lakh – ₹3.5 Lakh (,000 – ,500) [MVP/SaaS]",
+    "details": "We need a full-stack Next.js SaaS platform with Stripe billing, client analytics dashboard, and PostgreSQL backend.",
+    "ip": "::1",
+    "userAgent": "node"
+  },
+  {
+    "id": "LEAD-1789021860188",
+    "timestamp": "2026-09-10T06:31:00.188Z",
+    "name": "Bajrangi Yadav",
+    "email": "bajrangiyadav330@gmail.com",
+    "company": "https://ashapuradryfruits.com/",
+    "service": "Web & SaaS Development",
+    "budget": "₹75k - ₹1.5 Lakh ($1,000 - $2,000)",
+    "details": "werwefrwer",
+    "ip": "::1",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36"
+  },
+  {
     "id": "LEAD-1789021773363",
     "timestamp": "2026-09-10T06:29:33.363Z",
     "name": "Rajesh Kumar",
