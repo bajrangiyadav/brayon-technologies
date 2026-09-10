@@ -69,17 +69,128 @@ export default function HomePage() {
 
   // 1. Tech Stack Badges
   const techStack = [
-    { name: "Next.js 16", tag: "Frontend Framework" },
-    { name: "React 19", tag: "UI Component Architecture" },
-    { name: "Vue.js", tag: "Progressive Web Framework" },
-    { name: "Laravel", tag: "Enterprise PHP & REST Backend" },
-    { name: "Node.js", tag: "High-Throughput Backend" },
-    { name: "TypeScript", tag: "End-to-End Type Safety" },
-    { name: "PostgreSQL", tag: "Relational Database" },
-    { name: "Redis", tag: "Edge Caching & PubSub" },
-    { name: "Tailwind CSS", tag: "Responsive Design System" },
-    { name: "AWS & Docker", tag: "Scalable Cloud Hosting" },
-    { name: "React Native", tag: "Cross-Platform Mobile" },
+    {
+      name: "Next.js 16",
+      tag: "Frontend Framework",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="11" fill="#000000" stroke="#404040" strokeWidth="1.5" />
+          <path d="M7.5 7.5v9M7.5 7.5l9 10M16.5 7.5v5" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
+        </svg>
+      ),
+    },
+    {
+      name: "React 19",
+      tag: "UI Component Architecture",
+      icon: (
+        <svg className="w-4 h-4 shrink-0 text-[#61DAFB]" viewBox="-11.5 -10.23 23 20.46" fill="currentColor">
+          <circle cx="0" cy="0" r="2" fill="#61DAFB" />
+          <g stroke="#61DAFB" strokeWidth="1" fill="none">
+            <ellipse rx="11" ry="4.2" />
+            <ellipse rx="11" ry="4.2" transform="rotate(60)" />
+            <ellipse rx="11" ry="4.2" transform="rotate(120)" />
+          </g>
+        </svg>
+      ),
+    },
+    {
+      name: "Vue.js",
+      tag: "Progressive Web Framework",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">
+          <polygon points="12,21 0,3.5 4.5,3.5 12,14.5 19.5,3.5 24,3.5" fill="#42B883" />
+          <polygon points="12,14.5 6.5,3.5 9.5,3.5 12,7.8 14.5,3.5 17.5,3.5" fill="#35495E" />
+        </svg>
+      ),
+    },
+    {
+      name: "Laravel",
+      tag: "Enterprise PHP & REST Backend",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none">
+          <path d="M11.64 2.11a1.5 1.5 0 0 0-1.28 0l-7.5 3.75A1.5 1.5 0 0 0 2 7.2v9.6a1.5 1.5 0 0 0 .86 1.34l7.5 3.75a1.5 1.5 0 0 0 1.28 0l7.5-3.75a1.5 1.5 0 0 0 .86-1.34V7.2a1.5 1.5 0 0 0-.86-1.34l-7.5-3.75z" fill="#FF2D20" />
+          <path d="M12 4.5l-6 3v7l6 3v-13z" fill="#FFFFFF" fillOpacity="0.25" />
+          <path d="M12 4.5l6 3v7l-6 3v-13z" fill="#000000" fillOpacity="0.15" />
+          <path d="M12 4.5l-5 2.5 5 2.5 5-2.5-5-2.5z" fill="#FFFFFF" fillOpacity="0.4" />
+        </svg>
+      ),
+    },
+    {
+      name: "Node.js",
+      tag: "High-Throughput Backend",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2l8.5 4.9v9.8L12 21.5 3.5 16.7V6.9L12 2z" fill="#5FA04E" />
+          <path d="M12 4l6.5 3.75v7.5L12 19 5.5 15.25v-7.5L12 4z" fill="#182A16" />
+          <text x="12" y="14" fontSize="7" fontWeight="bold" fill="#5FA04E" textAnchor="middle" fontFamily="system-ui, sans-serif">JS</text>
+        </svg>
+      ),
+    },
+    {
+      name: "TypeScript",
+      tag: "End-to-End Type Safety",
+      icon: (
+        <svg className="w-4 h-4 shrink-0 rounded-[3px]" viewBox="0 0 24 24">
+          <rect width="24" height="24" rx="4" fill="#3178C6" />
+          <text x="12" y="16.5" fontSize="11" fontWeight="bold" fill="#FFFFFF" textAnchor="middle" fontFamily="system-ui, sans-serif">TS</text>
+        </svg>
+      ),
+    },
+    {
+      name: "PostgreSQL",
+      tag: "Relational Database",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none">
+          <ellipse cx="12" cy="6" rx="8" ry="3" fill="#336791" />
+          <path d="M4 6v5c0 1.66 3.58 3 8 3s8-1.34 8-3V6" stroke="#41B3FF" strokeWidth="1.5" fill="none" />
+          <path d="M4 11v5c0 1.66 3.58 3 8 3s8-1.34 8-3v-5" stroke="#41B3FF" strokeWidth="1.5" fill="none" />
+          <circle cx="15.5" cy="14.5" r="1.5" fill="#41B3FF" />
+        </svg>
+      ),
+    },
+    {
+      name: "Redis",
+      tag: "Edge Caching & PubSub",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2l8.5 4.5v3L12 14 3.5 9.5v-3L12 2z" fill="#DC382D" />
+          <path d="M12 8l8.5 4.5v3L12 20 3.5 15.5v-3L12 8z" fill="#A81D14" />
+          <circle cx="12" cy="6.5" r="1.5" fill="#FFFFFF" />
+        </svg>
+      ),
+    },
+    {
+      name: "Tailwind CSS",
+      tag: "Responsive Design System",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="#38BDF8">
+          <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.336 6.182 14.975 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.336 13.382 8.975 12 6.001 12z" />
+        </svg>
+      ),
+    },
+    {
+      name: "AWS & Docker",
+      tag: "Scalable Cloud Hosting",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="#2496ED">
+          <path d="M13.98 11.08h2.12v-1.9h-2.12v1.9zm-2.95-5.43h2.12V3.57h-2.12v2.08zm0 2.71h2.12V6.29h-2.12v2.07zm-2.93 0h2.12V6.29H8.1v2.07zm-2.96 0h2.12V6.29H5.14v2.07zm5.89 2.72h2.12V9.01h-2.12v2.07zm-2.93 0h2.12V9.01h-2.12v2.07zm-2.96 0h2.12V9.01H5.14v2.07zm-2.93 0h2.12V9.01H2.21v2.07zM23.9 12.03c-.22-.16-.62-.26-1.12-.26-.14 0-.3.01-.46.03-.4.07-.88.22-1.42.44-.33-.78-.88-1.4-1.63-1.85-.08-.05-.17-.09-.25-.13l-.2-.08-.12.18c-.46.68-.7 1.48-.7 2.37 0 .34.04.68.11 1.01-.45.21-.99.33-1.6.33H1.05c-.17 0-.32.07-.44.18-.12.12-.19.27-.19.44 0 2.21.75 4.14 2.24 5.75 1.54 1.66 3.51 2.5 5.86 2.5 4.83 0 8.79-3.03 10.45-7.53 1.12-.04 2.2-.42 3.12-1.11.75-.56 1.25-1.29 1.48-2.15.06-.21-.02-.43-.17-.55z" />
+        </svg>
+      ),
+    },
+    {
+      name: "React Native",
+      tag: "Cross-Platform Mobile",
+      icon: (
+        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none">
+          <rect x="5" y="2" width="14" height="20" rx="3" stroke="#61DAFB" strokeWidth="1.5" />
+          <circle cx="12" cy="18.5" r="0.8" fill="#61DAFB" />
+          <circle cx="12" cy="10" r="1.5" fill="#61DAFB" />
+          <ellipse cx="12" cy="10" rx="4.5" ry="1.8" stroke="#61DAFB" strokeWidth="0.8" />
+          <ellipse cx="12" cy="10" rx="4.5" ry="1.8" stroke="#61DAFB" strokeWidth="0.8" transform="rotate(60 12 10)" />
+          <ellipse cx="12" cy="10" rx="4.5" ry="1.8" stroke="#61DAFB" strokeWidth="0.8" transform="rotate(120 12 10)" />
+        </svg>
+      ),
+    },
   ];
 
   // 2. Services
@@ -707,11 +818,17 @@ export default function HomePage() {
             {techStack.map((tech, idx) => (
               <div
                 key={idx}
-                className="px-4 py-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-blue-500/40 transition-colors flex items-center gap-2.5 text-xs font-mono text-slate-300"
+                className="px-4 py-2.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-blue-500/50 hover:bg-slate-800/70 transition-all flex items-center gap-2.5 text-xs font-mono text-slate-300 group shadow-sm"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                <span className="font-semibold text-white">{tech.name}</span>
-                <span className="text-[10px] text-slate-400 hidden sm:inline">({tech.tag})</span>
+                <span className="group-hover:scale-110 transition-transform">
+                  {tech.icon}
+                </span>
+                <span className="font-semibold text-white group-hover:text-blue-200 transition-colors">
+                  {tech.name}
+                </span>
+                <span className="text-[10px] text-slate-400 hidden sm:inline">
+                  ({tech.tag})
+                </span>
               </div>
             ))}
           </div>
