@@ -670,7 +670,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#070B19] text-slate-100 selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-[#070B19] text-slate-100 selection:bg-blue-600 selection:text-white overflow-x-hidden">
       {/* 1. TOP ANNOUNCEMENT BAR */}
       <div className="bg-gradient-to-r from-blue-950 via-indigo-950 to-blue-950 border-b border-blue-500/20 text-xs py-2.5 px-4 text-center font-medium text-blue-200">
         <span className="inline-flex items-center gap-2">
@@ -1794,11 +1794,11 @@ export default function HomePage() {
       </section>
 
       {/* 16. CORPORATE FOOTER */}
-      <footer className="bg-[#03060E] border-t border-slate-900 py-16 text-slate-400 text-xs">
+      <footer className="bg-[#03060E] border-t border-slate-900 py-12 sm:py-16 text-slate-400 text-xs overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-            <div className="md:col-span-1 space-y-4">
-              <div className="relative w-48 sm:w-56 h-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-10 sm:mb-12">
+            <div className="sm:col-span-2 lg:col-span-1 space-y-4">
+              <div className="relative w-44 sm:w-52 h-11">
                 <Image
                   src="/brayon-logo-horizontal.png"
                   alt="BRAYON Technologies - Technology. Innovation. Beyond."
@@ -1807,7 +1807,7 @@ export default function HomePage() {
                   unoptimized
                 />
               </div>
-              <p className="text-slate-400 text-xs leading-relaxed">
+              <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
                 Technology. Innovation. Beyond. High-performance custom software engineering, scalable cloud systems, and
                 business automation.
               </p>
@@ -1817,7 +1817,7 @@ export default function HomePage() {
               <div className="font-bold text-white uppercase tracking-wider text-[11px] mb-3">
                 Solutions & Services
               </div>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 <li><a href="#services" className="hover:text-blue-400 transition-colors">Custom Web Platforms</a></li>
                 <li><a href="#services" className="hover:text-blue-400 transition-colors">Enterprise ERP Systems</a></li>
                 <li><a href="#services" className="hover:text-blue-400 transition-colors">Headless E-Commerce</a></li>
@@ -1829,7 +1829,7 @@ export default function HomePage() {
               <div className="font-bold text-white uppercase tracking-wider text-[11px] mb-3">
                 Company & Process
               </div>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 <li><a href="#case-studies" className="hover:text-blue-400 transition-colors">5 Core Case Studies</a></li>
                 <li><a href="#pricing" className="hover:text-blue-400 transition-colors">Packages & Pricing</a></li>
                 <li><a href="#faq" className="hover:text-blue-400 transition-colors">FAQ & Code Ownership</a></li>
@@ -1838,42 +1838,46 @@ export default function HomePage() {
               </ul>
             </div>
 
-            <div>
+            <div className="sm:col-span-2 lg:col-span-1">
               <div className="font-bold text-white uppercase tracking-wider text-[11px] mb-3">
                 Direct Contact & Inboxes
               </div>
               <div className="space-y-2.5 text-slate-300">
                 <a
                   href="tel:+917385121432"
-                  className="flex items-center gap-2 hover:text-blue-400 transition-colors"
+                  className="flex items-center gap-2.5 hover:text-blue-400 transition-colors group"
                 >
-                  <Phone className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                  <span>+91 73851 21432</span>
+                  <Phone className="w-3.5 h-3.5 text-blue-400 shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="font-medium">+91 73851 21432</span>
                 </a>
                 <a
                   href="https://wa.me/917385121432"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:text-emerald-400 transition-colors"
+                  className="flex items-center gap-2.5 hover:text-emerald-400 transition-colors group"
                 >
-                  <MessageSquare className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>WhatsApp: +91 73851 21432</span>
+                  <MessageSquare className="w-3.5 h-3.5 text-emerald-400 shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="font-medium">WhatsApp: +91 73851 21432</span>
                 </a>
                 <a
                   href="mailto:bajrangiyadav330@gmail.com"
-                  className="flex items-center gap-2 hover:text-blue-400 transition-colors"
+                  className="flex items-center gap-2.5 hover:text-blue-400 transition-colors group min-w-0"
                 >
-                  <Mail className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                  <span>bajrangiyadav330@gmail.com</span>
+                  <Mail className="w-3.5 h-3.5 text-blue-400 shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="break-all font-mono text-[11px] text-slate-300 group-hover:text-blue-300">
+                    bajrangiyadav330@gmail.com
+                  </span>
                 </a>
                 <a
                   href="mailto:bajrangi@brayontech.com"
-                  className="flex items-center gap-2 hover:text-blue-400 transition-colors"
+                  className="flex items-center gap-2.5 hover:text-blue-400 transition-colors group min-w-0"
                 >
-                  <Mail className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                  <span>bajrangi@brayontech.com</span>
+                  <Mail className="w-3.5 h-3.5 text-blue-400 shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="break-all font-mono text-[11px] text-slate-300 group-hover:text-blue-300">
+                    bajrangi@brayontech.com
+                  </span>
                 </a>
-                <div className="flex items-center gap-2 text-slate-400 pt-1 text-[11px]">
+                <div className="flex items-center gap-2.5 text-slate-400 pt-1 text-[11px]">
                   <Globe className="w-3.5 h-3.5 text-blue-400 shrink-0" />
                   <span>brayontech.com</span>
                 </div>
@@ -1881,11 +1885,11 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="pt-8 border-t border-slate-900/90 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
+          <div className="pt-8 border-t border-slate-900/90 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400 text-center sm:text-left">
             <div>
               © {new Date().getFullYear()} BRAYON Technologies. All rights reserved.
             </div>
-            <div className="flex gap-6">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               <a href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-blue-400 transition-colors">Master Services Agreement (MSA)</a>
               <a href="#" className="hover:text-blue-400 transition-colors">Security Hygiene</a>
