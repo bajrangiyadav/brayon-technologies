@@ -502,7 +502,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           {/* Brand Logo */}
           <a href="#" className="flex items-center group">
-            <div className="relative h-11 sm:h-12 w-60 sm:w-72">
+            <div className="relative h-11 sm:h-12 w-48 sm:w-56">
               <Image
                 src="/brayon-logo-horizontal.png"
                 alt="BRAYON Technologies - Technology. Innovation. Beyond."
@@ -578,12 +578,12 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Official Emblem */}
           <div className="flex justify-center mb-6">
-            <div className="relative w-64 sm:w-80 h-32 sm:h-40">
+            <div className="relative w-72 sm:w-96 h-20 sm:h-24">
               <Image
-                src="/brayon-logo-stacked-dark.png"
+                src="/brayon-logo-horizontal.png"
                 alt="BRAYON Technologies - Technology. Innovation. Beyond."
                 fill
-                className="object-contain drop-shadow-[0_0_35px_rgba(0,102,255,0.5)]"
+                className="object-contain drop-shadow-[0_0_35px_rgba(0,102,255,0.6)]"
                 priority
                 unoptimized
               />
@@ -1469,7 +1469,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
             <div className="md:col-span-1 space-y-4">
-              <div className="relative w-60 sm:w-72 h-12">
+              <div className="relative w-48 sm:w-56 h-12">
                 <Image
                   src="/brayon-logo-horizontal.png"
                   alt="BRAYON Technologies - Technology. Innovation. Beyond."
