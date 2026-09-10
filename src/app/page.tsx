@@ -697,7 +697,7 @@ export default function HomePage() {
           </a>
 
           {/* Desktop Nav Items */}
-          <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6 text-[13px] xl:text-sm font-medium text-slate-300">
             <a href="#services" className="hover:text-blue-400 transition-colors">Services</a>
             <a href="#solutions" className="hover:text-blue-400 transition-colors">Solutions</a>
             <a href="#industries" className="hover:text-blue-400 transition-colors">Industries</a>
