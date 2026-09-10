@@ -71,6 +71,8 @@ export default function HomePage() {
   const techStack = [
     { name: "Next.js 16", tag: "Frontend Framework" },
     { name: "React 19", tag: "UI Component Architecture" },
+    { name: "Vue.js", tag: "Progressive Web Framework" },
+    { name: "Laravel", tag: "Enterprise PHP & REST Backend" },
     { name: "Node.js", tag: "High-Throughput Backend" },
     { name: "TypeScript", tag: "End-to-End Type Safety" },
     { name: "PostgreSQL", tag: "Relational Database" },
@@ -512,7 +514,7 @@ export default function HomePage() {
     {
       question: "What technologies does BRAYON Technologies specialize in?",
       answer:
-        "We specialize in modern, high-performance technologies: Next.js 16, React 19, Node.js, TypeScript, PostgreSQL, Redis, Tailwind CSS, Docker, AWS Cloud, and React Native for mobile applications.",
+        "We specialize in modern, high-performance technologies: Next.js 16, React 19, Vue.js, Laravel, Node.js, TypeScript, PostgreSQL, Redis, Tailwind CSS, Docker, AWS Cloud, and React Native for mobile applications.",
       badge: "Modern Tech Stack",
     },
     {

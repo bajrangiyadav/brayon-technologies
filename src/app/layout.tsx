@@ -35,6 +35,10 @@ export const metadata: Metadata = {
     "software development agency",
     "Next.js development company",
     "hire Next.js developers",
+    "Laravel development company",
+    "hire Laravel developers",
+    "Vue.js development agency",
+    "hire Vue.js developers",
     "React full stack developers",
     "SaaS MVP development in 30 days",
     "enterprise ERP development",
@@ -264,7 +268,7 @@ export default function RootLayout({
         name: "What technologies does BRAYON Technologies specialize in?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "We specialize in modern, high-performance technologies: Next.js 16, React 19, Node.js, TypeScript, PostgreSQL, Redis, Tailwind CSS, Docker, AWS Cloud, and React Native for mobile applications.",
+          text: "We specialize in modern, high-performance technologies: Next.js 16, React 19, Vue.js, Laravel, Node.js, TypeScript, PostgreSQL, Redis, Tailwind CSS, Docker, AWS Cloud, and React Native for mobile applications.",
         },
       },
       {
