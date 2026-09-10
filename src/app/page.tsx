@@ -53,6 +53,9 @@ export default function HomePage() {
   const [activeDemo, setActiveDemo] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [auditFormSubmitted, setAuditFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [whatsappUrl, setWhatsappUrl] = useState<string>("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -62,9 +65,33 @@ export default function HomePage() {
     details: "",
   });
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setAuditFormSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to dispatch inquiry");
+      }
+
+      setWhatsappUrl(result.whatsappUrl || "");
+      setAuditFormSubmitted(true);
+    } catch (err: any) {
+      setSubmitError(
+        err?.message || "Could not dispatch automatically. Please contact us via WhatsApp directly."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // 1. Tech Stack Badges
@@ -1574,30 +1601,87 @@ export default function HomePage() {
 
         <div className="rounded-3xl bg-[#090F24] border border-slate-800 p-8 sm:p-10 shadow-2xl">
           {auditFormSubmitted ? (
-            <div className="text-center py-12 space-y-4">
-              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
+            <div className="text-center py-8 space-y-6">
+              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto animate-bounce">
                 <Check className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-white">Requirement Received!</h3>
-              <p className="text-slate-300 text-sm max-w-md mx-auto">
-                Thank you, <span className="text-white font-semibold">{formData.name}</span>. Our Founder & Technology
-                Lead will review your requirements and respond at{" "}
-                <span className="text-blue-400 font-semibold">{formData.email}</span> within 24 hours.
-              </p>
-              <div className="pt-6">
+              <div className="space-y-2">
+                <h3 className="text-2xl sm:text-3xl font-bold text-white">
+                  Inquiry Dispatched to Founder!
+                </h3>
+                <p className="text-slate-300 text-sm sm:text-base max-w-lg mx-auto">
+                  Thank you, <span className="text-white font-semibold">{formData.name}</span>. Your requirements have been logged and dispatched to Founder & Technology Lead Bajrangi Yadav (<span className="text-blue-400 font-semibold">bajrangiyadav330@gmail.com</span>).
+                </p>
+              </div>
+
+              {/* Instant WhatsApp Priority Connect */}
+              <div className="p-6 rounded-2xl bg-[#0C1736] border border-emerald-500/30 max-w-md mx-auto space-y-3 text-left">
+                <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm">
+                  <MessageSquare className="w-5 h-5 shrink-0" />
+                  <span>Instant WhatsApp Direct Connect</span>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Need a faster response? Click below to start a direct WhatsApp conversation with Bajrangi Yadav with your inquiry pre-loaded.
+                </p>
                 <a
-                  href="https://wa.me/919999999999?text=Hi%20Bajrangi,%20I%20just%20submitted%20a%20project%20inquiry%20on%20BRAYON%20Technologies."
+                  href={
+                    whatsappUrl ||
+                    `https://wa.me/917385121432?text=${encodeURIComponent(
+                      `Hi Bajrangi, I just submitted an inquiry on BRAYON Technologies for ${formData.service}.`
+                    )}`
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-all shadow-lg shadow-emerald-600/30"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-all shadow-lg shadow-emerald-600/30"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  Instant Connect on WhatsApp
+                  Chat on WhatsApp (+91 73851 21432)
                 </a>
+                <div className="text-center pt-1">
+                  <a
+                    href="tel:+917385121432"
+                    className="text-[11px] text-slate-400 hover:text-white transition-colors"
+                  >
+                    Or call direct: <span className="text-blue-400 font-semibold">+91 73851 21432</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <button
+                  onClick={() => {
+                    setAuditFormSubmitted(false);
+                    setFormData({
+                      name: "",
+                      email: "",
+                      company: "",
+                      service: "Web & SaaS Development",
+                      budget: "₹75k - ₹1.5 Lakh ($1,000 - $2,000)",
+                      details: "",
+                    });
+                  }}
+                  className="text-xs text-slate-400 hover:text-white underline underline-offset-4"
+                >
+                  Submit another project inquiry
+                </button>
               </div>
             </div>
           ) : (
             <form onSubmit={handleFormSubmit} className="space-y-6">
+              {submitError && (
+                <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs flex items-center justify-between">
+                  <span>{submitError}</span>
+                  <a
+                    href="https://wa.me/917385121432"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold underline ml-2 shrink-0 text-emerald-400"
+                  >
+                    Chat on WhatsApp →
+                  </a>
+                </div>
+              )}
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
@@ -1689,10 +1773,20 @@ export default function HomePage() {
 
               <button
                 type="submit"
-                className="w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm uppercase tracking-wider shadow-xl shadow-blue-600/35 hover:shadow-blue-500/50 transition-all flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                className="w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:bg-blue-800 disabled:cursor-not-allowed text-white font-bold text-sm uppercase tracking-wider shadow-xl shadow-blue-600/35 hover:shadow-blue-500/50 transition-all flex items-center justify-center gap-2"
               >
-                <Send className="w-4 h-4" />
-                Submit Audit & Discovery Inquiry
+                {isSubmitting ? (
+                  <>
+                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span>Processing & Notifying Founder...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    <span>Submit Audit & Discovery Inquiry</span>
+                  </>
+                )}
               </button>
             </form>
           )}
@@ -1748,18 +1842,40 @@ export default function HomePage() {
               <div className="font-bold text-white uppercase tracking-wider text-[11px] mb-3">
                 Direct Contact & Inboxes
               </div>
-              <div className="space-y-2 text-slate-300">
-                <div className="flex items-center gap-2">
-                  <Mail className="w-3.5 h-3.5 text-blue-400" />
+              <div className="space-y-2.5 text-slate-300">
+                <a
+                  href="tel:+917385121432"
+                  className="flex items-center gap-2 hover:text-blue-400 transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <span>+91 73851 21432</span>
+                </a>
+                <a
+                  href="https://wa.me/917385121432"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-emerald-400 transition-colors"
+                >
+                  <MessageSquare className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>WhatsApp: +91 73851 21432</span>
+                </a>
+                <a
+                  href="mailto:bajrangiyadav330@gmail.com"
+                  className="flex items-center gap-2 hover:text-blue-400 transition-colors"
+                >
+                  <Mail className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <span>bajrangiyadav330@gmail.com</span>
+                </a>
+                <a
+                  href="mailto:bajrangi@brayontech.com"
+                  className="flex items-center gap-2 hover:text-blue-400 transition-colors"
+                >
+                  <Mail className="w-3.5 h-3.5 text-blue-400 shrink-0" />
                   <span>bajrangi@brayontech.com</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Mail className="w-3.5 h-3.5 text-blue-400" />
-                  <span>hello@brayontech.com</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Globe className="w-3.5 h-3.5 text-blue-400" />
-                  <span>brayontech.com / brayon.tech</span>
+                </a>
+                <div className="flex items-center gap-2 text-slate-400 pt-1 text-[11px]">
+                  <Globe className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <span>brayontech.com</span>
                 </div>
               </div>
             </div>

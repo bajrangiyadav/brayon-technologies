@@ -1,0 +1,14 @@
+[
+  {
+    "id": "LEAD-1789021773363",
+    "timestamp": "2026-09-10T06:29:33.363Z",
+    "name": "Rajesh Kumar",
+    "email": "rajesh@enterprise.com",
+    "company": "Logistics India Pvt Ltd",
+    "service": "Enterprise ERP & Automation",
+    "budget": "₹2,50,000+",
+    "details": "Looking for a multi-branch warehouse and inventory tracking system.",
+    "ip": "::1",
+    "userAgent": "node"
+  }
+]
