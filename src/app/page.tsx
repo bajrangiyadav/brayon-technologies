@@ -44,12 +44,14 @@ import {
   Sliders,
   Users,
   Lock,
+  ChevronDown,
 } from "lucide-react";
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeCaseStudy, setActiveCaseStudy] = useState(0);
   const [activeDemo, setActiveDemo] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [auditFormSubmitted, setAuditFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -487,6 +489,46 @@ export default function HomePage() {
     },
   ];
 
+  // 7. Frequently Asked Questions (Matches Google FAQPage JSON-LD Schema)
+  const faqs = [
+    {
+      question: "How much does custom software or an MVP cost at BRAYON Technologies?",
+      answer:
+        "Our transparent packages start at ₹35,000 ($550) for a modern 5-page web foundation. Startup MVPs typically range between ₹1,50,000 and ₹3,50,000 ($2,000 – $4,500), while comprehensive enterprise ERPs start at ₹2,50,000 ($3,500+). We operate strictly on milestone-based payments with zero hidden fees.",
+      badge: "Transparent Pricing",
+    },
+    {
+      question: "How fast can BRAYON Technologies launch our web platform or MVP?",
+      answer:
+        "Starter web projects are delivered in 7–10 business days. Full-stack startup MVPs are delivered in 30 days through two-week agile sprint cycles. Enterprise custom ERPs take between 6 to 10 weeks with weekly staging demos.",
+      badge: "Rapid Delivery",
+    },
+    {
+      question: "Do we get 100% ownership of the source code and intellectual property?",
+      answer:
+        "Yes. Upon completion of milestone payments, BRAYON Technologies transfers 100% worldwide intellectual property (IP), copyright, and GitHub source code repository ownership to your company, protected by our standard Master Services Agreement (MSA).",
+      badge: "100% IP Handover",
+    },
+    {
+      question: "What technologies does BRAYON Technologies specialize in?",
+      answer:
+        "We specialize in modern, high-performance technologies: Next.js 16, React 19, Node.js, TypeScript, PostgreSQL, Redis, Tailwind CSS, Docker, AWS Cloud, and React Native for mobile applications.",
+      badge: "Modern Tech Stack",
+    },
+    {
+      question: "What is BRAYON's payment milestone structure?",
+      answer:
+        "We never ask for 100% upfront or accept risky post-completion terms. Standard projects operate on a 50% advance to initiate architecture and 50% upon User Acceptance Testing (UAT) sign-off. Enterprise projects follow a 30% Advance / 30% Alpha Demo / 30% Beta Review / 10% Production Deployment schedule.",
+      badge: "Milestone Safety",
+    },
+    {
+      question: "How does the free 15-minute architecture audit work?",
+      answer:
+        "You share your current website or software requirements. Founder & Technology Lead Bajrangi Yadav conducts a 5-point technical inspection (Core Web Vitals, mobile UX, API speed, security headers, and conversion bottlenecks) and delivers an actionable 1-page PDF report within 24 hours with zero sales pressure.",
+      badge: "Zero-Risk Value",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-[#070B19] text-slate-100 selection:bg-blue-600 selection:text-white">
       {/* 1. TOP ANNOUNCEMENT BAR */}
@@ -525,6 +567,7 @@ export default function HomePage() {
             </a>
             <a href="#case-studies" className="hover:text-blue-400 transition-colors">Case Studies</a>
             <a href="#pricing" className="hover:text-blue-400 transition-colors">Pricing</a>
+            <a href="#faq" className="hover:text-blue-400 transition-colors">FAQ</a>
             <a href="#founder" className="hover:text-blue-400 transition-colors">Founder</a>
           </nav>
 
@@ -558,6 +601,7 @@ export default function HomePage() {
             <a href="#demos" onClick={() => setMobileMenuOpen(false)} className="block text-slate-300 hover:text-blue-400 font-medium">Live Demos</a>
             <a href="#case-studies" onClick={() => setMobileMenuOpen(false)} className="block text-slate-300 hover:text-blue-400 font-medium">Case Studies</a>
             <a href="#pricing" onClick={() => setMobileMenuOpen(false)} className="block text-slate-300 hover:text-blue-400 font-medium">Pricing</a>
+            <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="block text-slate-300 hover:text-blue-400 font-medium">FAQ</a>
             <a href="#founder" onClick={() => setMobileMenuOpen(false)} className="block text-slate-300 hover:text-blue-400 font-medium">Founder</a>
             <a
               href="#contact"
@@ -1322,6 +1366,78 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 14.5. FREQUENTLY ASKED QUESTIONS (FAQ) - SEO & CONVERSION */}
+      <section id="faq" className="py-24 bg-[#080E21] border-t border-slate-800/80">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-4">
+              <Sparkles className="w-3.5 h-3.5" />
+              Frequently Asked Questions
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+              Everything You Need to Know Before Partnering With Us
+            </h2>
+            <p className="mt-4 text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+              Straightforward answers about pricing, launch timelines, code ownership, sprint cadence, and our risk-free architecture audit.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <div
+                  key={idx}
+                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                    isOpen
+                      ? "bg-[#0C1530] border-blue-500/40 shadow-lg shadow-blue-500/5"
+                      : "bg-[#090F24] border-slate-800/90 hover:border-slate-700"
+                  }`}
+                >
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none"
+                    aria-expanded={isOpen}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-semibold px-2.5 py-1 rounded bg-blue-500/15 text-blue-300 border border-blue-500/25 shrink-0">
+                        {faq.badge}
+                      </span>
+                      <span className="text-base sm:text-lg font-semibold text-white">
+                        {faq.question}
+                      </span>
+                    </div>
+                    <ChevronDown
+                      className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
+                        isOpen ? "transform rotate-180 text-blue-400" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {isOpen && (
+                    <div className="px-6 pb-6 pt-1 text-slate-300 text-sm sm:text-base leading-relaxed border-t border-slate-800/50">
+                      <p>{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-12 text-center p-6 rounded-2xl bg-blue-950/30 border border-blue-500/20">
+            <p className="text-sm text-slate-300">
+              Have a specific technical question or need an NDA before sharing details?{" "}
+              <a
+                href="#contact"
+                className="text-blue-400 hover:text-blue-300 font-semibold underline underline-offset-4"
+              >
+                Request a 15-minute consultation with our Founder →
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 15. LEAD MAGNET & AUDIT FORM */}
       <section id="contact" className="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
@@ -1503,6 +1619,7 @@ export default function HomePage() {
               <ul className="space-y-2">
                 <li><a href="#case-studies" className="hover:text-blue-400 transition-colors">5 Core Case Studies</a></li>
                 <li><a href="#pricing" className="hover:text-blue-400 transition-colors">Packages & Pricing</a></li>
+                <li><a href="#faq" className="hover:text-blue-400 transition-colors">FAQ & Code Ownership</a></li>
                 <li><a href="#founder" className="hover:text-blue-400 transition-colors">Founder Leadership</a></li>
                 <li><a href="#process" className="hover:text-blue-400 transition-colors">5-Step Sprint Method</a></li>
               </ul>
