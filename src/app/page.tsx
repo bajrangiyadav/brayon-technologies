@@ -502,13 +502,14 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           {/* Brand Logo */}
           <a href="#" className="flex items-center group">
-            <div className="relative h-12 w-56 sm:w-64">
+            <div className="relative h-11 sm:h-12 w-60 sm:w-72">
               <Image
-                src="/brayon-logo-vector-dark.svg"
+                src="/brayon-logo-horizontal.png"
                 alt="BRAYON Technologies - Technology. Innovation. Beyond."
                 fill
                 className="object-contain object-left group-hover:scale-[1.02] transition-transform"
                 priority
+                unoptimized
               />
             </div>
           </a>
@@ -577,13 +578,14 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Official Emblem */}
           <div className="flex justify-center mb-6">
-            <div className="relative w-52 sm:w-64 h-24 sm:h-28">
+            <div className="relative w-64 sm:w-80 h-32 sm:h-40">
               <Image
-                src="/brayon-logo-dark.png"
+                src="/brayon-logo-stacked-dark.png"
                 alt="BRAYON Technologies - Technology. Innovation. Beyond."
                 fill
-                className="object-contain drop-shadow-[0_0_30px_rgba(0,102,255,0.45)]"
+                className="object-contain drop-shadow-[0_0_35px_rgba(0,102,255,0.5)]"
                 priority
+                unoptimized
               />
             </div>
           </div>
@@ -1246,13 +1248,14 @@ export default function HomePage() {
               {/* Founder Avatar & Badge */}
               <div className="lg:col-span-4 text-center lg:text-left flex flex-col items-center lg:items-start">
                 <div className="w-36 h-36 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-400 p-1 shadow-2xl shadow-blue-500/30">
-                  <div className="w-full h-full rounded-2xl bg-[#0A1128] p-4 flex items-center justify-center">
+                  <div className="w-full h-full rounded-2xl bg-[#0A1128] p-3 flex items-center justify-center">
                     <Image
-                      src="/brayon-icon.png"
+                      src="/brayon-icon-clean.png"
                       alt="BRAYON Technologies Icon"
                       width={120}
                       height={70}
                       className="object-contain drop-shadow-[0_0_15px_rgba(0,102,255,0.6)]"
+                      unoptimized
                     />
                   </div>
                 </div>
@@ -1466,12 +1469,13 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
             <div className="md:col-span-1 space-y-4">
-              <div className="relative w-56 h-14">
+              <div className="relative w-60 sm:w-72 h-12">
                 <Image
-                  src="/brayon-logo-vector-dark.svg"
+                  src="/brayon-logo-horizontal.png"
                   alt="BRAYON Technologies - Technology. Innovation. Beyond."
                   fill
                   className="object-contain object-left"
+                  unoptimized
                 />
               </div>
               <p className="text-slate-400 text-xs leading-relaxed">
