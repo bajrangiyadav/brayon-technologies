@@ -39,6 +39,15 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${project.title} | Case Study | BRAYON Technologies`,
     description: project.overview,
+    alternates: {
+      canonical: `/work/${project.slug}`,
+    },
+    openGraph: {
+      title: `${project.title} | Case Study | BRAYON Technologies`,
+      description: project.overview,
+      url: `https://brayontech.com/work/${project.slug}`,
+      type: "article",
+    },
   };
 }
 
@@ -53,8 +62,31 @@ export default async function CaseStudyPage({ params }: Props) {
   // Find other projects for "More Case Studies"
   const otherProjects = projects.filter((p) => p.slug !== slug);
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: project.title,
+    description: project.overview,
+    url: `https://brayontech.com/work/${project.slug}`,
+    author: {
+      "@type": "Person",
+      name: "Bajrangi Yadav",
+      jobTitle: "Founder & Technology Lead",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "BRAYON Technologies",
+      url: "https://brayontech.com",
+    },
+    inLanguage: "en-US",
+  };
+
   return (
     <div className="min-h-screen bg-[#070B19] text-slate-100 selection:bg-blue-600 selection:text-white flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <Navbar />
 
       <main className="flex-grow">

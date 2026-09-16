@@ -21,6 +21,15 @@ export const metadata = {
   title: "Engineering & Web Development Services | BRAYON Technologies",
   description:
     "Explore BRAYON Technologies' production-ready engineering services: Next.js web applications, Laravel backends, headless e-commerce, startup MVPs, and business automation ERPs.",
+  alternates: {
+    canonical: "/services",
+  },
+  openGraph: {
+    title: "Engineering & Web Development Services | BRAYON Technologies",
+    description:
+      "Production-ready Next.js web apps, Laravel APIs, high-converting e-commerce, and custom ERP automation engineered for scale.",
+    url: "https://brayontech.com/services",
+  },
 };
 
 const services = [

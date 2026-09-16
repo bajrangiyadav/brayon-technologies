@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     telephone: true,
   },
   alternates: {
-    canonical: "https://brayontech.com",
+    canonical: "./",
     languages: {
       "en-US": "https://brayontech.com",
       "en-GB": "https://brayontech.com",
@@ -146,23 +146,33 @@ export default function RootLayout({
       url: "https://brayontech.com/#founder",
       sameAs: ["https://www.linkedin.com"],
     },
+    telephone: "+91-7385121432",
+    email: "bajrangiyadav330@gmail.com",
+    address: {
+      "@type": "PostalAddress",
+      "addressLocality": "Mumbai",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN",
+    },
     contactPoint: [
       {
         "@type": "ContactPoint",
         contactType: "customer service",
-        email: "hello@brayontech.com",
+        telephone: "+91-7385121432",
+        email: "bajrangiyadav330@gmail.com",
         availableLanguage: ["English", "Hindi"],
       },
       {
         "@type": "ContactPoint",
         contactType: "sales",
-        email: "bajrangi@brayontech.com",
+        telephone: "+91-7385121432",
+        email: "bajrangiyadav330@gmail.com",
         availableLanguage: ["English", "Hindi"],
       },
     ],
     sameAs: [
-      "https://www.linkedin.com/company/brayon-technologies",
-      "https://github.com/brayon-technologies",
+      "https://github.com/bajrangiyadav/brayon-technologies",
+      "https://www.linkedin.com",
       "https://twitter.com/brayontech",
     ],
     priceRange: "₹35,000 - ₹5,00,000+ ($550 - $6,000+)",
@@ -237,89 +247,13 @@ export default function RootLayout({
     },
   };
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "How much does custom software or an MVP cost at BRAYON Technologies?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Our transparent packages start at ₹35,000 ($550) for a modern 5-page web foundation. Startup MVPs typically range between ₹1,50,000 and ₹3,50,000 ($2,000 – $4,500), while comprehensive enterprise ERPs start at ₹2,50,000 ($3,500+). We operate strictly on milestone-based payments with zero hidden fees.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How fast can BRAYON Technologies launch our web platform or MVP?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Starter web projects are delivered in 7–10 business days. Full-stack startup MVPs are delivered in 30 days through two-week agile sprint cycles. Enterprise custom ERPs take between 6 to 10 weeks with weekly staging demos.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Do we get 100% ownership of the source code and intellectual property?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Upon completion of milestone payments, BRAYON Technologies transfers 100% worldwide intellectual property (IP), copyright, and GitHub source code repository ownership to your company, protected by our standard Master Services Agreement (MSA).",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What technologies does BRAYON Technologies specialize in?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "We specialize in modern, high-performance technologies: Next.js 16, React 19, Vue.js, Laravel, Node.js, TypeScript, PostgreSQL, Redis, Tailwind CSS, Docker, AWS Cloud, and React Native for mobile applications.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What is BRAYON's payment milestone structure?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "We never ask for 100% upfront or accept risky post-completion terms. Standard projects operate on a 50% advance to initiate architecture and 50% upon User Acceptance Testing (UAT) sign-off. Enterprise projects follow a 30% Advance / 30% Alpha Demo / 30% Beta Review / 10% Production Deployment schedule.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How does the free 15-minute architecture audit work?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "You share your current website or software requirements. Founder & Technology Lead Bajrangi Yadav conducts a 5-point technical inspection (Core Web Vitals, mobile UX, API speed, security headers, and conversion bottlenecks) and delivers an actionable 1-page PDF report within 24 hours with zero sales pressure.",
-        },
-      },
-    ],
-  };
-
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https://brayontech.com/#website",
-    url: "https://brayontech.com",
-    name: "BRAYON Technologies",
-    description: "Technology. Innovation. Beyond. Enterprise Software, Web & Cloud Engineering.",
-    publisher: {
-      "@id": "https://brayontech.com/#organization",
-    },
-    inLanguage: "en-US",
-  };
-
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
       <head>
-        {/* JSON-LD Structured Data Scripts for Google Search Rich Snippets */}
+        {/* Global Organization JSON-LD for Google Knowledge Graph & Brand Panel */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
       <body className="min-h-screen bg-[#070B19] text-slate-100 antialiased selection:bg-blue-600 selection:text-white">

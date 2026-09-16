@@ -20,6 +20,15 @@ export const metadata = {
   title: "About Us & Engineering Leadership | BRAYON Technologies",
   description:
     "Meet BRAYON Technologies and Founder Bajrangi Yadav. Direct engineering leadership, production-ready architectures, and zero bloated agency overhead.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About Us & Engineering Leadership | BRAYON Technologies",
+    description:
+      "Direct senior engineering leadership by Founder Bajrangi Yadav. 5-step agile delivery model, sub-second performance, and 100% code ownership.",
+    url: "https://brayontech.com/about",
+  },
 };
 
 const deliverySteps = [
@@ -205,7 +214,7 @@ export default function AboutPage() {
         </section>
 
         {/* 5-Step Delivery Framework */}
-        <section className="py-20 bg-[#050814] border-t border-b border-slate-800/80">
+        <section id="process" className="py-20 bg-[#050814] border-t border-b border-slate-800/80 scroll-mt-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-16">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-400/25 text-blue-300 text-xs font-mono mb-4">
