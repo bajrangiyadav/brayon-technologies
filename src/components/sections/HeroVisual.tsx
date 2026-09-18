@@ -1,266 +1,347 @@
 "use client";
 
 import React, { useState } from "react";
-import { useReducedMotion } from "framer-motion";
+import Link from "next/link";
 import {
-  Cpu,
+  Server,
   Database,
-  Cloud,
   Globe,
-  Smartphone,
-  Zap,
-  Activity,
-  Shield,
+  ShieldCheck,
+  CheckCircle2,
+  ExternalLink,
+  Cpu,
   Layers,
 } from "lucide-react";
 
-interface NodeData {
+interface SystemTier {
   id: string;
-  label: string;
+  name: string;
   category: string;
   icon: React.ElementType;
-  x: number;
-  y: number;
-  status: string;
-  metric: string;
+  tech: string;
+  spec: string;
+  metrics: string;
+  details: string[];
 }
 
-const NODES: NodeData[] = [
-  {
-    id: "ai",
-    label: "AI & LLM RUNTIMES",
-    category: "INTELLIGENCE",
-    icon: Cpu,
-    x: 22,
-    y: 20,
-    status: "ACTIVE",
-    metric: "45ms LATENCY",
+interface ProjectArchitecture {
+  id: "jbce" | "mhvp";
+  name: string;
+  shortName: string;
+  domain: string;
+  url: string;
+  purpose: string;
+  tiers: SystemTier[];
+}
+
+const ARCHITECTURES: Record<"jbce" | "mhvp", ProjectArchitecture> = {
+  jbce: {
+    id: "jbce",
+    name: "Jay Balaji Computer Education",
+    shortName: "JBCE System",
+    domain: "jbce.in",
+    url: "https://jbce.in/",
+    purpose: "Student Verification, Course Management & Center Administration",
+    tiers: [
+      {
+        id: "ui",
+        name: "Client Presentation Tier",
+        category: "FRONTEND ARCHITECTURE",
+        icon: Globe,
+        tech: "React · TypeScript · Tailwind CSS",
+        spec: "Mobile-responsive portal, instantaneous search index, sub-second LCP",
+        metrics: "Verified across 100% mobile viewports",
+        details: [
+          "Optimized student enrollment & certificate search workflows",
+          "Clean responsive UI for center managers and students",
+          "Zero layout shift with strict font & asset preloading",
+        ],
+      },
+      {
+        id: "api",
+        name: "Application & API Gateway",
+        category: "BUSINESS LOGIC",
+        icon: Cpu,
+        tech: "RESTful API · Session Security · Input Sanitization",
+        spec: "Center authentication, parameterized certificate validation requests",
+        metrics: "Sub-100ms lookup latency",
+        details: [
+          "Strict input validation preventing SQL/XSS injection",
+          "Role-based access controls for branch managers",
+          "Structured JSON response contracts for instant verification",
+        ],
+      },
+      {
+        id: "db",
+        name: "Relational Verification Store",
+        category: "PERSISTENCE & INTEGRITY",
+        icon: Database,
+        tech: "MySQL / Relational Schema · B-Tree Indexing",
+        spec: "ACID transactions, indexed student records, registration hash indexing",
+        metrics: "Exact lookup query execution",
+        details: [
+          "Normalized schema for students, centers, and courses",
+          "Indexed registration numbers for instantaneous lookup",
+          "Relational foreign key constraints preventing orphan records",
+        ],
+      },
+      {
+        id: "infra",
+        name: "Edge & Host Infrastructure",
+        category: "PRODUCTION DEVOPS",
+        icon: Server,
+        tech: "Linux Host · NGINX · SSL/TLS Encryption",
+        spec: "Production hardened, automated backup schedules, HTTPS enforcement",
+        metrics: "Live active production system",
+        details: [
+          "Automated daily database dumps & offsite retention",
+          "Full TLS 1.3 encryption with strict HTTP headers",
+          "Direct production deployment maintained by BRAYON",
+        ],
+      },
+    ],
   },
-  {
-    id: "data",
-    label: "DATA ARCHITECTURE",
-    category: "PIPELINES",
-    icon: Database,
-    x: 78,
-    y: 20,
-    status: "SYNCED",
-    metric: "ACID STRICT",
+  mhvp: {
+    id: "mhvp",
+    name: "Mumbai Hindi Vidyapeeth",
+    shortName: "MHVP System",
+    domain: "mhvp.org",
+    url: "https://mhvp.org/",
+    purpose: "Institutional Portal, Examination Records & Marksheet Verification",
+    tiers: [
+      {
+        id: "ui",
+        name: "Institutional Web Portal",
+        category: "FRONTEND ARCHITECTURE",
+        icon: Globe,
+        tech: "Semantic HTML5 · Responsive Engine · Modern CSS",
+        spec: "Accessible typography for institutional visitors, high-contrast layouts",
+        metrics: "Fast load on 3G/4G networks",
+        details: [
+          "Clear institutional information architecture and examination notices",
+          "Dedicated online mark-sheet verification interface",
+          "Bilingual readability with robust font rendering",
+        ],
+      },
+      {
+        id: "api",
+        name: "Verification & Logic Tier",
+        category: "BUSINESS LOGIC",
+        icon: Cpu,
+        tech: "Secure API Handler · Parameterized Query Filter",
+        spec: "Multi-parameter verification (Roll No, Year, Examination Center)",
+        metrics: "Zero false-positive lookups",
+        details: [
+          "Deterministic verification algorithm matching official registers",
+          "Tamper-resistant response payloads with digital watermarking",
+          "Rate-limited endpoints to prevent bulk student data scraping",
+        ],
+      },
+      {
+        id: "db",
+        name: "Examination Registry Database",
+        category: "PERSISTENCE & INTEGRITY",
+        icon: Database,
+        tech: "Relational Academic Ledger · Read-Replication Ready",
+        spec: "Historical examination records, archival index, audit trails",
+        metrics: "ACID transaction guarantees",
+        details: [
+          "Longitudinal schema accommodating decades of academic results",
+          "Immutable grade verification tables with checksum audits",
+          "Strict data privacy standards for student personal identifiers",
+        ],
+      },
+      {
+        id: "infra",
+        name: "Host & Security Hardening",
+        category: "PRODUCTION DEVOPS",
+        icon: Server,
+        tech: "Hardened Linux · Firewall Filter · SSL/TLS",
+        spec: "Monitored uptime, security patching, reliable institutional hosting",
+        metrics: "Continuous production uptime",
+        details: [
+          "Enterprise SSL encryption protecting institutional integrity",
+          "DDoS mitigation and web application firewall rules",
+          "Production infrastructure managed and maintained by BRAYON",
+        ],
+      },
+    ],
   },
-  {
-    id: "cloud",
-    label: "CLOUD INFRASTRUCTURE",
-    category: "DEVOPS",
-    icon: Cloud,
-    x: 88,
-    y: 54,
-    status: "DEPLOYED",
-    metric: "99.99% UPTIME",
-  },
-  {
-    id: "web",
-    label: "WEB APPLICATIONS",
-    category: "NEXT.JS / REACT",
-    icon: Globe,
-    x: 74,
-    y: 84,
-    status: "EDGE SSR",
-    metric: "< 1.1s LCP",
-  },
-  {
-    id: "mobile",
-    label: "MOBILE RUNTIMES",
-    category: "REACT NATIVE",
-    icon: Smartphone,
-    x: 26,
-    y: 84,
-    status: "COMPILED",
-    metric: "60 FPS NATIVE",
-  },
-  {
-    id: "automation",
-    label: "BUSINESS AUTOMATION",
-    category: "WORKFLOWS",
-    icon: Zap,
-    x: 12,
-    y: 54,
-    status: "QUEUED",
-    metric: "REALTIME",
-  },
-];
+};
 
 export function HeroVisual() {
-  const [activeNode, setActiveNode] = useState<string>("ai");
-  const shouldReduceMotion = useReducedMotion();
+  const [activeProject, setActiveProject] = useState<"jbce" | "mhvp">("jbce");
+  const [selectedTierIndex, setSelectedTierIndex] = useState<number>(0);
+
+  const currentArch = ARCHITECTURES[activeProject];
+  const activeTier = currentArch.tiers[selectedTierIndex] || currentArch.tiers[0];
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto aspect-square sm:aspect-[4/3] rounded-2xl border border-white/[0.08] bg-[#070b16]/90 p-4 sm:p-6 overflow-hidden shadow-2xl shadow-blue-950/20 backdrop-blur-xl">
-      {/* Background Architectural Grid */}
-      <div
-        className="absolute inset-0 opacity-[0.08] pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, #3b82f6 1px, transparent 1px),
-            linear-gradient(to bottom, #3b82f6 1px, transparent 1px)
-          `,
-          backgroundSize: "32px 32px",
-        }}
-      />
+    <div className="relative w-full max-w-2xl mx-auto rounded-xl border border-white/[0.12] bg-[#070d1a] overflow-hidden shadow-2xl shadow-blue-950/40 text-left">
+      {/* Workbench Header: Project Selector & Live Status */}
+      <div className="px-4 py-3 bg-[#0a1224] border-b border-white/[0.08] flex flex-wrap items-center justify-between gap-2.5">
+        {/* Project Selector Tabs */}
+        <div className="flex items-center gap-1.5 p-0.5 rounded-lg bg-black/40 border border-white/[0.06]" role="tablist" aria-label="Delivered Production Systems">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeProject === "jbce"}
+            aria-controls="workbench-panel"
+            onClick={() => {
+              setActiveProject("jbce");
+              setSelectedTierIndex(0);
+            }}
+            className={`px-3 py-1.5 rounded-md text-xs font-mono font-medium transition-all ${
+              activeProject === "jbce"
+                ? "bg-blue-600 text-white shadow-sm"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            jbce.in
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeProject === "mhvp"}
+            aria-controls="workbench-panel"
+            onClick={() => {
+              setActiveProject("mhvp");
+              setSelectedTierIndex(0);
+            }}
+            className={`px-3 py-1.5 rounded-md text-xs font-mono font-medium transition-all ${
+              activeProject === "mhvp"
+                ? "bg-blue-600 text-white shadow-sm"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            mhvp.org
+          </button>
+        </div>
 
-      {/* Radial subtle gradient backdrop */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-blue-600/[0.06] rounded-full blur-3xl pointer-events-none" />
-
-      {/* SVG Circuit Lines connecting Center to Nodes */}
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-      >
-        <defs>
-          <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#2563eb" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.1" />
-          </linearGradient>
-        </defs>
-
-        {/* Center coordinates: (50, 52) */}
-        {NODES.map((node) => {
-          const isActive = activeNode === node.id;
-          return (
-            <g key={`conn-${node.id}`}>
-              <line
-                x1="50"
-                y1="52"
-                x2={node.x}
-                y2={node.y}
-                stroke={isActive ? "#3b82f6" : "rgba(255, 255, 255, 0.1)"}
-                strokeWidth={isActive ? "0.6" : "0.3"}
-                strokeDasharray={isActive ? "none" : "1, 1"}
-              />
-              {/* Data packet motion */}
-              {!shouldReduceMotion && (
-                <circle r="0.8" fill={isActive ? "#60a5fa" : "#3b82f6"} opacity="0.8">
-                  <animateMotion
-                    path={`M 50 52 L ${node.x} ${node.y}`}
-                    dur={`${2.2 + (node.x % 3) * 0.4}s`}
-                    repeatCount="indefinite"
-                  />
-                </circle>
-              )}
-            </g>
-          );
-        })}
-
-        {/* Outer Orbit Rings */}
-        <circle
-          cx="50"
-          cy="52"
-          r="38"
-          fill="none"
-          stroke="rgba(255, 255, 255, 0.05)"
-          strokeWidth="0.3"
-          strokeDasharray="2, 3"
-        />
-        <circle
-          cx="50"
-          cy="52"
-          r="22"
-          fill="none"
-          stroke="rgba(37, 99, 235, 0.15)"
-          strokeWidth="0.4"
-        />
-      </svg>
-
-      {/* Top Telemetry Bar */}
-      <div className="relative z-10 flex items-center justify-between pb-3 border-b border-white/[0.08] text-[11px] font-mono text-slate-400">
+        {/* Live System Indicator */}
         <div className="flex items-center gap-2">
-          <Activity className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
-          <span className="text-slate-200">SYSTEM ARCHITECTURE</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="text-slate-500">ENGINEERING DISCIPLINE</span>
-          <span className="px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 text-[10px]">
-            PRODUCTION
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>ACTIVE PRODUCTION</span>
           </span>
+          <Link
+            href={currentArch.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-400 hover:text-white p-1 rounded transition-colors"
+            title={`Visit live production site ${currentArch.domain}`}
+            aria-label={`Visit live site ${currentArch.domain}`}
+          >
+            <ExternalLink className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </div>
 
-      {/* Central BRAYON CORE HUB */}
-      <div
-        className="absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl bg-[#0c1324] border border-blue-500/40 shadow-xl shadow-blue-950/40 text-center cursor-pointer transition-transform hover:scale-105"
-        style={{ width: "130px", height: "96px" }}
-      >
-        <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-600/20 border border-blue-500/30 text-blue-400 mb-1">
-          <Layers className="w-4 h-4" />
+      {/* Project Title & Purpose */}
+      <div className="px-4 py-2.5 bg-[#080f1e] border-b border-white/[0.06] flex items-center justify-between gap-3 text-xs">
+        <div className="min-w-0">
+          <div className="text-white font-medium truncate">{currentArch.name}</div>
+          <div className="text-slate-400 text-[11px] truncate">{currentArch.purpose}</div>
         </div>
-        <div className="font-mono text-[11px] font-bold tracking-wider text-white">
-          BRAYON CORE
+        <div className="hidden sm:flex items-center gap-1 text-[11px] font-mono text-slate-400 shrink-0">
+          <Layers className="w-3.5 h-3.5 text-blue-400" />
+          <span>4-TIER ARCHITECTURE</span>
         </div>
-        <div className="text-[9px] font-mono text-slate-400">ENGINEERING</div>
       </div>
 
-      {/* Nodes Positioning */}
-      <div className="absolute inset-0 z-20 pointer-events-none">
-        {NODES.map((node) => {
-          const isActive = activeNode === node.id;
-          const Icon = node.icon;
+      {/* Architectural Stack Tiers Grid */}
+      <div id="workbench-panel" className="p-4 space-y-2">
+        <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1 flex items-center justify-between">
+          <span>System Tiers (Click to inspect)</span>
+          <span className="text-blue-400">Inspecting: Tier {selectedTierIndex + 1}/4</span>
+        </div>
 
-          return (
-            <div
-              key={node.id}
-              className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
-              style={{ left: `${node.x}%`, top: `${node.y}%` }}
-            >
-              <div
-                role="button"
-                tabIndex={0}
-                aria-label={`${node.label} — ${node.metric}`}
-                aria-pressed={isActive}
-                onMouseEnter={() => setActiveNode(node.id)}
-                onFocus={() => setActiveNode(node.id)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    setActiveNode(node.id);
-                  }
-                }}
-                className={`group flex items-center gap-2 p-2 sm:p-2.5 rounded-xl border transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${
-                  isActive
-                    ? "bg-[#11192e] border-blue-500 shadow-lg shadow-blue-500/20 scale-105"
-                    : "bg-[#090e1b]/90 border-white/[0.08] hover:border-white/[0.2] hover:bg-[#0e1628]"
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {currentArch.tiers.map((tier, idx) => {
+            const isSelected = selectedTierIndex === idx;
+            const Icon = tier.icon;
+            return (
+              <button
+                key={tier.id}
+                type="button"
+                onClick={() => setSelectedTierIndex(idx)}
+                className={`w-full p-2.5 rounded-lg border text-left transition-all flex items-start gap-2.5 ${
+                  isSelected
+                    ? "bg-blue-950/40 border-blue-500/60 ring-1 ring-blue-500/40"
+                    : "bg-[#0a1222] border-white/[0.08] hover:border-white/[0.2] hover:bg-[#0c162a]"
                 }`}
               >
                 <div
-                  className={`w-7 h-7 rounded-lg flex items-center justify-center border transition-colors ${
-                    isActive
+                  className={`w-7 h-7 rounded-md flex items-center justify-center shrink-0 border ${
+                    isSelected
                       ? "bg-blue-600 text-white border-blue-400"
-                      : "bg-white/[0.04] text-slate-300 border-white/[0.08] group-hover:text-white"
+                      : "bg-white/[0.04] text-slate-300 border-white/[0.08]"
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
                 </div>
-                <div className="hidden sm:block text-left">
-                  <div className="text-[10px] font-mono font-medium text-slate-200 group-hover:text-white leading-tight">
-                    {node.label}
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-1">
+                    <span className="text-[11px] font-mono font-medium text-white truncate">
+                      {tier.name}
+                    </span>
+                    {isSelected && (
+                      <CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />
+                    )}
                   </div>
-                  <div className="text-[9px] font-mono text-slate-500">
-                    {node.metric}
+                  <div className="text-[10px] font-mono text-slate-400 truncate">
+                    {tier.tech}
                   </div>
                 </div>
-              </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Selected Tier Inspection Workbench */}
+        <div className="mt-3 p-3.5 rounded-lg bg-[#050a14] border border-blue-500/30 text-xs">
+          <div className="flex items-center justify-between pb-2 border-b border-white/[0.08] mb-2.5">
+            <div className="flex items-center gap-2">
+              <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-blue-500/15 text-blue-300 border border-blue-500/30">
+                {activeTier.category}
+              </span>
+              <span className="font-mono text-white font-medium text-[11px]">
+                {activeTier.name}
+              </span>
             </div>
-          );
-        })}
+            <span className="text-[10px] font-mono text-emerald-400 font-medium">
+              {activeTier.metrics}
+            </span>
+          </div>
+
+          <p className="text-slate-300 text-[11px] leading-relaxed mb-2.5">
+            {activeTier.spec}
+          </p>
+
+          <ul className="space-y-1 text-[11px] text-slate-400">
+            {activeTier.details.map((detail) => (
+              <li key={detail} className="flex items-start gap-1.5">
+                <span className="text-blue-400 font-mono mt-0.5">›</span>
+                <span className="text-slate-300">{detail}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
-      {/* Bottom Architectural Info Footer */}
-      <div className="absolute bottom-3 left-6 right-6 z-10 hidden sm:flex items-center justify-between text-[10px] font-mono text-slate-400 pt-2 border-t border-white/[0.06]">
+      {/* Footer Guarantees */}
+      <div className="px-4 py-2 bg-[#080f1e] border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-slate-400">
         <div className="flex items-center gap-1.5">
-          <Shield className="w-3 h-3 text-blue-400" />
-          <span>ZERO VENDOR LOCK-IN · 100% CODE OWNERSHIP</span>
+          <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
+          <span>DIRECT SENIOR ENGINEERING · 100% IP HANDOVER</span>
         </div>
-        <div className="text-slate-400">
-          NODE: <span className="text-blue-400 font-semibold">{activeNode.toUpperCase()}</span>
-        </div>
+        <Link
+          href={`/case-studies/${activeProject}`}
+          className="text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-1"
+        >
+          <span>Read Case Study</span>
+          <span>→</span>
+        </Link>
       </div>
     </div>
   );

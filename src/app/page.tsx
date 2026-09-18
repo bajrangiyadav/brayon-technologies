@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
 import TrustProofSection from "@/components/sections/TrustProofSection";
 import ServicesOverviewSection from "@/components/sections/ServicesOverviewSection";
+import WhyWorkWithUsSection from "@/components/sections/WhyWorkWithUsSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import CTASection from "@/components/sections/CTASection";
 
@@ -67,6 +68,7 @@ export default function HomePage() {
           <HeroSection />
           <TrustProofSection />
           <ServicesOverviewSection />
+          <WhyWorkWithUsSection />
           <ProcessSection />
           <CTASection />
         </main>

@@ -7,51 +7,59 @@ import FadeUp from "../animations/FadeUp";
 export const PROCESS_STEPS = [
   {
     step: "01",
-    title: "Discover",
-    subtitle: "Architecture & Requirements",
+    title: "Discovery",
+    subtitle: "Workflow & Technical Audit",
     description:
-      "We dissect business operations, user flows, and system requirements. Schemas, API contracts, and technology matrices are defined before writing a single line of code.",
-    deliverables: ["Technical Specification", "Database Schema", "Architecture Diagram"],
+      "We analyze business operations, existing legacy systems, data structures, and user requirements to establish clear technical boundaries before writing any code.",
+    deliverables: ["Scope Definition", "Legacy System Audit", "Technical Feasibility"],
   },
   {
     step: "02",
-    title: "Design",
-    subtitle: "Design Systems & User Experience",
+    title: "Planning",
+    subtitle: "Architecture & Schema Design",
     description:
-      "We establish cohesive design systems, interactive component prototypes, and accessible user interfaces that prioritize speed and clarity over superficial decoration.",
-    deliverables: ["Figma Design System", "Interactive Prototype", "UX Flow Validation"],
+      "We design the complete system blueprint: normalized relational database schemas, API contracts, third-party integrations, and milestone timelines.",
+    deliverables: ["Database ERD Schema", "API Contract Spec", "Sprint Roadmap"],
   },
   {
     step: "03",
-    title: "Engineer",
-    subtitle: "Production Full-Stack Development",
+    title: "UI/UX",
+    subtitle: "Design System & Usability",
     description:
-      "We build in disciplined two-week agile sprints. Every commit follows strict TypeScript typing, modular component boundaries, and comprehensive test coverage.",
-    deliverables: ["Weekly Staging Builds", "Clean Git Repository", "Test Automation"],
+      "We craft high-contrast, accessible, responsive design systems and wireframes that prioritize task completion speed and zero visual clutter.",
+    deliverables: ["Component Tokens", "High-Fidelity Wireframes", "Mobile-First Layouts"],
   },
   {
     step: "04",
-    title: "Integrate",
-    subtitle: "APIs, Security & Data Bridges",
+    title: "Development",
+    subtitle: "Disciplined Senior Engineering",
     description:
-      "We connect external APIs, payment processors, communication gateways, and database pipelines with robust error handling and webhook reconciliation.",
-    deliverables: ["Payment Gateways", "Third-Party APIs", "Webhooks & Sync"],
+      "We build in transparent sprints. Every line of code adheres to strict TypeScript typing, modular component boundaries, and relational integrity.",
+    deliverables: ["Strict TypeScript Codebase", "Weekly Staging Releases", "Documented Code Handover"],
   },
   {
     step: "05",
-    title: "Launch",
-    subtitle: "Optimization & Zero-Downtime Deploy",
+    title: "QA & Testing",
+    subtitle: "Security, Speed & Multi-Device Testing",
     description:
-      "We perform rigorous Core Web Vitals audits, database query indexing, and security hardening before executing automated zero-downtime production deployment.",
-    deliverables: ["Core Web Vitals 90+", "Security Audit", "Production Deployment"],
+      "We test across desktop and mobile devices, run Core Web Vitals audits, parameterize input security checks, and verify database lookups.",
+    deliverables: ["Cross-Device Verification", "Sub-second LCP Audit", "SQL/XSS Vulnerability Checks"],
   },
   {
     step: "06",
-    title: "Scale",
-    subtitle: "Monitoring & Continuous Iteration",
+    title: "Deployment",
+    subtitle: "Zero-Downtime Production Release",
     description:
-      "We monitor server telemetry, query latencies, and user analytics to optimize throughput, handle traffic spikes, and roll out feature iterations cleanly.",
-    deliverables: ["Telemetry & Monitoring", "100% Code Handover", "Post-Launch Support"],
+      "We configure hardened Linux web servers, NGINX reverse proxies, SSL/TLS certificates, and automated daily backup routines for stable launch.",
+    deliverables: ["Production Linux Setup", "Full SSL/TLS Encryption", "Automated Backup Pipelines"],
+  },
+  {
+    step: "07",
+    title: "Support & Maintenance",
+    subtitle: "Long-Term Reliability & Scaling",
+    description:
+      "We maintain our delivered systems in active production (like JBCE and MHVP), providing regular security updates, uptime monitoring, and feature iteration.",
+    deliverables: ["Active Production Support", "Proactive OS Patching", "Direct Founder Escalation"],
   },
 ];
 
@@ -61,47 +69,54 @@ export function ProcessSection() {
       <Container>
         <SectionHeading
           eyebrow="ENGINEERING METHODOLOGY"
-          title="Predictable Delivery. Zero Surprises."
-          description="A battle-tested six-stage execution framework that turns complex operational requirements into high-performance software."
+          title="Predictable 7-Stage Delivery Framework."
+          description="A disciplined, transparent engineering process that takes your requirements from initial architectural scoping to long-term production reliability."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROCESS_STEPS.map((step, idx) => (
-            <FadeUp key={step.step} delay={0.06 * idx}>
-              <div className="p-6 rounded-2xl bg-[#090e1b] border border-white/[0.08] hover:border-white/[0.18] transition-colors flex flex-col justify-between h-full">
-                <div>
-                  <div className="flex items-baseline justify-between mb-4 pb-3 border-b border-white/[0.06]">
-                    <span className="font-mono text-3xl font-bold text-blue-500/80">
-                      {step.step}
-                    </span>
-                    <span className="font-mono text-xs uppercase tracking-wider text-slate-500">
-                      PHASE {step.step}
-                    </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {PROCESS_STEPS.map((step, idx) => {
+            const isLast = idx === PROCESS_STEPS.length - 1;
+            return (
+              <FadeUp
+                key={step.step}
+                delay={0.05 * idx}
+                className={isLast ? "md:col-span-2 lg:col-span-3 xl:col-span-1" : ""}
+              >
+                <div className="p-5 sm:p-6 rounded-xl bg-[#090e1b] border border-white/[0.08] hover:border-blue-500/40 transition-all flex flex-col justify-between h-full text-left">
+                  <div>
+                    <div className="flex items-baseline justify-between mb-4 pb-3 border-b border-white/[0.06]">
+                      <span className="font-mono text-2xl sm:text-3xl font-bold text-blue-400">
+                        {step.step}
+                      </span>
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-slate-400">
+                        PHASE {step.step}
+                      </span>
+                    </div>
+
+                    <h3 className="text-lg font-semibold text-white mb-1">{step.title}</h3>
+                    <div className="font-mono text-xs text-blue-400 mb-3">{step.subtitle}</div>
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
+                      {step.description}
+                    </p>
                   </div>
 
-                  <h3 className="text-xl font-semibold text-white mb-1">{step.title}</h3>
-                  <div className="font-mono text-xs text-blue-400 mb-3">{step.subtitle}</div>
-                  <p className="text-sm text-slate-400 leading-relaxed mb-6">
-                    {step.description}
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-white/[0.06]">
-                  <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500 mb-2">
-                    KEY DELIVERABLES
+                  <div className="pt-3 border-t border-white/[0.06]">
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-2">
+                      KEY DELIVERABLES
+                    </div>
+                    <ul className="space-y-1 text-xs font-mono text-slate-300">
+                      {step.deliverables.map((item) => (
+                        <li key={item} className="flex items-center gap-2">
+                          <span className="h-1 w-1 rounded-full bg-blue-400 shrink-0" />
+                          <span className="truncate">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <ul className="space-y-1 text-xs font-mono text-slate-300">
-                    {step.deliverables.map((item) => (
-                      <li key={item} className="flex items-center gap-2">
-                        <span className="h-1 w-1 rounded-full bg-blue-400" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
-              </div>
-            </FadeUp>
-          ))}
+              </FadeUp>
+            );
+          })}
         </div>
       </Container>
     </Section>

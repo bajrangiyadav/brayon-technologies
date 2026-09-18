@@ -27,7 +27,7 @@ export function HeroSection() {
           {/* Left Column: Editorial Headline & Value Messaging */}
           <div className="lg:col-span-6 xl:col-span-6 space-y-6 text-left">
             <FadeUp delay={0.05}>
-              <Eyebrow>BRAYON TECHNOLOGIES · PRODUCT & AI ENGINEERING</Eyebrow>
+              <Eyebrow>BRAYON TECHNOLOGIES · SOFTWARE ENGINEERING & ARCHITECTURE</Eyebrow>
             </FadeUp>
 
             <FadeUp delay={0.1}>
@@ -38,7 +38,7 @@ export function HeroSection() {
 
             <FadeUp delay={0.15}>
               <p className="text-base sm:text-lg md:text-xl text-slate-300 font-normal leading-relaxed max-w-xl">
-                BRAYON Technologies designs and builds scalable digital products, business platforms and AI-powered solutions for modern companies.
+                BRAYON Technologies architects, builds, and maintains custom web applications, enterprise portals, and operational software systems with direct senior engineering discipline.
               </p>
             </FadeUp>
 
@@ -57,17 +57,20 @@ export function HeroSection() {
                   size="lg"
                   href="/case-studies"
                 >
-                  Explore Our Work
+                  Explore Delivered Systems
                 </Button>
               </div>
             </FadeUp>
 
             {/* Technical Subtext / Engineering Maturity */}
             <FadeUp delay={0.25}>
-              <div className="pt-4 flex items-center gap-4 text-xs font-mono text-slate-400">
-                <div className="flex items-center gap-1.5">
-                  <Terminal className="w-3.5 h-3.5 text-blue-400" />
-                  <span>We don&apos;t just talk about technology. We build it.</span>
+              <div className="pt-3 space-y-2 text-xs font-mono text-slate-400">
+                <div className="flex items-center gap-2">
+                  <Terminal className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <span className="text-slate-300 font-medium">We don&apos;t just talk about technology. We build it.</span>
+                </div>
+                <div className="text-[11px] text-slate-500">
+                  Active production systems powering Jay Balaji Computer Education (JBCE) &amp; Mumbai Hindi Vidyapeeth (MHVP).
                 </div>
               </div>
             </FadeUp>
