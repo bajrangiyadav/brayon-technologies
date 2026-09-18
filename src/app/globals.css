@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brayon-bg: #070a12;
+  --brayon-surface: #0d1322;
+  --brayon-surface-2: #141c30;
+  --brayon-surface-3: #1a253e;
+  --brayon-text: #f8fafc;
+  --brayon-muted: #94a3b8;
+  --brayon-accent: #2563eb;
+  --brayon-accent-hover: #1d4ed8;
+  --brayon-accent-glow: rgba(37, 99, 235, 0.15);
+  --brayon-border: rgba(255, 255, 255, 0.08);
+  --brayon-border-subtle: rgba(255, 255, 255, 0.05);
+  --brayon-border-hover: rgba(255, 255, 255, 0.16);
+
+  --background: var(--brayon-bg);
+  --foreground: var(--brayon-text);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-brayon-bg: var(--brayon-bg);
+  --color-brayon-surface: var(--brayon-surface);
+  --color-brayon-surface-2: var(--brayon-surface-2);
+  --color-brayon-surface-3: var(--brayon-surface-3);
+  --color-brayon-text: var(--brayon-text);
+  --color-brayon-muted: var(--brayon-muted);
+  --color-brayon-accent: var(--brayon-accent);
+  --color-brayon-accent-hover: var(--brayon-accent-hover);
+  --color-brayon-border: var(--brayon-border);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--brayon-bg);
+  color: var(--brayon-text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--brayon-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Smooth selection */
+::selection {
+  background: rgba(37, 99, 235, 0.35);
+  color: #ffffff;
+}
+
+/* Utility: hide scrollbars (used for filter pill rows) */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

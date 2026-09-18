@@ -101,8 +101,6 @@ export const metadata: Metadata = {
     title: "BRAYON Technologies | Enterprise Software & Cloud Engineering",
     description:
       "We build high-performance web platforms, SaaS MVPs, and business automation that accelerate revenue. Sub-second load times & 100% IP ownership.",
-    creator: "@brayontech",
-    site: "@brayontech",
     images: ["/brayon-logo-showcase.png"],
   },
   robots: {
@@ -144,7 +142,6 @@ export default function RootLayout({
       name: "Bajrangi Yadav",
       jobTitle: "Founder & Technology Lead",
       url: "https://brayontech.com/#founder",
-      sameAs: ["https://www.linkedin.com"],
     },
     telephone: "+91-7385121432",
     email: "bajrangiyadav330@gmail.com",
@@ -169,11 +166,6 @@ export default function RootLayout({
         email: "bajrangiyadav330@gmail.com",
         availableLanguage: ["English", "Hindi"],
       },
-    ],
-    sameAs: [
-      "https://github.com/bajrangiyadav/brayon-technologies",
-      "https://www.linkedin.com",
-      "https://twitter.com/brayontech",
     ],
     priceRange: "₹35,000 - ₹5,00,000+ ($550 - $6,000+)",
     currenciesAccepted: "USD, INR, EUR, GBP, AED",
@@ -238,17 +230,14 @@ export default function RootLayout({
         },
       ],
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "28",
-      bestRating: "5",
-      worstRating: "1",
-    },
   };
 
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
+      suppressHydrationWarning
+    >
       <head>
         {/* Global Organization JSON-LD for Google Knowledge Graph & Brand Panel */}
         <script
@@ -256,7 +245,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
-      <body className="min-h-screen bg-[#070B19] text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+      <body
+        className="min-h-screen bg-[#070B19] text-slate-100 antialiased selection:bg-blue-600 selection:text-white"
+        suppressHydrationWarning
+      >
         {children}
         <Analytics />
         <SpeedInsights />

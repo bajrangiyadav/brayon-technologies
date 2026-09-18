@@ -191,10 +191,11 @@ Looking forward to connecting with you.`;
       whatsappUrl,
       lead: newLead,
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("[BRAYON API ERROR]", err);
+    const errorMessage = err instanceof Error ? err.message : "Failed to process inquiry";
     return NextResponse.json(
-      { error: err?.message || "Failed to process inquiry" },
+      { error: errorMessage },
       { status: 500 }
     );
   }
