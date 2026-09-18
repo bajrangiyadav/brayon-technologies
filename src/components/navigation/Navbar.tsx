@@ -8,6 +8,7 @@ import { Menu, ArrowRight } from "lucide-react";
 import Container from "../common/Container";
 import Button from "../common/Button";
 import MobileMenu from "./MobileMenu";
+import AnnouncementBar from "./AnnouncementBar";
 
 const NAV_ITEMS = [
   { label: "About", href: "/about" },
@@ -36,13 +37,15 @@ export function Navbar() {
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ${
-          isScrolled
-            ? "bg-[#070a12]/85 backdrop-blur-md border-b border-white/[0.08] py-3.5 shadow-lg shadow-black/20"
-            : "bg-transparent border-b border-transparent py-5"
-        }`}
-      >
+      <div className="fixed top-0 left-0 right-0 z-40">
+        <AnnouncementBar />
+        <header
+          className={`transition-all duration-200 ${
+            isScrolled
+              ? "bg-[#070a12]/90 backdrop-blur-md border-b border-white/[0.08] py-3.5 shadow-lg shadow-black/20"
+              : "bg-[#070a12]/40 backdrop-blur-sm border-b border-transparent py-4 sm:py-5"
+          }`}
+        >
         <Container>
           <div className="flex items-center justify-between gap-4">
             {/* Brand Logo */}
@@ -119,6 +122,7 @@ export function Navbar() {
           </div>
         </Container>
       </header>
+    </div>
 
       {/* Mobile Drawer */}
       <MobileMenu
