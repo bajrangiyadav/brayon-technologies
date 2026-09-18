@@ -37,7 +37,6 @@ export function AnnouncementBar({ onDismiss }: AnnouncementBarProps) {
             </span>
 
             <span className="font-medium text-slate-100 flex items-center gap-1.5 text-xs sm:text-[13px]">
-              <span className="hidden sm:inline">🚀</span>
               <strong className="font-semibold text-white">Refer a Client &amp; Earn 15%</strong>
               <span className="text-slate-400 hidden md:inline">—</span>
               <span className="text-slate-300 hidden md:inline">
