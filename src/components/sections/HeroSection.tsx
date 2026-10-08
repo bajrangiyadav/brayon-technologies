@@ -6,6 +6,7 @@ import Eyebrow from "../common/Eyebrow";
 import HeroVisual from "./HeroVisual";
 import FadeUp from "../animations/FadeUp";
 import FadeIn from "../animations/FadeIn";
+import { WhatsAppIcon } from "../icons/WhatsAppIcon";
 
 export function HeroSection() {
   return (
@@ -61,6 +62,9 @@ export function HeroSection() {
                   variant="outline"
                   size="lg"
                   href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20would%20like%20to%20book%20a%20free%2030-minute%20call%20for%20my%20software%20project."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  iconLeft={<WhatsAppIcon className="w-4 h-4 text-[#25D366] shrink-0" />}
                 >
                   Book a Free 30-Min Call
                 </Button>

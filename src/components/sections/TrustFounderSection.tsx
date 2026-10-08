@@ -6,6 +6,7 @@ import Container from "../common/Container";
 import Section from "../common/Section";
 import SectionHeading from "../common/SectionHeading";
 import FadeUp from "../animations/FadeUp";
+import { WhatsAppIcon } from "../icons/WhatsAppIcon";
 
 interface Testimonial {
   clientName: string;
@@ -132,11 +133,12 @@ export function TrustFounderSection() {
                     <Mail className="w-4 h-4" />
                   </a>
                   <a
-                    href="https://wa.me/917385121432"
+                    href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20would%20like%20to%20discuss%20a%20software%20project."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-mono text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5"
+                    className="text-xs font-mono text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/20 transition-colors"
                   >
+                    <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] shrink-0" />
                     <span>+91 73851 21432</span>
                   </a>
                 </div>

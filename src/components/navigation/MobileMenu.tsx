@@ -5,6 +5,7 @@ import Link from "next/link";
 import { X, ArrowRight, Phone, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../common/Button";
+import { WhatsAppIcon } from "../icons/WhatsAppIcon";
 
 interface NavItem {
   label: string;
@@ -120,17 +121,27 @@ export function MobileMenu({ isOpen, onClose, items }: MobileMenuProps) {
                 Start a Project
               </Button>
 
-              <div className="space-y-2 pt-2 text-xs font-mono text-slate-400">
+              <div className="space-y-2.5 pt-2 text-xs font-mono text-slate-400">
+                <a
+                  href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20would%20like%20to%20discuss%20a%20software%20project."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={onClose}
+                  className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors py-1 px-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20"
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-[#25D366] shrink-0" />
+                  <span>Chat on WhatsApp (+91 73851 21432)</span>
+                </a>
                 <a
                   href="tel:+917385121432"
-                  className="flex items-center gap-2 hover:text-slate-200 transition-colors py-1"
+                  className="flex items-center gap-2 hover:text-slate-200 transition-colors py-1 px-2"
                 >
                   <Phone className="w-3.5 h-3.5 text-blue-400" />
-                  <span>+91 73851 21432</span>
+                  <span>+91 73851 21432 (Phone Call)</span>
                 </a>
                 <a
                   href="mailto:hello@brayontech.com"
-                  className="flex items-center gap-2 hover:text-slate-200 transition-colors py-1"
+                  className="flex items-center gap-2 hover:text-slate-200 transition-colors py-1 px-2"
                 >
                   <Mail className="w-3.5 h-3.5 text-blue-400" />
                   <span>hello@brayontech.com</span>

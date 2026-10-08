@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { MessageCircle, X } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { X } from "lucide-react";
 
 export function FloatingWhatsAppButton() {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -33,7 +34,7 @@ export function FloatingWhatsAppButton() {
             <X className="w-3.5 h-3.5" />
           </button>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <WhatsAppIcon className="w-4 h-4 text-[#25D366] shrink-0" />
             <span className="font-semibold text-white font-mono text-[11px]">
               Direct WhatsApp Support
             </span>
@@ -50,13 +51,13 @@ export function FloatingWhatsAppButton() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with BRAYON on WhatsApp"
-        className="pointer-events-auto group relative flex items-center gap-2.5 px-4 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm shadow-xl shadow-emerald-950/50 hover:shadow-emerald-600/30 transition-all duration-200 hover:scale-105"
+        className="pointer-events-auto group relative flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-sm shadow-xl shadow-emerald-950/60 hover:shadow-[#25D366]/40 transition-all duration-200 hover:scale-105 active:scale-95 border border-white/20"
       >
-        <span className="relative flex h-3 w-3">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75" />
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-white" />
+        <span className="relative flex h-2.5 w-2.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white" />
         </span>
-        <MessageCircle className="w-5 h-5 fill-white text-emerald-600" />
+        <WhatsAppIcon className="w-5 h-5 fill-white shrink-0 drop-shadow-sm" />
         <span className="font-semibold tracking-wide hidden sm:inline">
           Chat on WhatsApp
         </span>

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Calendar, Clock, Video, CheckCircle, ExternalLink, X } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
 interface ScheduleCallModalProps {
   isOpen: boolean;
@@ -57,10 +58,10 @@ export function ScheduleCallModal({ isOpen, onClose }: ScheduleCallModalProps) {
             href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20would%20like%20to%20schedule%20a%20free%2030-minute%20call%20for%20my%20software%20project."
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/50 transition-all cursor-pointer"
+            className="w-full py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-sm flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-950/50 transition-all cursor-pointer"
           >
+            <WhatsAppIcon className="w-4 h-4 fill-white shrink-0" />
             <span>Pick a Slot via Instant WhatsApp</span>
-            <ExternalLink className="w-4 h-4" />
           </a>
 
           <a

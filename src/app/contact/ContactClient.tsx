@@ -22,6 +22,7 @@ import {
 import Container from '@/components/common/Container';
 import Eyebrow from '@/components/common/Eyebrow';
 import FadeUp from '@/components/animations/FadeUp';
+import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon';
 import { submitLead, LeadSubmissionResponse } from '@/services/crm/contactService';
 import { useAnalytics } from '@/hooks/useAnalytics';
 
@@ -216,7 +217,7 @@ export default function ContactClient() {
                 <div className="p-5 rounded-xl bg-[#0d1322]/90 border border-white/10 hover:border-emerald-500/40 transition-colors">
                   <div className="flex items-center gap-3.5">
                     <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
-                      <Phone className="w-5 h-5" />
+                      <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
                     </div>
                     <div>
                       <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider">
@@ -363,9 +364,9 @@ export default function ContactClient() {
                         href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20just%20submitted%20my%20project%20inquiry%20via%20brayontech.com."
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm shadow-lg shadow-emerald-950/50 transition-all"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-sm shadow-lg shadow-emerald-950/50 transition-all cursor-pointer"
                       >
-                        <MessageSquare className="w-4 h-4" />
+                        <WhatsAppIcon className="w-4 h-4 fill-white shrink-0" />
                         <span>Instant WhatsApp Follow-up</span>
                       </a>
 

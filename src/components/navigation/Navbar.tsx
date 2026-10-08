@@ -9,6 +9,7 @@ import Container from "../common/Container";
 import Button from "../common/Button";
 import MobileMenu from "./MobileMenu";
 import AnnouncementBar from "./AnnouncementBar";
+import { WhatsAppIcon } from "../icons/WhatsAppIcon";
 
 interface NavItem {
   label: string;
@@ -104,10 +105,10 @@ export function Navbar() {
                 href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20would%20like%20to%20discuss%20a%20software%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20 transition-colors text-xs font-mono font-medium"
+                className="hidden md:flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20 transition-all text-xs font-mono font-medium group"
                 title="Chat on WhatsApp"
               >
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] shrink-0 group-hover:scale-110 transition-transform" />
                 <span>+91 73851 21432</span>
               </a>
 

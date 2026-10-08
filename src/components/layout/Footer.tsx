@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Container from "../common/Container";
+import { WhatsAppIcon } from "../icons/WhatsAppIcon";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -194,10 +195,19 @@ export function Footer() {
                 hello@brayontech.com
               </a>
               <a
+                href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20would%20like%20to%20discuss%20a%20software%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 font-mono text-[11px] transition-colors"
+              >
+                <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] shrink-0" />
+                <span>+91 73851 21432 (WhatsApp)</span>
+              </a>
+              <a
                 href="tel:+917385121432"
                 className="block hover:text-white font-mono text-[11px] transition-colors"
               >
-                +91 73851 21432
+                +91 73851 21432 (Call)
               </a>
             </div>
           </div>
