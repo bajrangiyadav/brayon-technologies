@@ -127,11 +127,11 @@ export default function AboutPage() {
 
                 <div className="pt-2 flex flex-wrap items-center gap-3">
                   <a
-                    href="mailto:contact@brayontech.com"
+                    href="mailto:hello@brayontech.com"
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-mono text-slate-300 hover:text-white transition-colors"
                   >
                     <Mail className="w-3.5 h-3.5 text-blue-400" />
-                    <span>contact@brayontech.com</span>
+                    <span>hello@brayontech.com</span>
                   </a>
                   <a
                     href="tel:+917385121432"
