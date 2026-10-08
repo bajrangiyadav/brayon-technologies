@@ -206,16 +206,62 @@ export function CaseStudyDetailClient({
         </Container>
       </Section>
 
-      {/* Key Features Grid */}
+      {/* Results Section Prominently Displayed */}
+      {caseStudy.results && caseStudy.results.length > 0 && (
+        <Section variant="surface" spacing="lg" borderBottom>
+          <Container>
+            <div className="max-w-3xl mb-8">
+              <Eyebrow>PROVEN RESULTS</Eyebrow>
+              <h2 className="text-2xl sm:text-3xl font-semibold text-white mt-2">
+                Business Results &amp; Impact
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                Real operational outcomes achieved after deployment.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {caseStudy.results.map((result, idx) => (
+                <div
+                  key={idx}
+                  className="p-5 rounded-2xl bg-[#090e1b] border border-white/[0.08] flex items-start gap-3"
+                >
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">{result}</p>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </Section>
+      )}
+
+      {/* Visual Documentation / Screenshots */}
       <Section spacing="lg" borderBottom>
         <Container>
-          <div className="max-w-3xl mb-10">
-            <Eyebrow>FUNCTIONAL SCOPE</Eyebrow>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-white mt-3">
-              Implemented Key Features
+          <div className="max-w-3xl mb-8">
+            <Eyebrow>VISUAL OVERVIEW</Eyebrow>
+            <h2 className="text-2xl sm:text-3xl font-semibold text-white mt-2">
+              Platform &amp; Interface Preview
             </h2>
-            <p className="text-sm text-slate-400 mt-2">
-              All listed features represent verified code deployed and tested in staging/production.
+            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+              Screen previews and user workflow snapshots from the delivered platform.
+            </p>
+          </div>
+
+          <ProjectGallery items={caseStudy.gallery} />
+        </Container>
+      </Section>
+
+      {/* Key Features Grid */}
+      <Section variant="surface" spacing="lg" borderBottom>
+        <Container>
+          <div className="max-w-3xl mb-8">
+            <Eyebrow>DELIVERED MODULES</Eyebrow>
+            <h2 className="text-2xl sm:text-3xl font-semibold text-white mt-2">
+              Key Features &amp; Controls
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+              Modules built, tested, and actively utilized in production.
             </p>
           </div>
 
@@ -235,64 +281,22 @@ export function CaseStudyDetailClient({
         </Container>
       </Section>
 
-      {/* Architecture & Engineering Stack */}
-      <Section variant="surface" spacing="lg" borderBottom>
+      {/* Technology & Architecture (Positioned secondary/below business outcomes) */}
+      <Section spacing="lg" borderBottom>
         <Container>
-          <div className="max-w-3xl mb-10">
-            <Eyebrow>TECHNICAL BLUEPRINT</Eyebrow>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-white mt-3">
-              Full-Stack Architecture Matrix
+          <div className="max-w-3xl mb-8">
+            <Eyebrow>UNDER THE HOOD</Eyebrow>
+            <h2 className="text-2xl sm:text-3xl font-semibold text-white mt-2">
+              Technology &amp; Security Architecture
             </h2>
-            <p className="text-sm text-slate-400 mt-2">
-              The infrastructure layers and communication protocols powering {caseStudy.title}.
+            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+              Clean, modular architecture engineered for performance and lifetime source ownership.
             </p>
           </div>
 
           <TechStackGrid architecture={caseStudy.architecture} />
         </Container>
       </Section>
-
-      {/* Project Gallery */}
-      <Section spacing="lg" borderBottom>
-        <Container>
-          <div className="max-w-3xl mb-10">
-            <Eyebrow>VISUAL DOCUMENTATION</Eyebrow>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-white mt-3">
-              Project Architecture & Interface Gallery
-            </h2>
-            <p className="text-sm text-slate-400 mt-2">
-              Click any image to inspect architecture blueprints and component workflows in full resolution.
-            </p>
-          </div>
-
-          <ProjectGallery items={caseStudy.gallery} />
-        </Container>
-      </Section>
-
-      {/* Verified Results (Rendered ONLY if verified data exists) */}
-      {caseStudy.results && caseStudy.results.length > 0 && (
-        <Section variant="surface" spacing="lg" borderBottom>
-          <Container>
-            <div className="max-w-3xl mb-10">
-              <Eyebrow>VERIFIED METRICS</Eyebrow>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-white mt-3">
-                Production Impact
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {caseStudy.results.map((result, idx) => (
-                <div
-                  key={idx}
-                  className="p-6 rounded-2xl bg-[#090e1b] border border-white/[0.08]"
-                >
-                  <p className="text-sm text-slate-300 font-mono">{result}</p>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </Section>
-      )}
 
       {/* Client Testimonial (Rendered ONLY if real testimonial data exists) */}
       {caseStudy.testimonial && (

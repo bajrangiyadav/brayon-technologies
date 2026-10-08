@@ -40,7 +40,7 @@ export default function ContactPage() {
       name: 'Bajrangi Yadav',
       jobTitle: 'Founder & Solutions Architect',
       telephone: '+91-7385121432',
-      email: 'bajrangiyadav330@gmail.com',
+      email: 'hello@brayontech.com',
     },
   };
 

@@ -27,18 +27,23 @@ export function HeroSection() {
           {/* Left Column: Editorial Headline & Value Messaging */}
           <div className="lg:col-span-6 xl:col-span-6 space-y-6 text-left">
             <FadeUp delay={0.05}>
-              <Eyebrow>BRAYON TECHNOLOGIES · SOFTWARE ENGINEERING & ARCHITECTURE</Eyebrow>
+              <Eyebrow>BRAYON TECHNOLOGIES · CUSTOM SOFTWARE &amp; DIGITAL SYSTEMS</Eyebrow>
             </FadeUp>
 
             <FadeUp delay={0.1}>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-semibold tracking-tight text-white leading-[1.12]">
-                We Build Digital Products That Move Businesses Forward.
+              <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-semibold tracking-tight text-white leading-[1.14]">
+                Your Business Idea. <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500">
+                  Our Technology.
+                </span>{" "}
+                <br className="hidden sm:inline" />
+                One Complete Solution.
               </h1>
             </FadeUp>
 
             <FadeUp delay={0.15}>
               <p className="text-base sm:text-lg md:text-xl text-slate-300 font-normal leading-relaxed max-w-xl">
-                BRAYON Technologies architects, builds, and maintains custom web applications, enterprise portals, and operational software systems with direct senior engineering discipline.
+                Custom Software, CRM, ERP, E-commerce &amp; Mobile Apps — built around the way your business actually works.
               </p>
             </FadeUp>
 
@@ -50,28 +55,30 @@ export function HeroSection() {
                   href="/contact"
                   iconRight={<ArrowRight className="w-4 h-4" />}
                 >
-                  Start a Project
+                  Discuss My Project
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
-                  href="/case-studies"
+                  href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20would%20like%20to%20book%20a%20free%2030-minute%20call%20for%20my%20software%20project."
                 >
-                  Explore Delivered Systems
+                  Book a Free 30-Min Call
                 </Button>
               </div>
             </FadeUp>
 
-            {/* Technical Subtext / Engineering Maturity */}
+            {/* Trust Line */}
             <FadeUp delay={0.25}>
-              <div className="pt-3 space-y-2 text-xs font-mono text-slate-400">
-                <div className="flex items-center gap-2">
-                  <Terminal className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                  <span className="text-slate-300 font-medium">We don&apos;t just talk about technology. We build it.</span>
-                </div>
-                <div className="text-[11px] text-slate-500">
-                  Active production systems powering Jay Balaji Computer Education (JBCE) &amp; Mumbai Hindi Vidyapeeth (MHVP).
-                </div>
+              <div className="pt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm font-medium text-slate-300">
+                <span className="inline-flex items-center gap-1.5 text-emerald-400">
+                  <span>✓</span> Clear Pricing &amp; Timeline
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-emerald-400">
+                  <span>✓</span> Milestone Based Development
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-emerald-400">
+                  <span>✓</span> Post-Launch Support
+                </span>
               </div>
             </FadeUp>
           </div>

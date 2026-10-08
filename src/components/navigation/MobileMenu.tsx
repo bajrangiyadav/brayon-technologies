@@ -129,11 +129,11 @@ export function MobileMenu({ isOpen, onClose, items }: MobileMenuProps) {
                   <span>+91 73851 21432</span>
                 </a>
                 <a
-                  href="mailto:bajrangiyadav330@gmail.com"
+                  href="mailto:hello@brayontech.com"
                   className="flex items-center gap-2 hover:text-slate-200 transition-colors py-1"
                 >
                   <Mail className="w-3.5 h-3.5 text-blue-400" />
-                  <span>bajrangiyadav330@gmail.com</span>
+                  <span>hello@brayontech.com</span>
                 </a>
               </div>
             </div>

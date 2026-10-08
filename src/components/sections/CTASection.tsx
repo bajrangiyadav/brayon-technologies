@@ -32,13 +32,16 @@ export function CTASection() {
 
             <FadeUp delay={0.1}>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight leading-tight">
-                Ready to Build Software That Moves Your Business Forward?
+                Have a software idea? <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500">
+                  Let&apos;s turn it into a working product.
+                </span>
               </h2>
             </FadeUp>
 
             <FadeUp delay={0.15}>
               <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
-                Skip the bloated agency overhead and sales intermediaries. Partner directly with experienced engineers who write production code and take ownership of results.
+                Tell us how your business works. We&apos;ll figure out the right technology, timeline, and cost-effective roadmap to make it reality.
               </p>
             </FadeUp>
 
@@ -50,14 +53,14 @@ export function CTASection() {
                   href="/contact"
                   iconRight={<ArrowRight className="w-4 h-4" />}
                 >
-                  Start a Project
+                  Start Your Project
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
-                  href="/services"
+                  href="/contact"
                 >
-                  Review Our Services
+                  Discuss My Requirements
                 </Button>
               </div>
             </FadeUp>

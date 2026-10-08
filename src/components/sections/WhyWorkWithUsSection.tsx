@@ -26,67 +26,67 @@ interface Reason {
 const REASONS: Reason[] = [
   {
     number: "01",
-    title: "Direct Senior Engineering Oversight",
-    subtitle: "Zero Junior Handoffs · No Account Manager Middlemen",
+    title: "We Understand Before We Build",
+    subtitle: "Pehle aapka business samajhte hain, phir software design karte hain",
     icon: Users,
     description:
-      "At traditional agencies, senior architects pitch the project and junior developers execute it. At BRAYON, every line of core code and system schema is authored and reviewed by experienced senior engineers.",
+      "Hum pehle aapka business workflow, daily bottlenecks aur processes samajhte hain, phir technology recommend karte hain. Generic solutions nahi, aapke business ke mutabiq.",
     proofPoints: [
-      "Direct technical communication via private Slack/Discord/WhatsApp",
-      "Fast decision-making without multiple management layers",
-      "Immediate problem resolution from day one of sprint execution",
+      "In-depth workflow & operations discovery discussion",
+      "Tailored system design matching how your team actually works",
+      "Direct technical consultation without junior sales intermediaries",
     ],
   },
   {
     number: "02",
-    title: "Clean TypeScript & Modular Architecture",
-    subtitle: "Designed for 5+ Year Codebase Longevity",
+    title: "Clean Modular Code & Future-Proof Architecture",
+    subtitle: "5+ saal tak chalne wala code — zero spaghetti, zero fragile hacks",
     icon: Code2,
     description:
-      "We avoid throwaway spaghetti code and fragile AI scaffolding. All codebases are written in strict TypeScript with component modularity, strict linting, and predictable data contracts.",
+      "Naye platforms ke liye strict modern architecture aur legacy systems ke liye battle-tested stability. Hum spaghetti code nahi likhte; har system maintainable aur scale-ready hota hai.",
     proofPoints: [
-      "Explicit data models, typed API responses, and zero implicit anys",
-      "Modular components reusable across subsequent product iterations",
-      "Automated CI linting and zero-warning build standards",
+      "Modular components and clean separation of business logic",
+      "Strict data models and predictable database schema design",
+      "Easy maintenance so your internal team can scale it anytime",
     ],
   },
   {
     number: "03",
-    title: "100% Source Code & IP Ownership",
-    subtitle: "Zero Vendor Lock-In · Full Asset Transfer",
+    title: "Your Data Stays Yours",
+    subtitle: "Aapka code, aapka data, aapka 100% control",
     icon: Lock,
     description:
-      "You own everything we build. All git repositories, database schemas, deployment pipelines, environment configurations, and assets are fully transferred to your accounts upon completion.",
+      "Hum aapko hamare platform par lock nahi karte. Complete source code repository, database credentials aur deployment aapke direct control mein rehte hain.",
     proofPoints: [
-      "Full ownership of Git repositories, commit histories, and branches",
-      "Complete deployment documentation and environment runbooks",
-      "Freedom to transition or scale with any internal team anytime",
+      "100% intellectual property & Git repository transfer",
+      "Your database on your own cloud/hosting server",
+      "Zero vendor lock-in; freedom to scale or transition anytime",
     ],
   },
   {
     number: "04",
-    title: "ACID Relational Integrity & Security",
-    subtitle: "Defensive Architecture for Institutional Reliability",
+    title: "Direct Communication",
+    subtitle: "Aap directly development team aur architect se baat karte hain",
     icon: Database,
     description:
-      "We prioritize real-world security and data consistency. Your verification databases and customer records use normalized schemas, indexed lookups, and parameterized queries.",
+      "Account managers aur support agents ke beech communication loss nahi hota. Aap directly senior engineer aur solutions architect se connect karte hain.",
     proofPoints: [
-      "Strict parameterization preventing SQL and XSS injection attacks",
-      "Foreign-key relational constraints preventing data corruption",
-      "Automated daily backup schedules with offsite redundancy",
+      "Direct WhatsApp / Call channel with project lead",
+      "Fast decisions and instant technical clarity",
+      "Rapid turnaround on critical feedback and questions",
     ],
   },
   {
     number: "05",
-    title: "Active Production Maintenance & Reliability",
-    subtitle: "Long-Term Partnership Beyond Initial Launch",
+    title: "Support After Launch",
+    subtitle: "Software live hone ke baad bhi hum available hain",
     icon: LifeBuoy,
     description:
-      "Launching the software is only the first step. We actively monitor, maintain, and support production systems like JBCE and MHVP to ensure sustained uptime, SSL validity, and rapid bug resolution.",
+      "Project live deploy hone ke baad developers gayab nahi hote. Hum team training, warranty maintenance, security updates aur ongoing scaling support dete hain.",
     proofPoints: [
-      "Real-world active client maintenance on live production portals",
-      "Proactive OS/package security updates and SSL certificate renewal",
-      "Direct founder availability for urgent production escalations",
+      "Active production monitoring and fast bug turnaround",
+      "Staff onboarding and step-by-step system walkthrough",
+      "Long-term feature enhancement and maintenance partnership",
     ],
   },
 ];
@@ -99,8 +99,8 @@ export function WhyWorkWithUsSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <SectionHeading
             eyebrow="WHY CHOOSE BRAYON"
-            title="Engineering Standards Built for Serious Companies."
-            description="We reject generic agency fluff. Here is why established institutions and growing businesses trust BRAYON with their mission-critical software systems."
+            title="Why Businesses Choose BRAYON."
+            description="We speak your business language, not agency jargon. Here is why serious founders and growing companies trust us with their critical software."
             className="mb-0"
           />
           <Link

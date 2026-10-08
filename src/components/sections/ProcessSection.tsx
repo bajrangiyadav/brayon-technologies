@@ -7,59 +7,35 @@ import FadeUp from "../animations/FadeUp";
 export const PROCESS_STEPS = [
   {
     step: "01",
-    title: "Discovery",
-    subtitle: "Workflow & Technical Audit",
+    title: "Understand",
+    subtitle: "Business & Workflow First",
     description:
-      "We analyze business operations, existing legacy systems, data structures, and user requirements to establish clear technical boundaries before writing any code.",
-    deliverables: ["Scope Definition", "Legacy System Audit", "Technical Feasibility"],
+      "We understand your business operations, daily bottlenecks, and exact requirements before writing a single line of code.",
+    deliverables: ["Requirement Analysis", "User Workflow Mapping", "Problem Definition"],
   },
   {
     step: "02",
-    title: "Planning",
-    subtitle: "Architecture & Schema Design",
+    title: "Plan",
+    subtitle: "Scope, Timeline & Cost",
     description:
-      "We design the complete system blueprint: normalized relational database schemas, API contracts, third-party integrations, and milestone timelines.",
-    deliverables: ["Database ERD Schema", "API Contract Spec", "Sprint Roadmap"],
+      "You receive a transparent project scope, clear milestone timeline, and exact estimated cost with zero hidden clauses.",
+    deliverables: ["Transparent Project Scope", "Milestone Roadmap", "Fixed Timeline & Estimate"],
   },
   {
     step: "03",
-    title: "UI/UX",
-    subtitle: "Design System & Usability",
+    title: "Build",
+    subtitle: "Milestone-Based Development",
     description:
-      "We craft high-contrast, accessible, responsive design systems and wireframes that prioritize task completion speed and zero visual clutter.",
-    deliverables: ["Component Tokens", "High-Fidelity Wireframes", "Mobile-First Layouts"],
+      "Development happens in transparent milestones with regular working demo updates so you always know what is being built.",
+    deliverables: ["Milestone Sprints", "Regular Demo Updates", "Weekly Staging Releases"],
   },
   {
     step: "04",
-    title: "Development",
-    subtitle: "Disciplined Senior Engineering",
+    title: "Launch & Support",
+    subtitle: "Deploy, Train & Support",
     description:
-      "We build in transparent sprints. Every line of code adheres to strict TypeScript typing, modular component boundaries, and relational integrity.",
-    deliverables: ["Strict TypeScript Codebase", "Weekly Staging Releases", "Documented Code Handover"],
-  },
-  {
-    step: "05",
-    title: "QA & Testing",
-    subtitle: "Security, Speed & Multi-Device Testing",
-    description:
-      "We test across desktop and mobile devices, run Core Web Vitals audits, parameterize input security checks, and verify database lookups.",
-    deliverables: ["Cross-Device Verification", "Sub-second LCP Audit", "SQL/XSS Vulnerability Checks"],
-  },
-  {
-    step: "06",
-    title: "Deployment",
-    subtitle: "Zero-Downtime Production Release",
-    description:
-      "We configure hardened Linux web servers, NGINX reverse proxies, SSL/TLS certificates, and automated daily backup routines for stable launch.",
-    deliverables: ["Production Linux Setup", "Full SSL/TLS Encryption", "Automated Backup Pipelines"],
-  },
-  {
-    step: "07",
-    title: "Support & Maintenance",
-    subtitle: "Long-Term Reliability & Scaling",
-    description:
-      "We maintain our delivered systems in active production (like JBCE and MHVP), providing regular security updates, uptime monitoring, and feature iteration.",
-    deliverables: ["Active Production Support", "Proactive OS Patching", "Direct Founder Escalation"],
+      "We deploy to production, train your team to use the software seamlessly, and provide dedicated post-launch maintenance.",
+    deliverables: ["Zero-Downtime Deployment", "Team Training & Walkthrough", "Post-Launch Support & Bug Fixing"],
   },
 ];
 
@@ -68,19 +44,18 @@ export function ProcessSection() {
     <Section variant="surface" spacing="lg" borderBottom>
       <Container>
         <SectionHeading
-          eyebrow="ENGINEERING METHODOLOGY"
-          title="Predictable 7-Stage Delivery Framework."
-          description="A disciplined, transparent engineering process that takes your requirements from initial architectural scoping to long-term production reliability."
+          eyebrow="HOW WE WORK"
+          title="Simple, Transparent 4-Step Process."
+          description="Customer ka biggest fear hota hai: 'Paise de diye, ab developer kya karega?' Hum har step transparent rakhte hain taaki aapko complete clarity rahe."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {PROCESS_STEPS.map((step, idx) => {
-            const isLast = idx === PROCESS_STEPS.length - 1;
             return (
               <FadeUp
                 key={step.step}
                 delay={0.05 * idx}
-                className={isLast ? "md:col-span-2 lg:col-span-3 xl:col-span-1" : ""}
+                className=""
               >
                 <div className="p-5 sm:p-6 rounded-xl bg-[#090e1b] border border-white/[0.08] hover:border-blue-500/40 transition-all flex flex-col justify-between h-full text-left">
                   <div>

@@ -10,14 +10,18 @@ import Button from "../common/Button";
 import MobileMenu from "./MobileMenu";
 import AnnouncementBar from "./AnnouncementBar";
 
-const NAV_ITEMS = [
-  { label: "About", href: "/about" },
+interface NavItem {
+  label: string;
+  href: string;
+  badge?: string;
+}
+
+const NAV_ITEMS: NavItem[] = [
   { label: "Services", href: "/services" },
-  { label: "Industries", href: "/industries" },
-  { label: "Case Studies", href: "/case-studies", badge: "2 Active" },
-  { label: "BRAYON AI", href: "/brayon-ai" },
-  { label: "Technology", href: "/technology" },
-  { label: "Insights", href: "/insights" },
+  { label: "Solutions", href: "/#solutions" },
+  { label: "Work", href: "/#projects" },
+  { label: "Process", href: "/#process" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -94,9 +98,20 @@ export function Navbar() {
               })}
             </nav>
 
-            {/* CTA & Mobile Toggle */}
-            <div className="flex items-center gap-3">
-              <div className="hidden sm:block lg:hidden xl:block">
+            {/* Phone/WhatsApp & CTA & Mobile Toggle */}
+            <div className="flex items-center gap-3 sm:gap-4">
+              <a
+                href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20would%20like%20to%20discuss%20a%20software%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20 transition-colors text-xs font-mono font-medium"
+                title="Chat on WhatsApp"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>+91 73851 21432</span>
+              </a>
+
+              <div className="hidden sm:block">
                 <Button
                   variant="primary"
                   size="sm"

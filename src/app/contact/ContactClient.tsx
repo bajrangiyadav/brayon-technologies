@@ -31,23 +31,26 @@ const contactFormSchema = z.object({
     .string()
     .min(2, { message: 'Name must be at least 2 characters.' })
     .max(100, { message: 'Name must not exceed 100 characters.' }),
+  phone: z
+    .string()
+    .min(10, { message: 'WhatsApp number is required.' })
+    .max(30, { message: 'Phone number is too long.' }),
+  company: z.string().max(120).optional(),
   email: z
     .string()
-    .min(1, { message: 'Work email is required.' })
     .email({ message: 'Please enter a valid email address.' })
-    .max(120, { message: 'Email must not exceed 120 characters.' }),
-  company: z.string().max(120).optional(),
-  phone: z.string().max(30).optional(),
-  country: z.string().max(60).optional(),
-  projectType: z.string().min(1, { message: 'Please select a primary project type.' }),
-  budget: z.string().optional(),
+    .max(120, { message: 'Email must not exceed 120 characters.' })
+    .optional()
+    .or(z.literal('')),
+  projectType: z.string().min(1, { message: 'Please select what you need.' }),
+  budget: z.string().min(1, { message: 'Please select an approximate budget.' }),
   timeline: z.string().optional(),
   message: z
     .string()
-    .min(10, { message: 'Please provide at least 10 characters detailing your requirements.' })
-    .max(3000, { message: 'Message is too long (maximum 3,000 characters).' }),
+    .min(10, { message: 'Please provide at least 10 characters detailing your project.' })
+    .max(3000, { message: 'Message is too long.' }),
   consent: z.boolean().refine((val) => val === true, {
-    message: 'You must consent to our privacy policy to proceed.',
+    message: 'You must consent to proceed.',
   }),
 });
 
@@ -55,6 +58,7 @@ type ContactFormInputs = z.infer<typeof contactFormSchema>;
 
 export default function ContactClient() {
   const { trackLeadSubmit, trackCTA } = useAnalytics();
+  const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
   const [submissionState, setSubmissionState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [submissionResponse, setSubmissionResponse] = useState<LeadSubmissionResponse | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -63,23 +67,45 @@ export default function ContactClient() {
     register,
     handleSubmit,
     reset,
+    watch,
+    setValue,
+    trigger,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormInputs>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: '',
-      email: '',
-      company: '',
       phone: '',
-      country: 'India',
-      projectType: 'Full-Stack Web & SaaS',
-      budget: '₹75k - ₹1.5 Lakh ($1,000 - $2,000)',
+      company: '',
+      email: '',
+      projectType: 'Custom Software',
+      budget: '₹50K–₹1L',
       timeline: 'Within 1 Month',
       message: '',
       consent: true,
     },
     mode: 'onBlur',
   });
+
+  const selectedProjectType = watch('projectType');
+  const selectedBudget = watch('budget');
+  const selectedTimeline = watch('timeline');
+
+  const goToNextStep = async () => {
+    if (currentStep === 1) {
+      const valid = await trigger(['projectType']);
+      if (valid) setCurrentStep(2);
+    } else if (currentStep === 2) {
+      const valid = await trigger(['budget', 'timeline']);
+      if (valid) setCurrentStep(3);
+    }
+  };
+
+  const goToPrevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep((prev) => (prev - 1) as 1 | 2 | 3);
+    }
+  };
 
   const onSubmit = async (data: ContactFormInputs) => {
     setSubmissionState('submitting');
@@ -88,10 +114,10 @@ export default function ContactClient() {
     try {
       const response = await submitLead({
         name: data.name,
-        email: data.email,
+        email: data.email || `${data.phone.replace(/[^0-9]/g, '')}@lead.brayontech.com`,
         company: data.company,
         phone: data.phone,
-        country: data.country,
+        country: 'India',
         projectType: data.projectType,
         budget: data.budget,
         timeline: data.timeline,
@@ -178,10 +204,10 @@ export default function ContactClient() {
                         Direct Founder Email
                       </div>
                       <a
-                        href="mailto:bajrangiyadav330@gmail.com"
+                        href="mailto:hello@brayontech.com"
                         className="text-sm font-medium text-white hover:text-blue-400 transition-colors break-all"
                       >
-                        bajrangiyadav330@gmail.com
+                        hello@brayontech.com
                       </a>
                     </div>
                   </div>
@@ -296,29 +322,48 @@ export default function ContactClient() {
             <div className="lg:col-span-7">
               <div className="rounded-3xl bg-[#0d1322]/90 border border-white/10 p-6 sm:p-10 shadow-2xl relative backdrop-blur-md">
                 {submissionState === 'success' ? (
-                  <div className="py-12 text-center space-y-6">
-                    <div className="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto">
+                  <div className="py-10 text-center space-y-6">
+                    <div className="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/20">
                       <CheckCircle2 className="w-8 h-8" />
                     </div>
 
                     <div className="space-y-2">
                       <div className="text-xs font-mono text-emerald-400 uppercase tracking-wider">
-                        {submissionResponse?.leadId ? `Inquiry Reference: ${submissionResponse.leadId}` : 'Dispatch Verified'}
+                        {submissionResponse?.leadId ? `Inquiry Reference: ${submissionResponse.leadId}` : 'Requirement Dispatched'}
                       </div>
                       <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                        Requirements Received
+                        Thank You! We&apos;ve Received Your Requirements.
                       </h3>
-                      <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed pt-2">
-                        Thank you for reaching out. Solutions Architect Bajrangi Yadav has been notified and will review your technical specifications within 3 business hours.
+                      <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed pt-1">
+                        Solutions Architect Bajrangi Yadav will review your requirements. <span className="text-white font-semibold">24 ghante ke andar aapko preliminary scope, architecture recommendation aur estimated quote mil jayega.</span>
                       </p>
                     </div>
 
-                    <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    {/* What happens next box */}
+                    <div className="max-w-md mx-auto p-4 rounded-2xl bg-[#080d1a] border border-white/[0.08] text-left space-y-2.5 text-xs text-slate-300">
+                      <div className="font-mono text-slate-400 text-[11px] uppercase tracking-wider font-semibold">
+                        Aapke Next Steps:
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-emerald-400 font-mono">1.</span>
+                        <span>Auto-acknowledgement email/WhatsApp notification check karein.</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-emerald-400 font-mono">2.</span>
+                        <span>Founder review ke baad scope breakdown &amp; milestone proposal aayega.</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-emerald-400 font-mono">3.</span>
+                        <span>Agar urgent inquiry hai, toh neeche diye button se instant WhatsApp par connect ho sakte hain.</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
                       <a
-                        href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20just%20submitted%20a%20project%20inquiry%20via%20brayon.in."
+                        href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20just%20submitted%20my%20project%20inquiry%20via%20brayontech.com."
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm shadow-lg shadow-emerald-600/30 transition-all"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm shadow-lg shadow-emerald-950/50 transition-all"
                       >
                         <MessageSquare className="w-4 h-4" />
                         <span>Instant WhatsApp Follow-up</span>
@@ -327,7 +372,7 @@ export default function ContactClient() {
                       <button
                         type="button"
                         onClick={handleReset}
-                        className="px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-sm font-medium transition-colors"
+                        className="px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white text-sm font-medium transition-colors cursor-pointer"
                       >
                         Submit Another Inquiry
                       </button>
@@ -335,13 +380,27 @@ export default function ContactClient() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    <div>
-                      <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                        Request Project Scope & Architecture Consultation
-                      </h3>
-                      <p className="mt-1 text-xs text-slate-400 font-mono">
-                        Fill out the details below to receive a response within 3 business hours.
-                      </p>
+                    {/* Multi-Step Progress Tracker */}
+                    <div className="pb-4 border-b border-white/[0.08]">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs font-mono uppercase tracking-wider text-blue-400">
+                          Step {currentStep} of 3:{' '}
+                          {currentStep === 1
+                            ? 'What are you building?'
+                            : currentStep === 2
+                            ? 'Budget & Target Timeline'
+                            : 'Your Details & Project Brief'}
+                        </span>
+                        <span className="text-xs font-mono text-slate-400">
+                          {currentStep === 1 ? '33%' : currentStep === 2 ? '66%' : '100%'}
+                        </span>
+                      </div>
+                      <div className="w-full h-1.5 rounded-full bg-white/[0.08] overflow-hidden">
+                        <div
+                          className="h-full bg-blue-500 rounded-full transition-all duration-300"
+                          style={{ width: currentStep === 1 ? '33%' : currentStep === 2 ? '66%' : '100%' }}
+                        />
+                      </div>
                     </div>
 
                     {/* Error Banner */}
@@ -353,8 +412,8 @@ export default function ContactClient() {
                           <p>{errorMessage || 'Could not dispatch automatically. Please try again or reach us on WhatsApp.'}</p>
                           <p className="text-[11px] text-slate-400 pt-1">
                             Direct contact:{' '}
-                            <a href="mailto:bajrangiyadav330@gmail.com" className="text-white underline">
-                              bajrangiyadav330@gmail.com
+                            <a href="mailto:hello@brayontech.com" className="text-white underline">
+                              hello@brayontech.com
                             </a>{' '}
                             | WhatsApp:{' '}
                             <a href="https://wa.me/917385121432" className="text-emerald-400 underline">
@@ -365,189 +424,309 @@ export default function ContactClient() {
                       </div>
                     )}
 
-                    {/* Name & Email */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
-                          Your Name <span className="text-red-400">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          {...register('name')}
-                          placeholder="e.g. Rajesh Sharma"
-                          className={`w-full px-4 py-3 rounded-xl bg-[#090e1a] border text-white text-sm focus:outline-none transition-colors ${
-                            errors.name
-                              ? 'border-red-500 focus:border-red-500'
-                              : 'border-white/10 focus:border-blue-500'
-                          }`}
-                        />
-                        {errors.name && (
-                          <p className="mt-1 text-xs text-red-400">{errors.name.message}</p>
-                        )}
+                    {/* STEP 1: Kya Banana Hai? */}
+                    {currentStep === 1 && (
+                      <div className="space-y-4 animate-in fade-in duration-200">
+                        <div>
+                          <h4 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                            Step 1: Aapko kis type ka software chahiye?
+                          </h4>
+                          <p className="text-xs text-slate-400 mt-1">
+                            Select the primary category that matches your requirements.
+                          </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                          {[
+                            { title: 'Website / Brand Presence', tag: 'Fast Web' },
+                            { title: 'E-commerce Platform', tag: 'Online Store & B2B' },
+                            { title: 'Custom Software', tag: 'Bespoke Workflows' },
+                            { title: 'CRM / ERP System', tag: 'Business Backbone' },
+                            { title: 'Mobile App (iOS & Android)', tag: 'Native-feel Apps' },
+                            { title: 'Existing Software Upgrade / Migration', tag: 'Legacy .NET/PHP' },
+                            { title: 'AI Automation & Voice Bots', tag: 'Automations' },
+                            { title: 'Other Requirement', tag: 'Custom Project' },
+                          ].map((item) => {
+                            const isSelected = selectedProjectType === item.title;
+                            return (
+                              <button
+                                key={item.title}
+                                type="button"
+                                onClick={() => setValue('projectType', item.title, { shouldValidate: true })}
+                                className={`p-4 rounded-xl border text-left transition-all flex items-center justify-between cursor-pointer ${
+                                  isSelected
+                                    ? 'bg-blue-600/20 border-blue-500 text-white shadow-sm ring-1 ring-blue-500'
+                                    : 'bg-[#090e1a] border-white/10 text-slate-300 hover:border-white/20 hover:text-white'
+                                }`}
+                              >
+                                <div>
+                                  <div className="text-xs font-semibold">{item.title}</div>
+                                  <div className="text-[10px] font-mono text-slate-400 mt-0.5">{item.tag}</div>
+                                </div>
+                                <span
+                                  className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ml-2 ${
+                                    isSelected ? 'border-blue-400 bg-blue-500' : 'border-white/30'
+                                  }`}
+                                >
+                                  {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        <div className="pt-4">
+                          <button
+                            type="button"
+                            onClick={goToNextStep}
+                            className="w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30 transition-all cursor-pointer"
+                          >
+                            <span>Next: Budget &amp; Timeline</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </button>
+                        </div>
                       </div>
+                    )}
 
-                      <div>
-                        <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
-                          Work Email <span className="text-red-400">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          {...register('email')}
-                          placeholder="e.g. rajesh@company.com"
-                          className={`w-full px-4 py-3 rounded-xl bg-[#090e1a] border text-white text-sm focus:outline-none transition-colors ${
-                            errors.email
-                              ? 'border-red-500 focus:border-red-500'
-                              : 'border-white/10 focus:border-blue-500'
-                          }`}
-                        />
-                        {errors.email && (
-                          <p className="mt-1 text-xs text-red-400">{errors.email.message}</p>
-                        )}
+                    {/* STEP 2: Budget Range Aur Timeline */}
+                    {currentStep === 2 && (
+                      <div className="space-y-5 animate-in fade-in duration-200">
+                        <div>
+                          <h4 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                            Step 2: Budget Range Aur Timeline
+                          </h4>
+                          <p className="text-xs text-slate-400 mt-1">
+                            Yeh estimate se hum aapke project ke liye right architecture plan kar paate hain.
+                          </p>
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
+                            Approximate Budget Bracket <span className="text-red-400">*</span>
+                          </label>
+                          <div className="grid grid-cols-2 gap-2.5">
+                            {[
+                              { label: '₹25K–₹50K', sub: 'Starter MVP / Website' },
+                              { label: '₹50K–₹1L', sub: 'Custom Portal / E-Comm' },
+                              { label: '₹1L–₹3L', sub: 'Full CRM / ERP Platform' },
+                              { label: '₹3L+', sub: 'Enterprise High-Scale' },
+                            ].map((b) => {
+                              const isSelected = selectedBudget === b.label;
+                              return (
+                                <button
+                                  key={b.label}
+                                  type="button"
+                                  onClick={() => setValue('budget', b.label, { shouldValidate: true })}
+                                  className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
+                                    isSelected
+                                      ? 'bg-emerald-600/20 border-emerald-500 text-white ring-1 ring-emerald-500'
+                                      : 'bg-[#090e1a] border-white/10 text-slate-300 hover:border-white/20 hover:text-white'
+                                  }`}
+                                >
+                                  <div className="font-mono font-bold text-xs">{b.label}</div>
+                                  <div className="text-[10px] text-slate-400 mt-0.5">{b.sub}</div>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
+                            Kab tak start karna chahte hain?
+                          </label>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            {[
+                              'Immediate (< 2 Weeks)',
+                              'Within 1 Month',
+                              '1–3 Months / Flexible',
+                            ].map((t) => {
+                              const isSelected = selectedTimeline === t;
+                              return (
+                                <button
+                                  key={t}
+                                  type="button"
+                                  onClick={() => setValue('timeline', t)}
+                                  className={`p-3 rounded-xl border text-center text-xs font-medium transition-all cursor-pointer ${
+                                    isSelected
+                                      ? 'bg-blue-600/20 border-blue-500 text-white ring-1 ring-blue-500'
+                                      : 'bg-[#090e1a] border-white/10 text-slate-300 hover:border-white/20 hover:text-white'
+                                  }`}
+                                >
+                                  {t}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-3 pt-3">
+                          <button
+                            type="button"
+                            onClick={goToPrevStep}
+                            className="w-1/3 py-3.5 px-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-slate-300 text-xs font-medium transition-colors cursor-pointer"
+                          >
+                            ← Back
+                          </button>
+                          <button
+                            type="button"
+                            onClick={goToNextStep}
+                            className="w-2/3 py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30 transition-all cursor-pointer"
+                          >
+                            <span>Next: Contact Details</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </button>
+                        </div>
                       </div>
-                    </div>
+                    )}
 
-                    {/* Company & Phone */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
-                          Company / Brand Name
-                        </label>
-                        <input
-                          type="text"
-                          {...register('company')}
-                          placeholder="e.g. SafeGrow Trade"
-                          className="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-white/10 text-white text-sm focus:border-blue-500 focus:outline-none transition-colors"
-                        />
+                    {/* STEP 3: Naam, Phone, Email & Message */}
+                    {currentStep === 3 && (
+                      <div className="space-y-4 animate-in fade-in duration-200">
+                        <div>
+                          <h4 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                            Step 3: Aapke Details &amp; Project Overview
+                          </h4>
+                          <p className="text-xs text-slate-400 mt-1">
+                            Aapki inquiry direct founder &amp; senior engineer review karenge. 3 ghante mein reply.
+                          </p>
+                        </div>
+
+                        {/* Name & Phone */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
+                              Aapka Naam <span className="text-red-400">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              {...register('name')}
+                              placeholder="e.g. Rahul Sharma"
+                              className={`w-full px-4 py-3 rounded-xl bg-[#090e1a] border text-white text-sm focus:outline-none transition-colors ${
+                                errors.name
+                                  ? 'border-red-500 focus:border-red-500'
+                                  : 'border-white/10 focus:border-blue-500'
+                              }`}
+                            />
+                            {errors.name && (
+                              <p className="mt-1 text-xs text-red-400">{errors.name.message}</p>
+                            )}
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
+                              WhatsApp / Phone Number <span className="text-red-400">*</span>
+                            </label>
+                            <input
+                              type="tel"
+                              {...register('phone')}
+                              placeholder="e.g. +91 98765 43210"
+                              className={`w-full px-4 py-3 rounded-xl bg-[#090e1a] border text-white text-sm focus:outline-none transition-colors ${
+                                errors.phone
+                                  ? 'border-red-500 focus:border-red-500'
+                                  : 'border-white/10 focus:border-blue-500'
+                              }`}
+                            />
+                            {errors.phone && (
+                              <p className="mt-1 text-xs text-red-400">{errors.phone.message}</p>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Company & Email */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
+                              Company / Business Name
+                            </label>
+                            <input
+                              type="text"
+                              {...register('company')}
+                              placeholder="e.g. Sharma Traders"
+                              className="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-white/10 text-white text-sm focus:border-blue-500 focus:outline-none transition-colors"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
+                              Email Address <span className="text-slate-500 font-normal lowercase">(optional)</span>
+                            </label>
+                            <input
+                              type="email"
+                              {...register('email')}
+                              placeholder="e.g. rahul@company.com"
+                              className="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-white/10 text-white text-sm focus:border-blue-500 focus:outline-none transition-colors"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Project Description */}
+                        <div>
+                          <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
+                            Project Ke Baare Mein Thoda Bataye <span className="text-red-400">*</span>
+                          </label>
+                          <textarea
+                            rows={3}
+                            {...register('message')}
+                            placeholder="Aapka daily problem kya hai? Kounse main features chahiye? Koi reference website/app ho toh mention karein..."
+                            className={`w-full px-4 py-3 rounded-xl bg-[#090e1a] border text-white text-sm focus:outline-none transition-colors ${
+                              errors.message
+                                ? 'border-red-500 focus:border-red-500'
+                                : 'border-white/10 focus:border-blue-500'
+                            }`}
+                          />
+                          {errors.message && (
+                            <p className="mt-1 text-xs text-red-400">{errors.message.message}</p>
+                          )}
+                        </div>
+
+                        {/* Consent Checkbox */}
+                        <div>
+                          <label className="flex items-start gap-2.5 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              {...register('consent')}
+                              className="mt-0.5 rounded border-white/20 bg-slate-900 text-blue-600 focus:ring-blue-500"
+                            />
+                            <span className="text-xs text-slate-400 leading-relaxed">
+                              I agree to be contacted via WhatsApp/phone regarding this project enquiry.
+                            </span>
+                          </label>
+                          {errors.consent && (
+                            <p className="mt-1 text-xs text-red-400">{errors.consent.message}</p>
+                          )}
+                        </div>
+
+                        {/* Submit Action */}
+                        <div className="flex items-center gap-3 pt-2">
+                          <button
+                            type="button"
+                            onClick={goToPrevStep}
+                            className="w-1/3 py-3.5 px-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-slate-300 text-xs font-medium transition-colors cursor-pointer"
+                          >
+                            ← Back
+                          </button>
+                          <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="w-2/3 py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-medium text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/50 transition-all cursor-pointer"
+                          >
+                            {isSubmitting ? (
+                              <>
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                                <span>Sending Enquiry...</span>
+                              </>
+                            ) : (
+                              <>
+                                <Send className="w-4 h-4" />
+                                <span>Send Project Enquiry</span>
+                                <ArrowRight className="w-4 h-4" />
+                              </>
+                            )}
+                          </button>
+                        </div>
                       </div>
-
-                      <div>
-                        <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
-                          Phone / WhatsApp
-                        </label>
-                        <input
-                          type="tel"
-                          {...register('phone')}
-                          placeholder="e.g. +91 98765 43210"
-                          className="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-white/10 text-white text-sm focus:border-blue-500 focus:outline-none transition-colors"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Project Type & Budget */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
-                          Project Type <span className="text-red-400">*</span>
-                        </label>
-                        <select
-                          {...register('projectType')}
-                          className="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-white/10 text-white text-sm focus:border-blue-500 focus:outline-none transition-colors"
-                        >
-                          <option value="Full-Stack Web & SaaS">Full-Stack Web & SaaS</option>
-                          <option value="Enterprise Backend & REST APIs">Enterprise Backend & REST APIs</option>
-                          <option value="Custom E-Commerce Engine">Custom E-Commerce Engine</option>
-                          <option value="AI Automation & Voice Agents">AI Automation & Voice Agents</option>
-                          <option value="Mobile App / MVP in 30 Days">Mobile App / MVP in 30 Days</option>
-                          <option value="Performance & Core Web Vitals Revamp">Performance & Core Web Vitals Revamp</option>
-                        </select>
-                        {errors.projectType && (
-                          <p className="mt-1 text-xs text-red-400">{errors.projectType.message}</p>
-                        )}
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
-                          Estimated Budget Bracket
-                        </label>
-                        <select
-                          {...register('budget')}
-                          className="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-white/10 text-white text-sm focus:border-blue-500 focus:outline-none transition-colors"
-                        >
-                          <option value="₹35,000 - ₹75,000 (Starter Web)">₹35,000 - ₹75,000 (Starter Web)</option>
-                          <option value="₹75k - ₹1.5 Lakh ($1,000 - $2,000)">₹75k - ₹1.5 Lakh ($1,000 - $2,000)</option>
-                          <option value="₹1.5 Lakh - ₹3.5 Lakh (Startup MVP)">₹1.5 Lakh - ₹3.5 Lakh (Startup MVP)</option>
-                          <option value="₹3.5 Lakh+ (Custom Enterprise / High-Scale)">₹3.5 Lakh+ (Custom Enterprise / High-Scale)</option>
-                          <option value="Undecided / Need Architecture Consultation">Undecided / Need Consultation</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    {/* Timeline */}
-                    <div>
-                      <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
-                        Target Timeline
-                      </label>
-                      <select
-                        {...register('timeline')}
-                        className="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-white/10 text-white text-sm focus:border-blue-500 focus:outline-none transition-colors"
-                      >
-                        <option value="Immediate (< 2 weeks)">Immediate (&lt; 2 weeks)</option>
-                        <option value="Within 1 Month">Within 1 Month</option>
-                        <option value="1 - 3 Months">1 - 3 Months</option>
-                        <option value="Flexible / Exploring Feasibility">Flexible / Exploring Feasibility</option>
-                      </select>
-                    </div>
-
-                    {/* Message / Scope */}
-                    <div>
-                      <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
-                        Project Overview & Architecture Requirements <span className="text-red-400">*</span>
-                      </label>
-                      <textarea
-                        rows={4}
-                        {...register('message')}
-                        placeholder="Detail what you are looking to build, any existing software/website URLs, current architectural bottlenecks, or key deliverables..."
-                        className={`w-full px-4 py-3 rounded-xl bg-[#090e1a] border text-white text-sm focus:outline-none transition-colors ${
-                          errors.message
-                            ? 'border-red-500 focus:border-red-500'
-                            : 'border-white/10 focus:border-blue-500'
-                        }`}
-                      />
-                      {errors.message && (
-                        <p className="mt-1 text-xs text-red-400">{errors.message.message}</p>
-                      )}
-                    </div>
-
-                    {/* Consent Checkbox */}
-                    <div className="pt-1">
-                      <label className="flex items-start gap-3 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          {...register('consent')}
-                          className="mt-1 rounded border-white/20 bg-slate-900 text-blue-600 focus:ring-blue-500"
-                        />
-                        <span className="text-xs text-slate-400 leading-relaxed">
-                          I agree to BRAYON&apos;s{' '}
-                          <Link href="/privacy" className="text-blue-400 hover:underline">
-                            Privacy Policy
-                          </Link>{' '}
-                          and consent to being contacted regarding this engineering consultation request.
-                        </span>
-                      </label>
-                      {errors.consent && (
-                        <p className="mt-1 text-xs text-red-400">{errors.consent.message}</p>
-                      )}
-                    </div>
-
-                    {/* Submit Button */}
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white font-medium text-sm transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 cursor-pointer"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          <span>Dispatching Inquiry to Founder...</span>
-                        </>
-                      ) : (
-                        <>
-                          <Send className="w-4 h-4" />
-                          <span>Submit Inquiry for Immediate Review</span>
-                          <ArrowRight className="w-4 h-4" />
-                        </>
-                      )}
-                    </button>
+                    )}
                   </form>
                 )}
               </div>

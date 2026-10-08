@@ -48,13 +48,13 @@ const ARCHITECTURES: Record<"jbce" | "mhvp", ProjectArchitecture> = {
         name: "Client Presentation Tier",
         category: "FRONTEND ARCHITECTURE",
         icon: Globe,
-        tech: "React · TypeScript · Tailwind CSS",
-        spec: "Mobile-responsive portal, instantaneous search index, sub-second LCP",
+        tech: "Semantic HTML5 · Responsive Engine · Bootstrap UI",
+        spec: "Mobile-first responsive layout, sub-second certificate verification query engine",
         metrics: "Verified across 100% mobile viewports",
         details: [
           "Optimized student enrollment & certificate search workflows",
           "Clean responsive UI for center managers and students",
-          "Zero layout shift with strict font & asset preloading",
+          "Fast asset delivery optimized for 3G/4G network speeds",
         ],
       },
       {

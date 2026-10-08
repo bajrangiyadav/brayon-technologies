@@ -188,10 +188,10 @@ export function Footer() {
                 Mumbai, Maharashtra, India
               </div>
               <a
-                href="mailto:bajrangiyadav330@gmail.com"
+                href="mailto:hello@brayontech.com"
                 className="block hover:text-white font-mono text-[11px] transition-colors"
               >
-                bajrangiyadav330@gmail.com
+                hello@brayontech.com
               </a>
               <a
                 href="tel:+917385121432"
