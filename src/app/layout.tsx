@@ -116,6 +116,9 @@ export const metadata: Metadata = {
     },
   },
   category: "technology",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
+  },
 };
 
 export default function RootLayout({
@@ -137,6 +140,10 @@ export default function RootLayout({
     description:
       "BRAYON Technologies is an enterprise custom software development company engineering scalable web applications, SaaS MVPs, ERP automation, and cloud platforms.",
     slogan: "Technology. Innovation. Beyond.",
+    sameAs: [
+      "https://github.com/bajrangiyadav",
+      "https://github.com/bajrangiyadav/brayon-technologies"
+    ],
     founder: {
       "@type": "Person",
       name: "Bajrangi Yadav",

@@ -6,23 +6,23 @@ import { InsightsClient } from './InsightsClient';
 import { insights, insightCategories } from '@/data/insights';
 
 export const metadata: Metadata = {
-  title: 'Engineering Insights & Technical Architecture | BRAYON Technologies',
+  title: 'Engineering Insights & Technical Architecture',
   description:
     'Deep dives into software architecture, AI automation pipelines, sub-second e-commerce, and high-concurrency systems written by BRAYON senior engineers.',
   alternates: {
     canonical: '/insights',
   },
   openGraph: {
-    title: 'Engineering Insights & Technical Architecture | BRAYON Technologies',
+    title: 'Engineering Insights & Technical Architecture',
     description:
       'Deep dives into software architecture, AI automation pipelines, sub-second e-commerce, and high-concurrency systems written by BRAYON senior engineers.',
-    url: 'https://brayon.in/insights',
+    url: 'https://brayontech.com/insights',
     siteName: 'BRAYON Technologies',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Engineering Insights & Technical Architecture | BRAYON Technologies',
+    title: 'Engineering Insights & Technical Architecture',
     description:
       'Deep dives into software architecture, AI automation pipelines, sub-second e-commerce, and high-concurrency systems.',
   },
@@ -36,7 +36,7 @@ export default function InsightsPage() {
     name: 'BRAYON Technologies Engineering Insights',
     description:
       'Technical publications, architectural paradigms, and software engineering deep dives.',
-    url: 'https://brayon.in/insights',
+    url: 'https://brayontech.com/insights',
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: insights
@@ -44,7 +44,7 @@ export default function InsightsPage() {
         .map((insight, index) => ({
           '@type': 'ListItem',
           position: index + 1,
-          url: `https://brayon.in/insights/${insight.slug}`,
+          url: `https://brayontech.com/insights/${insight.slug}`,
           name: insight.title,
         })),
     },

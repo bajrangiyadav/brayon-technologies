@@ -20,14 +20,14 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Engineering & Software Development Services | BRAYON Technologies",
+  title: "Engineering & Software Development Services",
   description:
     "Explore BRAYON Technologies' software engineering services: AI & Automation, Web Applications, E-Commerce, Mobile Apps, Enterprise Systems, Cloud & DevOps, and API Integrations.",
   alternates: {
     canonical: "/services",
   },
   openGraph: {
-    title: "Engineering & Software Development Services | BRAYON Technologies",
+    title: "Engineering & Software Development Services",
     description:
       "Production-ready web applications, AI automation, and scalable cloud architectures engineered with senior discipline.",
     url: "https://brayontech.com/services",
@@ -157,8 +157,56 @@ const DETAILED_SERVICES = [
 ];
 
 export default function ServicesPage() {
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Software Engineering Services",
+    description: "Full-stack software engineering and architecture capabilities provided by BRAYON Technologies.",
+    url: "https://brayontech.com/services",
+    itemListElement: DETAILED_SERVICES.map((service, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      item: {
+        "@type": "Service",
+        name: service.title,
+        description: service.description,
+        provider: {
+          "@type": "Organization",
+          name: "BRAYON Technologies",
+          url: "https://brayontech.com",
+        },
+      },
+    })),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://brayontech.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: "https://brayontech.com/services",
+      },
+    ],
+  };
   return (
     <div className="min-h-screen bg-[#070a12] text-slate-100 flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <main className="flex-grow pt-28">

@@ -6,14 +6,14 @@ import { caseStudies } from "@/data/caseStudies";
 import CaseStudiesClient from "./CaseStudiesClient";
 
 export const metadata: Metadata = {
-  title: "Case Studies & Production Work | BRAYON Technologies",
+  title: "Case Studies & Production Work",
   description:
     "Explore real-world software engineering case studies delivered by BRAYON Technologies, including Jay Balaji Computer Education (JBCE) and Mumbai Hindi Vidyapeeth (MHVP).",
   alternates: {
     canonical: "/case-studies",
   },
   openGraph: {
-    title: "Case Studies & Production Work | BRAYON Technologies",
+    title: "Case Studies & Production Work",
     description:
       "Real projects. Real engineering. Scalable institutional platforms delivered for real operations.",
     url: "https://brayontech.com/case-studies",

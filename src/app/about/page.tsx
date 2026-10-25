@@ -21,14 +21,14 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us & Engineering Leadership | BRAYON Technologies",
+  title: "About Us & Engineering Leadership",
   description:
     "Learn about BRAYON Technologies. Direct engineering leadership, modern software architecture, and zero agency middlemen. We build digital products that move businesses forward.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About Us & Engineering Leadership | BRAYON Technologies",
+    title: "About Us & Engineering Leadership",
     description:
       "Direct senior engineering leadership, modern architecture, and 100% IP ownership. We don't just talk about technology. We build it.",
     url: "https://brayontech.com/about",

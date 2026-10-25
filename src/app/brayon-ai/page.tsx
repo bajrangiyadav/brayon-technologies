@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "BRAYON AI — Enterprise AI Engineering & Workflow Automation",
+  title: "Enterprise AI Engineering & Workflow Automation",
   description:
     "AI that works with your business. BRAYON Technologies designs practical AI-powered systems, voice bots, autonomous agents, and document intelligence workflows.",
   alternates: {

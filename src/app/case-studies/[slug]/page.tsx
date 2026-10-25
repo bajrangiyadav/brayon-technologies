@@ -22,12 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!project) {
     return {
-      title: "Case Study Not Found | BRAYON Technologies",
+      title: "Case Study Not Found",
     };
   }
 
   return {
-    title: `${project.title} — Case Study | BRAYON Technologies`,
+    title: `${project.title} — Case Study`,
     description: project.seo.description,
     keywords: project.seo.keywords,
     alternates: {
@@ -89,11 +89,40 @@ export default async function CaseStudyDetailPage({ params }: Props) {
     },
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://brayontech.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Case Studies",
+        item: "https://brayontech.com/case-studies",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: project.title,
+        item: `https://brayontech.com/case-studies/${project.slug}`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-[#070a12] text-slate-100 flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <Navbar />
       <CaseStudyDetailClient caseStudy={project} relatedProjects={related} />

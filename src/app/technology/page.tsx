@@ -24,14 +24,14 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Technology Stack & Architecture Matrix | BRAYON Technologies",
+  title: "Technology Stack & Architecture Matrix",
   description:
     "The technology behind what we build. We select technologies based on product requirements, scalability, maintainability and business needs: React, Laravel, Node.js, AWS, and AI APIs.",
   alternates: {
     canonical: "/technology",
   },
   openGraph: {
-    title: "Technology Stack & Architecture Matrix | BRAYON Technologies",
+    title: "Technology Stack & Architecture Matrix",
     description:
       "The technology behind what we build. Rigorous full-stack engineering across modern frameworks, relational databases, and AI inference runtimes.",
     url: "https://brayontech.com/technology",

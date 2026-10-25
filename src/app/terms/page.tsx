@@ -7,7 +7,7 @@ import Section from "@/components/common/Section";
 import Eyebrow from "@/components/common/Eyebrow";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | BRAYON Technologies",
+  title: "Terms of Service",
   description: "Terms of Service and Master Services Agreement framework at BRAYON Technologies.",
   alternates: {
     canonical: "/terms",

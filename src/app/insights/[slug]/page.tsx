@@ -26,10 +26,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const url = `https://brayon.in/insights/${insight.slug}`;
+  const url = `https://brayontech.com/insights/${insight.slug}`;
 
   return {
-    title: `${insight.seo.title || insight.title} | BRAYON Engineering`,
+    title: insight.seo.title || insight.title,
     description: insight.seo.description || insight.excerpt,
     keywords: insight.seo.keywords,
     alternates: {
@@ -89,12 +89,12 @@ export default async function InsightDetailPage({ params }: PageProps) {
       name: 'BRAYON Technologies',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://brayon.in/icon.png',
+        url: 'https://brayontech.com/icon.png',
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://brayon.in/insights/${insight.slug}`,
+      '@id': `https://brayontech.com/insights/${insight.slug}`,
     },
     keywords: insight.tags.join(', '),
   };
@@ -107,19 +107,19 @@ export default async function InsightDetailPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://brayon.in',
+        item: 'https://brayontech.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Insights',
-        item: 'https://brayon.in/insights',
+        item: 'https://brayontech.com/insights',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: insight.title,
-        item: `https://brayon.in/insights/${insight.slug}`,
+        item: `https://brayontech.com/insights/${insight.slug}`,
       },
     ],
   };

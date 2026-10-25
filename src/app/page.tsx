@@ -64,11 +64,70 @@ export default function HomePage() {
     },
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How much does custom software development cost?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Cost depends strictly on complexity and feature scope. A focused business website starts from ₹15,000+, an e-commerce platform from ₹35,000+, custom operational software from ₹75,000+, and complex CRM/ERP platforms from ₹1,00,000+. We provide a fixed, milestone-based quote with zero hidden surprises.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How long does custom software development take?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "A standard business portal or MVP typically takes 2 to 4 weeks. Full custom software or multi-role CRM/ERP systems generally require 4 to 8 weeks, delivered in weekly sprint demos.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does source code ownership transfer work?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Upon milestone completion and settlement, 100% of the private Git repositories, cloud deployment credentials, database scripts, and intellectual property are officially transferred to your organization.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What are your payment terms?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "We follow a transparent milestone structure: 30% kickoff deposit, 40% upon staging and core feature completion, and 30% upon final production deployment and code handover.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can you improve or modernize existing legacy software?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. We audit legacy codebases (PHP, .NET, old JS), resolve performance bottlenecks, fix security vulnerabilities, and migrate or modernize modules with zero data loss.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I start with an MVP and scale later?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, we strongly encourage starting with an MVP to validate workflows and launch quickly, then adding advanced automations and modules based on user feedback.",
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div className="min-h-screen flex flex-col bg-[#070a12] text-slate-100">
         <Navbar />

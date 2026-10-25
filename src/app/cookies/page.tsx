@@ -7,7 +7,7 @@ import Section from "@/components/common/Section";
 import Eyebrow from "@/components/common/Eyebrow";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | BRAYON Technologies",
+  title: "Cookie Policy",
   description: "Cookie Policy and analytics tracking transparency at BRAYON Technologies.",
   alternates: {
     canonical: "/cookies",

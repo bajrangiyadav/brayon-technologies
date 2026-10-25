@@ -5,23 +5,23 @@ import Footer from '@/components/layout/Footer';
 import ContactClient from './ContactClient';
 
 export const metadata: Metadata = {
-  title: 'Contact Engineering & Architecture Consultation | BRAYON Technologies',
+  title: 'Contact Engineering & Architecture Consultation',
   description:
     'Schedule a technical consultation with Founder & Solutions Architect Bajrangi Yadav. 3-hour response guarantee on all architectural inquiries.',
   alternates: {
     canonical: '/contact',
   },
   openGraph: {
-    title: 'Contact Engineering & Architecture Consultation | BRAYON Technologies',
+    title: 'Contact Engineering & Architecture Consultation',
     description:
       'Direct engineering consultation with Founder Bajrangi Yadav. High-throughput web applications, Laravel backends, and AI automation.',
-    url: 'https://brayon.in/contact',
+    url: 'https://brayontech.com/contact',
     siteName: 'BRAYON Technologies',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact Engineering & Architecture Consultation | BRAYON Technologies',
+    title: 'Contact Engineering & Architecture Consultation',
     description:
       'Direct engineering consultation with Founder Bajrangi Yadav. 3-hour response guarantee.',
   },
@@ -34,7 +34,7 @@ export default function ContactPage() {
     name: 'Contact BRAYON Technologies',
     description:
       'Get in touch directly with Founder & Solutions Architect Bajrangi Yadav for software engineering projects.',
-    url: 'https://brayon.in/contact',
+    url: 'https://brayontech.com/contact',
     mainEntity: {
       '@type': 'Person',
       name: 'Bajrangi Yadav',

@@ -15,14 +15,14 @@ import { caseStudies } from "@/data/caseStudies";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Industries Served | BRAYON Technologies",
+  title: "Industries Served",
   description:
     "Technology built around your business. BRAYON Technologies engineers digital platforms around real operational requirements across commerce, logistics, and technology.",
   alternates: {
     canonical: "/industries",
   },
   openGraph: {
-    title: "Industries Served | BRAYON Technologies",
+    title: "Industries Served",
     description:
       "Technology built around your business. Resilient software engineering across e-commerce, mobility, automation, and enterprise domains.",
     url: "https://brayontech.com/industries",
