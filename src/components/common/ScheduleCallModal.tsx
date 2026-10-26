@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { Calendar, Clock, Video, CheckCircle, ExternalLink, X } from "lucide-react";
+import React from "react";
+import { Calendar, Clock, Video, CheckCircle, X } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
 interface ScheduleCallModalProps {

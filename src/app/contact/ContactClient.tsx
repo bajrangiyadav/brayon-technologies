@@ -61,6 +61,7 @@ export default function ContactClient() {
   const [submissionState, setSubmissionState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [submissionResponse, setSubmissionResponse] = useState<LeadSubmissionResponse | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [whatsappShareUrl, setWhatsappShareUrl] = useState<string>('');
 
   const {
     register,
@@ -111,6 +112,28 @@ export default function ContactClient() {
     setSubmissionState('submitting');
     setErrorMessage(null);
 
+    // Build structured WhatsApp message for Founder Bajrangi Yadav
+    const cleanPhone = data.phone.trim();
+    const messageLines = [
+      `*New Project Inquiry — BRAYON Technologies*`,
+      `---------------------------------------`,
+      `👤 *Name:* ${data.name.trim()}`,
+      `📱 *Phone / WhatsApp:* ${cleanPhone}`,
+      data.company ? `🏢 *Company:* ${data.company.trim()}` : null,
+      data.email ? `📧 *Email:* ${data.email.trim()}` : null,
+      `💻 *Project Type:* ${data.projectType}`,
+      `💰 *Budget Bracket:* ${data.budget || 'To be discussed'}`,
+      data.timeline ? `⏱️ *Timeline:* ${data.timeline}` : null,
+      ``,
+      `📝 *Project Overview:*`,
+      `${data.message.trim()}`,
+      `---------------------------------------`,
+      `Sent via brayon-technologies.vercel.app`,
+    ].filter(Boolean).join('\n');
+
+    const generatedWaUrl = `https://wa.me/917385121432?text=${encodeURIComponent(messageLines)}`;
+    setWhatsappShareUrl(generatedWaUrl);
+
     try {
       const response = await submitLead({
         name: data.name,
@@ -131,6 +154,11 @@ export default function ContactClient() {
 
       // Privacy-compliant analytics tracking (NO PII forwarded)
       trackLeadSubmit(data.projectType, data.budget || 'unspecified', !!data.timeline);
+
+      // Automatically open WhatsApp with all pre-filled details
+      if (typeof window !== 'undefined') {
+        window.open(generatedWaUrl, '_blank', 'noopener,noreferrer');
+      }
     } catch (err: unknown) {
       setSubmissionState('error');
       const msg = err instanceof Error ? err.message : 'Unable to dispatch your inquiry. Please try again or reach out via WhatsApp.';
@@ -143,6 +171,7 @@ export default function ContactClient() {
     setSubmissionState('idle');
     setSubmissionResponse(null);
     setErrorMessage(null);
+    setWhatsappShareUrl('');
   };
 
   return (
@@ -266,9 +295,9 @@ export default function ContactClient() {
                       1
                     </span>
                     <div>
-                      <div className="text-xs font-semibold text-white">Technical Review (&lt; 3 Hours)</div>
+                      <div className="text-xs font-semibold text-white">Direct WhatsApp Delivery</div>
                       <div className="text-xs text-slate-400 mt-0.5">
-                        Founder Bajrangi Yadav reviews your architecture requirements and project scope.
+                        Your project specifications are pre-formatted and sent directly to founder Bajrangi Yadav.
                       </div>
                     </div>
                   </div>
@@ -323,7 +352,7 @@ export default function ContactClient() {
             <div className="lg:col-span-7">
               <div className="rounded-3xl bg-[#0d1322]/90 border border-white/10 p-6 sm:p-10 shadow-2xl relative backdrop-blur-md">
                 {submissionState === 'success' ? (
-                  <div className="py-10 text-center space-y-6">
+                  <div className="py-8 text-center space-y-6">
                     <div className="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/20">
                       <CheckCircle2 className="w-8 h-8" />
                     </div>
@@ -333,43 +362,58 @@ export default function ContactClient() {
                         {submissionResponse?.leadId ? `Inquiry Reference: ${submissionResponse.leadId}` : 'Requirement Dispatched'}
                       </div>
                       <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                        Thank You! We&apos;ve Received Your Requirements.
+                        Thank You! Your Details Are Ready.
                       </h3>
                       <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed pt-1">
-                        Solutions Architect Bajrangi Yadav will review your requirements. <span className="text-white font-semibold">You will receive a preliminary scope assessment, architectural recommendation, and estimate within 24 hours.</span>
+                        Your inquiry has been stored securely in our system. <span className="text-emerald-400 font-semibold">Please tap the button below to send your details directly to Founder &amp; Solutions Architect Bajrangi Yadav on WhatsApp.</span>
                       </p>
+                    </div>
+
+                    {/* WhatsApp Action Card */}
+                    <div className="max-w-md mx-auto p-5 rounded-2xl bg-gradient-to-b from-[#0e1f18] via-[#091510] to-[#07100c] border border-emerald-500/40 text-left space-y-3 shadow-xl">
+                      <div className="flex items-center justify-between">
+                        <span className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 font-semibold uppercase tracking-wider">
+                          <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                          <span>Direct WhatsApp Delivery</span>
+                        </span>
+                        <span className="text-[10px] font-mono text-emerald-400/90 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                          Pre-filled &amp; Ready
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-300 leading-relaxed">
+                        We formatted all your project specifications (name, contact, budget, timeline, and requirements). Click below to deliver it straight to our engineering WhatsApp chat with zero waiting.
+                      </p>
+                      <a
+                        href={whatsappShareUrl || "https://wa.me/917385121432"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-sm shadow-xl shadow-emerald-950/60 transition-all hover:scale-[1.02] active:scale-95 cursor-pointer ring-2 ring-emerald-400/40"
+                      >
+                        <WhatsAppIcon className="w-5 h-5 fill-white shrink-0" />
+                        <span>Send Details to Bajrangi on WhatsApp &rarr;</span>
+                      </a>
                     </div>
 
                     {/* What happens next box */}
                     <div className="max-w-md mx-auto p-4 rounded-2xl bg-[#080d1a] border border-white/[0.08] text-left space-y-2.5 text-xs text-slate-300">
                       <div className="font-mono text-slate-400 text-[11px] uppercase tracking-wider font-semibold">
-                        Your Next Steps:
+                        What Happens Next:
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-emerald-400 font-mono">1.</span>
-                        <span>Check your email or phone for automated acknowledgement.</span>
+                        <span>Your requirements are delivered instantly to WhatsApp (+91 73851 21432).</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-emerald-400 font-mono">2.</span>
-                        <span>Following founder review, you will receive a tailored scope breakdown &amp; milestone proposal.</span>
+                        <span>Founder &amp; Solutions Architect Bajrangi Yadav reviews your scope personally.</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-emerald-400 font-mono">3.</span>
-                        <span>For urgent inquiries, connect immediately via direct WhatsApp below.</span>
+                        <span>You receive an architectural recommendation, tech stack blueprint, and timeline estimate.</span>
                       </div>
                     </div>
 
                     <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-                      <a
-                        href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20just%20submitted%20my%20project%20inquiry%20via%20the%20website."
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-sm shadow-lg shadow-emerald-950/50 transition-all cursor-pointer"
-                      >
-                        <WhatsAppIcon className="w-4 h-4 fill-white shrink-0" />
-                        <span>Instant WhatsApp Follow-up</span>
-                      </a>
-
                       <button
                         type="button"
                         onClick={handleReset}
