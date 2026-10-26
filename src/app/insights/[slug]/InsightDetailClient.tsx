@@ -13,6 +13,7 @@ import { SocialShare } from '@/components/insights/SocialShare';
 import { InsightCard } from '@/components/insights/InsightCard';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { Clock, Calendar, ArrowLeft, ArrowRight, User, Terminal } from 'lucide-react';
+import { SITE_URL } from '@/utils/siteConfig';
 
 interface InsightDetailClientProps {
   insight: Insight;
@@ -35,7 +36,7 @@ export function InsightDetailClient({
     year: 'numeric',
   });
 
-  const pageUrl = `https://brayontech.com/insights/${insight.slug}`;
+  const pageUrl = `${SITE_URL}/insights/${insight.slug}`;
 
   return (
     <div className="flex flex-col">

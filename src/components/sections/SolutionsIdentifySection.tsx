@@ -23,6 +23,7 @@ interface SolutionCard {
   description: string;
   badge?: string;
   tag: string;
+  href: string;
 }
 
 const SOLUTIONS: SolutionCard[] = [
@@ -31,65 +32,74 @@ const SOLUTIONS: SolutionCard[] = [
     icon: Building2,
     description: "Custom operational systems to manage internal workflows, approvals, staff roles, and daily operations in one place.",
     tag: "Operations & Admin",
+    href: "/crm-erp-development",
   },
   {
-    title: "Inventory / Stock Software",
+    title: "Inventory & Warehouse Software",
     icon: Package,
     description: "Real-time stock tracking, warehouse management, automated low-stock alerts, and multi-location inventory control.",
     tag: "Supply & Warehousing",
+    href: "/crm-erp-development",
   },
   {
-    title: "Billing & Accounting",
+    title: "Billing & GST Invoicing",
     icon: Receipt,
-    description: "GST-compliant invoicing, payment tracking, vendor ledgers, quotations, and automated financial reports.",
+    description: "GST-compliant invoicing, automated PDF creation, vendor credit ledgers, and real-time payment reconciliation.",
     tag: "Finance & Invoicing",
+    href: "/crm-erp-development",
   },
   {
-    title: "CRM / Lead Management",
+    title: "Custom CRM & Lead Management",
     icon: Users,
-    description: "Capture leads from web/WhatsApp, assign sales agents, track follow-ups, and convert prospects faster.",
+    description: "Capture leads from web & WhatsApp, assign sales agents, track pipeline stages, and accelerate deal closures.",
     tag: "Sales & Pipelines",
+    href: "/crm-erp-development",
   },
   {
-    title: "E-commerce Platform",
+    title: "E-Commerce Platforms & Storefronts",
     icon: ShoppingCart,
-    description: "Custom B2B wholesale portals and B2C online stores with catalog management, cart, and payment gateway integration.",
+    description: "Custom B2B wholesale portals and D2C online storefronts with sub-second catalog search and secure payment checkout.",
     tag: "Online Stores & B2B",
+    href: "/ecommerce-development",
   },
   {
-    title: "School / College Management",
+    title: "Institutional & Verification Portals",
     icon: GraduationCap,
-    description: "Student admission portals, roll verification, examination results, fee tracking, and multi-center branch controls.",
-    tag: "Education Portals",
+    description: "Student admission portals, roll verification engines, examination results, fee tracking, and multi-center controls.",
+    tag: "Education & Verification",
+    href: "/case-studies/jbce",
   },
   {
-    title: "Logistics & Delivery",
+    title: "Logistics & Fleet Dispatch",
     icon: Truck,
-    description: "Order dispatch tracking, route allocation, delivery agent management, and real-time status updates.",
+    description: "Order dispatch tracking, route allocation, delivery agent management, and real-time shipment status updates.",
     tag: "Transport & Dispatch",
+    href: "/custom-software-development",
   },
   {
-    title: "Mobile App",
+    title: "Mobile Applications (iOS & Android)",
     icon: Smartphone,
-    description: "High-performance iOS & Android applications for your customers, field agents, or internal workforce.",
+    description: "High-performance cross-platform applications built with React Native for field operations and customer engagement.",
     tag: "iOS & Android",
+    href: "/mobile-app-development",
   },
   {
-    title: "AI Automation",
+    title: "AI Workflows & Automation",
     icon: Bot,
-    description: "Automate repetitive customer support with WhatsApp bots, AI document parsing, and voice/data workflows.",
+    description: "Automate repetitive business workflows with practical AI: WhatsApp copilots, document parsing, and voice bots.",
     tag: "AI & Smart Bots",
+    href: "/brayon-ai",
   },
 ];
 
 export function SolutionsIdentifySection() {
   return (
-    <Section spacing="lg" borderBottom className="bg-[#060913]">
+    <Section id="solutions" spacing="lg" borderBottom className="bg-[#060913]">
       <Container>
         <SectionHeading
           eyebrow="TAILORED BUSINESS SOFTWARE"
-          title="Aapko kis type ka software chahiye?"
-          description="Customer ko services ki list se zyada apni business problem identify karni hai. Select what matches your exact requirement."
+          title="Identify The Software Solution Your Business Needs"
+          description="Every business operates differently. Explore targeted digital architectures designed around real operational bottlenecks, workflow automation, and revenue acceleration."
         />
 
         {/* 9 Cards Grid */}
@@ -99,7 +109,7 @@ export function SolutionsIdentifySection() {
             return (
               <FadeUp key={item.title} delay={0.03 * idx}>
                 <Link
-                  href={`/contact?interest=${encodeURIComponent(item.title)}`}
+                  href={item.href}
                   className="group h-full p-6 rounded-2xl bg-[#090e1b] border border-white/[0.08] hover:border-blue-500/40 hover:bg-[#0c1426] transition-all flex flex-col justify-between text-left"
                 >
                   <div>
@@ -122,7 +132,7 @@ export function SolutionsIdentifySection() {
                   </div>
 
                   <div className="mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-medium text-slate-400 group-hover:text-white">
-                    <span>Discuss this solution</span>
+                    <span>Explore this solution</span>
                     <ArrowRight className="w-4 h-4 text-blue-400 transition-transform group-hover:translate-x-1" />
                   </div>
                 </Link>
@@ -130,31 +140,6 @@ export function SolutionsIdentifySection() {
             );
           })}
         </div>
-
-        {/* Guided CTA Banner */}
-        <FadeUp delay={0.25}>
-          <div className="mt-10 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-blue-950/40 via-[#0d172e] to-blue-950/40 border border-blue-500/30 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
-            <div>
-              <div className="text-xs font-mono text-blue-400 uppercase tracking-wider mb-1">
-                CONFUSED BETWEEN OFF-THE-SHELF VS CUSTOM?
-              </div>
-              <h4 className="text-lg sm:text-xl font-semibold text-white">
-                Not sure what you need?
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl">
-                Tell us about your business workflow → We&apos;ll suggest the right architecture and cost-effective approach.
-              </p>
-            </div>
-
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs sm:text-sm shadow-lg shadow-blue-600/30 transition-all shrink-0"
-            >
-              <span>Get Free Solution Advice</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </FadeUp>
       </Container>
     </Section>
   );

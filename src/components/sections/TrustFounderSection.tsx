@@ -1,7 +1,5 @@
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Quote, CheckCircle2, ArrowRight, ShieldCheck, Mail } from "lucide-react";
+import { Quote, CheckCircle2, ShieldCheck, Mail } from "lucide-react";
 import Container from "../common/Container";
 import Section from "../common/Section";
 import SectionHeading from "../common/SectionHeading";
@@ -25,7 +23,7 @@ const TESTIMONIALS: Testimonial[] = [
     organization: "Jay Balaji Computer Education (ISO 9001:2015)",
     project: "Student Verification & Academic Management Portal",
     quote:
-      "BRAYON Technologies ne hamara student certificate verification system bilkul secure banaya. Pehle verification mein 2 din lagte the, ab instant 5 second mein online roll number se authenticate ho jata hai. Document forgery 100% khatam ho gayi.",
+      "BRAYON Technologies engineered our student certificate verification system to be completely tamper-proof. Verification previously took 2 days through manual paperwork; it now authenticates in under 5 seconds by roll number online. Physical document forgery has been eliminated.",
     verifiedImpact: "Verification speed: 2 days → 5 seconds. Zero physical forged certificates.",
     liveUrl: "https://jbce.in/",
   },
@@ -35,7 +33,7 @@ const TESTIMONIALS: Testimonial[] = [
     organization: "Mumbai Hindi Vidyapeeth (मुंबई हिन्दी विद्यापीठ)",
     project: "Multi-Center Examination & Online Result System",
     quote:
-      "Annual results publish hone par server par hajaron students ek saath aate hain. BRAYON ki engineering ki wajah se site zero downtime ke saath chali aur multi-state affiliated centers ka admission data ek hi central portal se manage ho raha hai.",
+      "When annual examination results are published, thousands of students access the portal concurrently. Thanks to BRAYON's architecture, the site operated with zero downtime during peak loads, and admission workflows across our multi-state affiliated centers are seamlessly managed from a unified portal.",
     verifiedImpact: "Server downtime during peak result traffic: 0s. 100+ examination centers connected.",
     liveUrl: "https://mhvp.org/",
   },
@@ -49,7 +47,7 @@ export function TrustFounderSection() {
         <SectionHeading
           eyebrow="CLIENT REVIEWS & FOUNDER PROMISE"
           title="Direct Accountability. Verified Client Results."
-          description="Aapka 'direct senior engineer' wala promise tabhi trustable hai jab aap real client words aur founder ki direct responsibility dekhein."
+          description="We stand behind our direct senior engineering model with real production testimonials and personal technical accountability for every codebase."
         />
 
         {/* Client Testimonials Grid */}
@@ -152,11 +150,11 @@ export function TrustFounderSection() {
                 </div>
 
                 <h4 className="text-xl sm:text-2xl font-semibold text-white leading-snug">
-                  &ldquo;Aap mujhse baat karenge, aur main hi aapke software ka blueprint aur core code review karunga.&rdquo;
+                  &ldquo;You consult directly with me, and I personally architect your software blueprint and oversee core code delivery.&rdquo;
                 </h4>
 
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  BRAYON Technologies ko maine isliye banaya kyunki traditional agencies mein sales pitch senior log karte hain aur kaam inexperienced juniors ko handover kar diya jata hai. Hamare yahan har client ka scope, database schema aur milestone delivery meri direct oversight mein hota hai.
+                  I founded BRAYON Technologies to solve a major industry flaw: traditional agencies assign senior leaders to pitch clients, then hand execution off to untested junior staff. At BRAYON, your architecture, database schema, and milestone deliveries remain under direct senior technical leadership from day one.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs font-mono text-slate-300">

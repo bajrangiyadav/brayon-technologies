@@ -5,10 +5,12 @@ import Footer from "@/components/layout/Footer";
 import Container from "@/components/common/Container";
 import Section from "@/components/common/Section";
 import Eyebrow from "@/components/common/Eyebrow";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
+
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: "Privacy Policy and data governance practices at BRAYON Technologies.",
+  title: "Privacy Policy | BRAYON Technologies",
+  description: "Privacy Policy, confidentiality practices, and data governance at BRAYON Technologies.",
   alternates: {
     canonical: "/privacy",
   },
@@ -23,11 +25,12 @@ export default function PrivacyPage() {
         <Section spacing="lg">
           <Container>
             <div className="max-w-3xl mx-auto space-y-8">
+              <Breadcrumbs items={[{ label: "Privacy Policy" }]} />
               <Eyebrow>LEGAL & DATA GOVERNANCE</Eyebrow>
               <h1 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
                 Privacy Policy
               </h1>
-              <p className="text-xs font-mono text-slate-500">Last updated: September 2026</p>
+              <p className="text-xs font-mono text-slate-500">Last updated: October 2026</p>
 
               <div className="space-y-6 text-sm text-slate-300 leading-relaxed">
                 <section className="space-y-2">
@@ -55,8 +58,8 @@ export default function PrivacyPage() {
                   <h2 className="text-base font-semibold text-white">4. Contact</h2>
                   <p>
                     For inquiries regarding data protection and confidentiality practices, contact our team at{" "}
-                    <a href="mailto:contact@brayontech.com" className="text-blue-400 hover:underline">
-                      contact@brayontech.com
+                    <a href="mailto:hello@brayontech.com" className="text-blue-400 hover:underline">
+                      hello@brayontech.com
                     </a>.
                   </p>
                 </section>

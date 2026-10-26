@@ -1,13 +1,9 @@
 import React from "react";
-import Link from "next/link";
 import {
   PhoneCall,
   FileCheck,
   Layout,
   Globe,
-  Upload,
-  ArrowRight,
-  Clock,
   UserCheck,
 } from "lucide-react";
 import Container from "../common/Container";
@@ -26,7 +22,7 @@ const TIMELINE: TimelineMilestone[] = [
   {
     day: "Day 1",
     title: "Discovery Call & Workflow Audit",
-    description: "30-min focused call to understand your business operations, daily bottlenecks, and required features.",
+    description: "30-minute focused consultation to understand your business operations, daily bottlenecks, and required features.",
     icon: PhoneCall,
   },
   {
@@ -38,13 +34,13 @@ const TIMELINE: TimelineMilestone[] = [
   {
     day: "Day 5",
     title: "UI Design & Clickable Preview",
-    description: "Review interactive screens and user workflows on mobile and desktop before backend development starts.",
+    description: "Review interactive screens and user workflows on mobile and desktop before backend engineering commences.",
     icon: Layout,
   },
   {
     day: "Week 2+",
     title: "First Working Staging Link",
-    description: "Access your private staging server URL to test working features, login roles, and database entries.",
+    description: "Access your private staging server URL to test working features, role permissions, and database records.",
     icon: Globe,
   },
 ];
@@ -52,19 +48,19 @@ const TIMELINE: TimelineMilestone[] = [
 const CLIENT_NEEDS = [
   {
     title: "Brand Assets",
-    desc: "Aapka business logo, brand colors, aur basic brand preferences.",
+    desc: "Your company logo, brand color preferences, and styling guidelines.",
   },
   {
-    title: "Content & Information",
-    desc: "Service/product list, descriptions, business contact details, aur pricing.",
+    title: "Content & Requirements",
+    desc: "Service/product catalogs, descriptions, business contact information, and pricing structures.",
   },
   {
     title: "Existing Data (If Any)",
-    desc: "Old software data, Excel customer lists, product catalogs, ya database backup.",
+    desc: "Historical records, Excel customer sheets, product databases, or legacy software exports.",
   },
   {
-    title: "Domain / Server Access",
-    desc: "Aapke domain registrar ya server provider ke login credentials (we assist step-by-step).",
+    title: "Domain / Hosting Access",
+    desc: "Login access to your domain registrar or cloud server provider (we provide complete step-by-step guidance).",
   },
 ];
 
@@ -74,8 +70,8 @@ export function ProjectOnboardingRoadmapSection() {
       <Container>
         <SectionHeading
           eyebrow="TRANSPARENT CLIENT JOURNEY"
-          title="Aage Kya Hoga? (Timeline &amp; Your Role)"
-          description="Customer ko pehle hi pata hona chahiye ki Day 1 se lekar launch tak process kaise chalegi, aur unko kab kya provide karna hoga."
+          title="Project Roadmap &amp; Client Journey"
+          description="Clear visibility from Day 1 kickoff to production launch, showing exactly what to expect and what we need at every milestone."
         />
 
         {/* 4-Step Timeline Grid */}
@@ -107,21 +103,21 @@ export function ProjectOnboardingRoadmapSection() {
           })}
         </div>
 
-        {/* 'Aapse Kya Chahiye' Box */}
+        {/* 'What We Need From You' Box */}
         <FadeUp delay={0.2}>
           <div className="rounded-3xl bg-gradient-to-r from-[#0d162d] via-[#0a1226] to-[#0d162d] border border-blue-500/20 p-6 sm:p-8 text-left">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-6 border-b border-white/[0.08]">
               <div>
                 <div className="text-xs font-mono uppercase tracking-wider text-blue-400 mb-1 flex items-center gap-2">
                   <UserCheck className="w-4 h-4 text-emerald-400" />
-                  <span>CLIENT COOPERATION CHECKLIST</span>
+                  <span>CLIENT COLLABORATION CHECKLIST</span>
                 </div>
                 <h4 className="text-xl font-bold text-white tracking-tight">
-                  Aapse Kya Chahiye (Simple Deliverables from You)
+                  What We Need From You (Simple Client Inputs)
                 </h4>
               </div>
               <p className="text-xs text-slate-400 max-w-md">
-                Aapko coding ya technical configuration ki chinta nahi karni. Sirf ye 4 basic business inputs chahiye hote hain:
+                You never need to worry about code or server configuration. We only need these 4 foundational business inputs to proceed smoothly:
               </p>
             </div>
 

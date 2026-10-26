@@ -4,19 +4,36 @@ import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/layout/Footer";
 import { caseStudies } from "@/data/caseStudies";
 import CaseStudiesClient from "./CaseStudiesClient";
+import { SITE_URL, COMPANY_INFO } from "@/utils/siteConfig";
 
 export const metadata: Metadata = {
-  title: "Case Studies & Production Work",
+  title: "Case Studies & Production Work | BRAYON Technologies",
   description:
-    "Explore real-world software engineering case studies delivered by BRAYON Technologies, including Jay Balaji Computer Education (JBCE) and Mumbai Hindi Vidyapeeth (MHVP).",
+    "Explore real-world software engineering case studies delivered by BRAYON Technologies, including Jay Balaji Computer Education (JBCE), Mumbai Hindi Vidyapeeth (MHVP), SafeGrowTrade, and Ashapura Dry Fruits.",
   alternates: {
     canonical: "/case-studies",
   },
   openGraph: {
-    title: "Case Studies & Production Work",
+    title: "Case Studies & Production Work | BRAYON Technologies",
     description:
-      "Real projects. Real engineering. Scalable institutional platforms delivered for real operations.",
-    url: "https://brayontech.com/case-studies",
+      "Real projects. Real engineering. Scalable institutional platforms, wholesale commerce, and workflow automation delivered for real operations.",
+    url: `${SITE_URL}/case-studies`,
+    siteName: COMPANY_INFO.name,
+    type: "website",
+    images: [
+      {
+        url: "/brayon-logo-showcase.png",
+        width: 1200,
+        height: 630,
+        alt: "BRAYON Technologies - Case Studies",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Case Studies & Production Work | BRAYON Technologies",
+    description: "Real projects. Real engineering. Scalable platforms delivered for real operations.",
+    images: ["/brayon-logo-showcase.png"],
   },
 };
 
@@ -26,13 +43,13 @@ export default function CaseStudiesPage() {
     "@type": "CollectionPage",
     name: "BRAYON Technologies Engineering Case Studies",
     description: "Verified software engineering case studies and architectural blueprints.",
-    url: "https://brayontech.com/case-studies",
+    url: `${SITE_URL}/case-studies`,
     hasPart: caseStudies.map((cs) => ({
       "@type": "Article",
       name: cs.title,
       headline: cs.title,
       description: cs.shortDescription,
-      url: `https://brayontech.com/case-studies/${cs.slug}`,
+      url: `${SITE_URL}/case-studies/${cs.slug}`,
     })),
   };
 

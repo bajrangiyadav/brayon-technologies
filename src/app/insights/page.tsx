@@ -4,39 +4,48 @@ import Navbar from '@/components/navigation/Navbar';
 import Footer from '@/components/layout/Footer';
 import { InsightsClient } from './InsightsClient';
 import { insights, insightCategories } from '@/data/insights';
+import { SITE_URL, COMPANY_INFO } from '@/utils/siteConfig';
 
 export const metadata: Metadata = {
-  title: 'Engineering Insights & Technical Architecture',
+  title: 'Engineering Insights & Technical Architecture | BRAYON Technologies',
   description:
-    'Deep dives into software architecture, AI automation pipelines, sub-second e-commerce, and high-concurrency systems written by BRAYON senior engineers.',
+    'Deep dives into software architecture, enterprise Laravel systems, high-concurrency e-commerce, custom CRM/ERP, and AI automation written by senior engineers.',
   alternates: {
     canonical: '/insights',
   },
   openGraph: {
-    title: 'Engineering Insights & Technical Architecture',
+    title: 'Engineering Insights & Technical Architecture | BRAYON Technologies',
     description:
-      'Deep dives into software architecture, AI automation pipelines, sub-second e-commerce, and high-concurrency systems written by BRAYON senior engineers.',
-    url: 'https://brayontech.com/insights',
-    siteName: 'BRAYON Technologies',
+      'Deep dives into software architecture, enterprise Laravel systems, high-concurrency e-commerce, custom CRM/ERP, and AI automation written by senior engineers.',
+    url: `${SITE_URL}/insights`,
+    siteName: COMPANY_INFO.name,
     type: 'website',
+    images: [
+      {
+        url: '/brayon-logo-showcase.png',
+        width: 1200,
+        height: 630,
+        alt: 'BRAYON Technologies Engineering Insights',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Engineering Insights & Technical Architecture',
+    title: 'Engineering Insights & Technical Architecture | BRAYON Technologies',
     description:
-      'Deep dives into software architecture, AI automation pipelines, sub-second e-commerce, and high-concurrency systems.',
+      'Deep dives into software architecture, Laravel systems, e-commerce, and high-concurrency engineering.',
+    images: ['/brayon-logo-showcase.png'],
   },
 };
 
 export default function InsightsPage() {
-  // Schema.org CollectionPage and ItemList
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'BRAYON Technologies Engineering Insights',
     description:
       'Technical publications, architectural paradigms, and software engineering deep dives.',
-    url: 'https://brayontech.com/insights',
+    url: `${SITE_URL}/insights`,
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: insights
@@ -44,10 +53,29 @@ export default function InsightsPage() {
         .map((insight, index) => ({
           '@type': 'ListItem',
           position: index + 1,
-          url: `https://brayontech.com/insights/${insight.slug}`,
+          url: `${SITE_URL}/insights/${insight.slug}`,
           name: insight.title,
         })),
     },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: SITE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Insights',
+        item: `${SITE_URL}/insights`,
+      },
+    ],
   };
 
   return (
@@ -55,6 +83,10 @@ export default function InsightsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <Navbar />
       <main className="flex-grow pt-24 sm:pt-28">

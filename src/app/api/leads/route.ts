@@ -25,11 +25,24 @@ const LeadSchema = z.object({
   utmContent: z.string().max(100).optional(),
   createdAt: z.string().optional(),
   captchaToken: z.string().optional(),
+  website_url_hp: z.string().max(200).optional(),
 });
 
 export async function POST(request: NextRequest) {
   try {
     const rawBody = await request.json();
+
+    // Honeypot spam defense: bots fill in invisible fields
+    if (rawBody?.website_url_hp && typeof rawBody.website_url_hp === "string" && rawBody.website_url_hp.trim().length > 0) {
+      // Silently return success without recording or sending email
+      return NextResponse.json({
+        success: true,
+        leadId: `LEAD-FILTERED-${Date.now()}`,
+        message: "Your project enquiry has been received successfully.",
+        emailSent: false,
+      });
+    }
+
     const validationResult = LeadSchema.safeParse(rawBody);
 
     if (!validationResult.success) {

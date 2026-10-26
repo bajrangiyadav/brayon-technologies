@@ -16,27 +16,28 @@ import ProjectCostEstimator from "@/components/sections/ProjectCostEstimator";
 import SoftwareFAQSection from "@/components/sections/SoftwareFAQSection";
 import CTASection from "@/components/sections/CTASection";
 import FloatingWhatsAppButton from "@/components/common/FloatingWhatsAppButton";
+import { SITE_URL, COMPANY_INFO } from "@/utils/siteConfig";
 
 export const metadata: Metadata = {
-  title: "BRAYON Technologies | Custom Software, CRM, ERP, E-Commerce & Mobile Apps",
+  title: "Custom Software Development Company India | BRAYON Technologies",
   description:
-    "Your Business Idea. Our Technology. One Complete Solution. Custom Software, CRM, ERP, E-commerce & Mobile Apps built around how your business actually works.",
+    "Partner directly with senior software architects. BRAYON Technologies builds high-performance custom software, Laravel web apps, custom CRM & ERP systems, e-commerce platforms, and mobile apps for businesses in India & worldwide.",
   alternates: {
-    canonical: "/",
+    canonical: "./",
   },
   openGraph: {
     title: "BRAYON Technologies | Custom Software & Business Systems",
     description:
       "Your Business Idea. Our Technology. One Complete Solution. Transparent pricing, milestone development, and post-launch support.",
-    url: "https://brayontech.com",
-    siteName: "BRAYON Technologies",
+    url: SITE_URL,
+    siteName: COMPANY_INFO.name,
     locale: "en_US",
     type: "website",
     images: [
       {
         url: "/brayon-logo-showcase.png",
-        width: 1024,
-        height: 512,
+        width: 1200,
+        height: 630,
         alt: "BRAYON Technologies - Software Engineering Partner",
       },
     ],
@@ -54,13 +55,13 @@ export default function HomePage() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "BRAYON Technologies",
-    alternateName: ["BRAYON Tech", "BRAYON"],
-    url: "https://brayontech.com",
+    name: COMPANY_INFO.name,
+    alternateName: COMPANY_INFO.alternateNames,
+    url: SITE_URL,
     publisher: {
       "@type": "Organization",
-      name: "BRAYON Technologies",
-      url: "https://brayontech.com",
+      name: COMPANY_INFO.name,
+      url: SITE_URL,
     },
   };
 
@@ -136,29 +137,29 @@ export default function HomePage() {
           <HeroSection />
 
           {/* 2. BUSINESS PROBLEMS / IDENTIFY SOLUTION */}
-          <div id="solutions">
+          <div id="solutions" className="scroll-mt-24">
             <SolutionsIdentifySection />
           </div>
 
           {/* 3. CORE SERVICES */}
-          <div id="services">
+          <div id="services" className="scroll-mt-24">
             <ServicesOverviewSection />
           </div>
 
           {/* 4. REAL PROJECTS & CASE STUDIES */}
-          <div id="projects">
+          <div id="projects" className="scroll-mt-24">
             <RealProjectsSection />
           </div>
 
           {/* 5. HOW WE WORK (4-STEP PROCESS) */}
-          <div id="process">
+          <div id="process" className="scroll-mt-24">
             <ProcessSection />
           </div>
 
-          {/* 5B. ROADMAP & AAGE KYA HOGA */}
+          {/* 5B. ROADMAP & CLIENT JOURNEY */}
           <ProjectOnboardingRoadmapSection />
 
-          {/* 6. WHY BRAYON (CUSTOMER LANGUAGE) */}
+          {/* 6. WHY BRAYON (ENGINEERING STANDARDS) */}
           <WhyWorkWithUsSection />
 
           {/* 6B. CLIENT TESTIMONIALS & FOUNDER DIRECT COMMITMENT */}
@@ -168,7 +169,7 @@ export default function HomePage() {
           <WhatYouGetSection />
 
           {/* 8. PRICING & STARTING RANGE */}
-          <div id="pricing">
+          <div id="pricing" className="scroll-mt-24">
             <PricingEstimateSection />
           </div>
 

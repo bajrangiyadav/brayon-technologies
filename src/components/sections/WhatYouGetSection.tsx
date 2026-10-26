@@ -78,7 +78,7 @@ export function WhatYouGetSection() {
         <SectionHeading
           eyebrow="COMPLETE DELIVERABLES"
           title="When Your Project Goes Live, You Get."
-          description="Customer ko feel hota hai ki 'mujhe complete solution milega' — no hidden parts left for you to figure out alone."
+          description="Complete end-to-end deliverables designed for operational autonomy — no hidden gaps or technical debt left for your team to solve alone."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -104,17 +104,25 @@ export function WhatYouGetSection() {
           })}
         </div>
 
-        {/* Action strip */}
-        <FadeUp delay={0.25}>
-          <div className="mt-10 p-6 rounded-2xl bg-[#0a1224] border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-xs sm:text-sm text-slate-300">
-              <span className="text-white font-semibold">Everything included.</span> No surprising extra charges for essential deliverables.
+        {/* Ownership Guarantee Box */}
+        <FadeUp delay={0.2}>
+          <div className="mt-10 p-6 sm:p-7 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-blue-950/30 to-[#090f1f] border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
+            <div>
+              <div className="text-emerald-400 font-mono text-xs uppercase tracking-wider mb-1 font-semibold">
+                100% Intellectual Property Guarantee
+              </div>
+              <div className="text-white font-semibold text-base sm:text-lg">
+                Complete Source Code, Database, and Server Credentials Transfer.
+              </div>
+              <p className="text-xs sm:text-sm text-slate-300 mt-1">
+                Zero vendor lock-in. You own your codebase, database schema, and server accounts outright.
+              </p>
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs sm:text-sm shadow-lg shadow-blue-600/30 transition-all shrink-0"
+              className="px-5 py-2.5 rounded-xl bg-emerald-500 text-black hover:bg-emerald-400 font-medium text-xs font-mono transition-colors shrink-0 flex items-center gap-2"
             >
-              <span>Start Your Project</span>
+              <span>Build With Full Ownership</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

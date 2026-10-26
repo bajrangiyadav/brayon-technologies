@@ -12,6 +12,7 @@ import FadeUp from "@/components/animations/FadeUp";
 import { technologies } from "@/data/technologies";
 import { TechnologyCategory } from "@/types/technology";
 import { caseStudies } from "@/data/caseStudies";
+import { SITE_URL, COMPANY_INFO } from "@/utils/siteConfig";
 import {
   Code,
   Server,
@@ -24,17 +25,33 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Technology Stack & Architecture Matrix",
+  title: "Technology Stack & Architecture Matrix | BRAYON Technologies",
   description:
-    "The technology behind what we build. We select technologies based on product requirements, scalability, maintainability and business needs: React, Laravel, Node.js, AWS, and AI APIs.",
+    "Explore BRAYON Technologies' production technology stack: Next.js, React, Laravel, Node.js, PostgreSQL, MySQL, Redis, AWS, and AI API integrations.",
   alternates: {
     canonical: "/technology",
   },
   openGraph: {
-    title: "Technology Stack & Architecture Matrix",
+    title: "Technology Stack & Architecture Matrix | BRAYON Technologies",
     description:
-      "The technology behind what we build. Rigorous full-stack engineering across modern frameworks, relational databases, and AI inference runtimes.",
-    url: "https://brayontech.com/technology",
+      "The technology behind what we build. Rigorous full-stack engineering across modern frameworks, relational databases, and cloud infrastructure.",
+    url: `${SITE_URL}/technology`,
+    siteName: COMPANY_INFO.name,
+    type: "website",
+    images: [
+      {
+        url: "/brayon-logo-showcase.png",
+        width: 1200,
+        height: 630,
+        alt: "BRAYON Technologies Tech Stack",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Technology Stack & Architecture Matrix | BRAYON Technologies",
+    description: "The technology behind what we build.",
+    images: ["/brayon-logo-showcase.png"],
   },
 };
 
@@ -98,13 +115,35 @@ const CATEGORIES: CategoryConfig[] = [
 ];
 
 export default function TechnologyPage() {
-  // Helper to count how many case studies reference each technology
   const getProjectUsageCount = (techId: string) => {
     return caseStudies.filter((cs) => cs.technologies.includes(techId)).length;
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Technology",
+        item: `${SITE_URL}/technology`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-[#070a12] text-slate-100 flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <main className="flex-grow pt-28">
@@ -197,7 +236,7 @@ export default function TechnologyPage() {
                                   <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20">
                                     {usageCount} {usageCount === 1 ? "project" : "projects"}
                                   </span>
-                                ) : (
+                               ) : (
                                   <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-white/[0.04] text-slate-500">
                                     Supported
                                   </span>

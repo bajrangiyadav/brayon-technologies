@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import {
-  Calculator,
   ArrowRight,
   Sparkles,
   Check,
@@ -12,7 +11,6 @@ import {
 import Container from "../common/Container";
 import Section from "../common/Section";
 import SectionHeading from "../common/SectionHeading";
-import FadeUp from "../animations/FadeUp";
 
 interface Option {
   label: string;
@@ -110,7 +108,7 @@ export function ProjectCostEstimator() {
         <SectionHeading
           eyebrow="INSTANT COST ESTIMATOR"
           title="Estimate Your Project Cost in 4 Clicks."
-          description="Aapko kitna budget prepare karna chahiye? Select your project needs below to get an instant ballpark range with zero waiting."
+          description="Determine your project's investment scope in minutes. Select your project parameters below to calculate an instant architectural estimate."
         />
 
         <div className="max-w-4xl mx-auto rounded-3xl bg-[#090f1d] border border-white/[0.08] p-6 sm:p-10 shadow-xl">
@@ -133,20 +131,22 @@ export function ProjectCostEstimator() {
                           key={opt.label}
                           type="button"
                           onClick={() => selectOption(q.id, optIdx)}
-                          className={`p-3 rounded-xl border text-left text-xs font-medium transition-all flex items-center justify-between cursor-pointer ${
+                          className={`w-full p-3 rounded-xl border text-left text-xs font-mono transition-all flex items-center justify-between ${
                             isSelected
-                              ? "bg-blue-600/20 border-blue-500 text-white shadow-sm ring-1 ring-blue-500"
-                              : "bg-[#060a14] border-white/[0.08] text-slate-300 hover:border-white/20 hover:text-white"
+                              ? "bg-blue-600/15 border-blue-500 text-white font-medium"
+                              : "bg-white/[0.02] border-white/[0.08] text-slate-300 hover:border-white/[0.2]"
                           }`}
                         >
                           <div className="flex items-center gap-2.5">
-                            <span
-                              className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center shrink-0 ${
-                                isSelected ? "border-blue-400 bg-blue-500" : "border-white/30"
+                            <div
+                              className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${
+                                isSelected
+                                  ? "border-blue-400 bg-blue-500 text-white"
+                                  : "border-slate-600"
                               }`}
                             >
-                              {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-white" />}
-                            </span>
+                              {isSelected && <Check className="w-2.5 h-2.5 stroke-[3]" />}
+                            </div>
                             <span>{opt.label}</span>
                           </div>
                         </button>

@@ -3,9 +3,11 @@
 import React, { useState, useEffect } from "react";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { X } from "lucide-react";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 export function FloatingWhatsAppButton() {
   const [showTooltip, setShowTooltip] = useState(false);
+  const { trackCTA } = useAnalytics();
 
   useEffect(() => {
     // Show tooltip after 4 seconds to invite conversation politely
@@ -16,9 +18,13 @@ export function FloatingWhatsAppButton() {
   }, []);
 
   const prefilledMessage = encodeURIComponent(
-    "Hi, mujhe ek project discuss karna hai with BRAYON Technologies."
+    "Hi Bajrangi, I would like to discuss a software project with BRAYON Technologies."
   );
   const whatsappUrl = `https://wa.me/917385121432?text=${prefilledMessage}`;
+
+  const handleClick = () => {
+    trackCTA("whatsapp_floating_chat", "floating_button", whatsappUrl);
+  };
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-end flex-col gap-2 pointer-events-none">
@@ -50,6 +56,7 @@ export function FloatingWhatsAppButton() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={handleClick}
         aria-label="Chat with BRAYON on WhatsApp"
         className="pointer-events-auto group relative flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3.5 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-sm shadow-xl shadow-emerald-950/60 hover:shadow-[#25D366]/40 transition-all duration-200 hover:scale-105 active:scale-95 border border-white/20"
       >
@@ -58,7 +65,7 @@ export function FloatingWhatsAppButton() {
           <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white" />
         </span>
         <WhatsAppIcon className="w-5 h-5 fill-white shrink-0 drop-shadow-sm" />
-        <span className="font-semibold tracking-wide hidden sm:inline">
+        <span className="font-mono tracking-tight text-xs sm:text-sm font-semibold">
           Chat on WhatsApp
         </span>
       </a>

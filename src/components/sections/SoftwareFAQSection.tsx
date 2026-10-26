@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, HelpCircle, MessageSquare } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Container from "../common/Container";
 import Section from "../common/Section";
 import SectionHeading from "../common/SectionHeading";
@@ -16,29 +16,29 @@ interface FAQItem {
 
 const FAQS: FAQItem[] = [
   {
-    question: "Payment terms kya hain? (Advance vs Milestones)",
+    question: "What are your payment terms? (Advance vs Milestones)",
     answer:
-      "Hum transparent milestone-based payment follow karte hain. Typically: 30% project kickoff par, 40% core features aur staging review par, aur final 30% production deployment, training aur complete code handover ke waqt. Koi hidden ya surprise charge nahi hota.",
+      "We follow a transparent, milestone-based payment structure: typically 30% upon project kickoff, 40% upon staging demo and core feature completion, and the remaining 30% upon final production deployment, staff walkthrough, and complete source code handover. No hidden fees or surprise invoices.",
   },
   {
-    question: "Revisions kitne milenge?",
+    question: "How many revisions or scope adjustments are included?",
     answer:
-      "Har milestone stage (UI wireframes, core functionality, aur launch staging) par aapko revisions aur changes milte hain. Jab tak delivered milestone approved scope se match nahi karta, hum refine karte hain. Launch ke baad bhi warranty support include rehta hai.",
+      "Every milestone stage (architecture wireframes, core functionality, and staging deployment) includes structured review rounds. We refine and iterate until the delivered module matches the agreed specification. Post-launch warranty support is included to resolve any bugs.",
   },
   {
-    question: "Hosting aur domain kaun provide karega?",
+    question: "Who provides hosting, servers, and domain setup?",
     answer:
-      "Aap apna domain aur hosting account rakh sakte hain, ya hum aapke liye setup karwa dete hain (AWS, DigitalOcean, Hostinger, etc.). Sab accounts aapke khud ke card aur email par register hote hain taaki ownership hamesha aapke paas rahe.",
+      "You retain direct ownership of your hosting and domain accounts. We assist with full server provisioning and architecture on your preferred provider (AWS, DigitalOcean, Hetzner, Hostinger, or Vercel). All accounts remain registered under your organization's credentials.",
   },
   {
-    question: "Maintenance charges kitne hote hain?",
+    question: "How do maintenance and post-launch support work?",
     answer:
-      "Har project ke saath free post-launch support and bug warranty include hoti hai. Uske baad agar aapko monthly ongoing technical updates, server security monitoring, aur nayi feature development chahiye, to hamare low-cost monthly retainer packages available hain.",
+      "Every project includes a dedicated post-launch warranty covering bug fixes and operational guidance. Following the warranty period, we offer proactive monthly SLA retainers covering security updates, server monitoring, database backups, and new feature development.",
   },
   {
-    question: "Source code ownership kaise transfer hota hai?",
+    question: "How does source code ownership transfer work?",
     answer:
-      "Final settlement ke saath hi complete GitHub/GitLab private repository ownership, production server credentials, database migration scripts, aur admin passwords aapke email par officially transfer kar diye jaate hain. 100% intellectual property aapki rehti hai.",
+      "Upon final milestone settlement, 100% of the private Git repositories, cloud deployment credentials, database scripts, and administrative access are officially transferred to your organization. You own all intellectual property outright with zero vendor lock-in.",
   },
   {
     question: "How much does custom software cost?",
@@ -51,7 +51,7 @@ const FAQS: FAQItem[] = [
       "A standard business portal or MVP typically takes 2 to 4 weeks. Full custom software or multi-role CRM/ERP systems generally require 4 to 8 weeks. We divide the timeline into structured milestones with working sprint demos every week.",
   },
   {
-    question: "Can you improve my existing software or migrate old .NET/PHP?",
+    question: "Can you improve my existing software or migrate legacy systems?",
     answer:
       "Yes. If your current software is slow, outdated, has unresolved bugs, or lacks mobile responsiveness, we can audit the codebase, fix operational bottlenecks, and add modern modules without breaking your existing database. We migrate legacy data safely with zero data loss.",
   },
@@ -93,28 +93,23 @@ export function SoftwareFAQSection() {
                   <button
                     type="button"
                     onClick={() => toggleFAQ(idx)}
-                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
+                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 transition-colors"
                     aria-expanded={isOpen}
                   >
-                    <div className="flex items-center gap-3">
-                      <HelpCircle
-                        className={`w-5 h-5 shrink-0 ${
-                          isOpen ? "text-blue-400" : "text-slate-500"
-                        }`}
-                      />
-                      <span className="text-base sm:text-lg font-semibold text-white">
-                        {faq.question}
-                      </span>
-                    </div>
-                    <ChevronDown
-                      className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
-                        isOpen ? "rotate-180 text-blue-400" : ""
+                    <span className="font-semibold text-sm sm:text-base text-white">
+                      {faq.question}
+                    </span>
+                    <div
+                      className={`w-7 h-7 rounded-lg border border-white/[0.08] flex items-center justify-center shrink-0 transition-transform duration-200 ${
+                        isOpen ? "rotate-180 bg-blue-600/20 text-blue-400 border-blue-500/40" : "text-slate-400"
                       }`}
-                    />
+                    >
+                      <ChevronDown className="w-4 h-4" />
+                    </div>
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/[0.06] pt-4">
+                    <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/[0.05] pt-4 text-left">
                       {faq.answer}
                     </div>
                   )}
@@ -124,19 +119,23 @@ export function SoftwareFAQSection() {
           })}
         </div>
 
-        {/* Still have questions CTA */}
-        <FadeUp delay={0.25}>
-          <div className="mt-10 text-center">
-            <p className="text-xs sm:text-sm text-slate-400">
-              Have a specific question about your project?{" "}
-              <Link
-                href="/contact"
-                className="text-blue-400 hover:text-blue-300 font-semibold underline underline-offset-4 inline-flex items-center gap-1"
-              >
-                <span>Ask our solutions architect directly</span>
-                <MessageSquare className="w-3.5 h-3.5" />
-              </Link>
-            </p>
+        {/* Still Have Questions Box */}
+        <FadeUp delay={0.3}>
+          <div className="mt-10 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.08] max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+              <div className="text-sm font-semibold text-white">
+                Have a specific requirement not covered here?
+              </div>
+              <div className="text-xs text-slate-400 mt-0.5">
+                Speak directly with solutions architect Bajrangi Yadav for technical clarity.
+              </div>
+            </div>
+            <Link
+              href="/contact"
+              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-mono text-xs font-medium transition-colors shrink-0"
+            >
+              Ask Us Directly &rarr;
+            </Link>
           </div>
         </FadeUp>
       </Container>

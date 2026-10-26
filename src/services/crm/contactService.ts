@@ -13,6 +13,7 @@ export interface ContactFormData {
   message: string;
   consent: boolean;
   captchaToken?: string;
+  website_url_hp?: string;
 }
 
 export interface LeadPayload {
@@ -36,6 +37,7 @@ export interface LeadPayload {
   utmContent?: string;
   createdAt: string;
   captchaToken?: string;
+  website_url_hp?: string;
 }
 
 export interface LeadSubmissionResponse {
@@ -59,6 +61,7 @@ export async function submitLead(formData: ContactFormData): Promise<LeadSubmiss
     message: formData.message.trim(),
     consent: formData.consent,
     captchaToken: formData.captchaToken,
+    website_url_hp: formData.website_url_hp,
     ...tracking,
   };
 

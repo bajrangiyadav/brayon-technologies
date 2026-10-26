@@ -91,7 +91,7 @@ export function PricingEstimateSection() {
         <SectionHeading
           eyebrow="TRANSPARENT PRICING"
           title="Clear Starting Range. Zero Hidden Surprises."
-          description="Exact price har project ka requirement par depend karta hai, but we believe in 100% transparency so you can plan your budget realistically."
+          description="While final investment depends on functional complexity and scope, we maintain transparent baseline estimates so you can plan your software roadmap with clarity."
         />
 
         {/* Pricing Cards Grid */}

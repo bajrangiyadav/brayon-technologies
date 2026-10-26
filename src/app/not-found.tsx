@@ -1,9 +1,18 @@
 import React from "react";
+import type { Metadata } from "next";
 import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/common/Container";
 import Button from "@/components/common/Button";
 import { Home, FileQuestion } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Page Not Found",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export default function NotFound() {
   return (

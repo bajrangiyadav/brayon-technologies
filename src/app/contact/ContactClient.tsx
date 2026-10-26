@@ -4,14 +4,11 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import Link from 'next/link';
 import {
   Mail,
-  Phone,
   MapPin,
   CheckCircle2,
   Send,
-  MessageSquare,
   Clock,
   ShieldCheck,
   FileCheck,
@@ -34,7 +31,7 @@ const contactFormSchema = z.object({
     .max(100, { message: 'Name must not exceed 100 characters.' }),
   phone: z
     .string()
-    .min(10, { message: 'WhatsApp number is required.' })
+    .min(10, { message: 'Phone / WhatsApp number is required.' })
     .max(30, { message: 'Phone number is too long.' }),
   company: z.string().max(120).optional(),
   email: z
@@ -43,7 +40,7 @@ const contactFormSchema = z.object({
     .max(120, { message: 'Email must not exceed 120 characters.' })
     .optional()
     .or(z.literal('')),
-  projectType: z.string().min(1, { message: 'Please select what you need.' }),
+  projectType: z.string().min(1, { message: 'Please select what you need to build.' }),
   budget: z.string().min(1, { message: 'Please select an approximate budget.' }),
   timeline: z.string().optional(),
   message: z
@@ -53,6 +50,7 @@ const contactFormSchema = z.object({
   consent: z.boolean().refine((val) => val === true, {
     message: 'You must consent to proceed.',
   }),
+  website_url_hp: z.string().max(200).optional(),
 });
 
 type ContactFormInputs = z.infer<typeof contactFormSchema>;
@@ -84,6 +82,7 @@ export default function ContactClient() {
       timeline: 'Within 1 Month',
       message: '',
       consent: true,
+      website_url_hp: '',
     },
     mode: 'onBlur',
   });
@@ -124,6 +123,7 @@ export default function ContactClient() {
         timeline: data.timeline,
         message: data.message,
         consent: data.consent,
+        website_url_hp: data.website_url_hp,
       });
 
       setSubmissionResponse(response);
@@ -170,7 +170,7 @@ export default function ContactClient() {
 
             <FadeUp delay={0.15}>
               <p className="mt-6 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
-                Skip sales intermediaries. Share your architecture requirements directly with Founder & Solutions Architect Bajrangi Yadav.
+                Skip sales intermediaries. Share your architecture requirements directly with Founder &amp; Solutions Architect Bajrangi Yadav.
               </p>
             </FadeUp>
           </div>
@@ -221,7 +221,7 @@ export default function ContactClient() {
                     </div>
                     <div>
                       <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider">
-                        Direct Phone & WhatsApp
+                        Direct Phone &amp; WhatsApp
                       </div>
                       <a
                         href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20would%20like%20to%20discuss%20a%20software%20project%20with%20BRAYON."
@@ -246,7 +246,7 @@ export default function ContactClient() {
                         Engineering Hub
                       </div>
                       <div className="text-sm font-medium text-white">
-                        Mumbai & Pune Tech Corridor, Maharashtra, India
+                        Mumbai &amp; Pune Tech Corridor, Maharashtra, India
                       </div>
                     </div>
                   </div>
@@ -278,7 +278,7 @@ export default function ContactClient() {
                       2
                     </span>
                     <div>
-                      <div className="text-xs font-semibold text-white">Scope & Tech Stack Proposal (&lt; 24h)</div>
+                      <div className="text-xs font-semibold text-white">Scope &amp; Tech Stack Proposal (&lt; 24h)</div>
                       <div className="text-xs text-slate-400 mt-0.5">
                         We send a concise breakdown of recommended technology, milestones, and budget tier.
                       </div>
@@ -306,7 +306,7 @@ export default function ContactClient() {
                 </div>
                 <div className="flex items-start gap-2.5 text-xs text-slate-300">
                   <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>Strict NDA & intellectual property protection on all shared project details.</span>
+                  <span>Strict NDA &amp; intellectual property protection on all shared project details.</span>
                 </div>
                 <div className="flex items-start gap-2.5 text-xs text-slate-300">
                   <FileCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
@@ -336,32 +336,32 @@ export default function ContactClient() {
                         Thank You! We&apos;ve Received Your Requirements.
                       </h3>
                       <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed pt-1">
-                        Solutions Architect Bajrangi Yadav will review your requirements. <span className="text-white font-semibold">24 ghante ke andar aapko preliminary scope, architecture recommendation aur estimated quote mil jayega.</span>
+                        Solutions Architect Bajrangi Yadav will review your requirements. <span className="text-white font-semibold">You will receive a preliminary scope assessment, architectural recommendation, and estimate within 24 hours.</span>
                       </p>
                     </div>
 
                     {/* What happens next box */}
                     <div className="max-w-md mx-auto p-4 rounded-2xl bg-[#080d1a] border border-white/[0.08] text-left space-y-2.5 text-xs text-slate-300">
                       <div className="font-mono text-slate-400 text-[11px] uppercase tracking-wider font-semibold">
-                        Aapke Next Steps:
+                        Your Next Steps:
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-emerald-400 font-mono">1.</span>
-                        <span>Auto-acknowledgement email/WhatsApp notification check karein.</span>
+                        <span>Check your email or phone for automated acknowledgement.</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-emerald-400 font-mono">2.</span>
-                        <span>Founder review ke baad scope breakdown &amp; milestone proposal aayega.</span>
+                        <span>Following founder review, you will receive a tailored scope breakdown &amp; milestone proposal.</span>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-emerald-400 font-mono">3.</span>
-                        <span>Agar urgent inquiry hai, toh neeche diye button se instant WhatsApp par connect ho sakte hain.</span>
+                        <span>For urgent inquiries, connect immediately via direct WhatsApp below.</span>
                       </div>
                     </div>
 
                     <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
                       <a
-                        href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20just%20submitted%20my%20project%20inquiry%20via%20brayontech.com."
+                        href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20just%20submitted%20my%20project%20inquiry%20via%20the%20website."
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold text-sm shadow-lg shadow-emerald-950/50 transition-all cursor-pointer"
@@ -404,6 +404,18 @@ export default function ContactClient() {
                       </div>
                     </div>
 
+                    {/* Honeypot Field for Spam Bot Protection (Hidden from real users) */}
+                    <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
+                      <label htmlFor="website_url_hp">Leave this empty</label>
+                      <input
+                        id="website_url_hp"
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        {...register('website_url_hp')}
+                      />
+                    </div>
+
                     {/* Error Banner */}
                     {submissionState === 'error' && (
                       <div className="p-4 rounded-xl bg-red-950/40 border border-red-500/30 flex items-start gap-3 text-xs text-red-300">
@@ -425,27 +437,27 @@ export default function ContactClient() {
                       </div>
                     )}
 
-                    {/* STEP 1: Kya Banana Hai? */}
+                    {/* STEP 1: What Are You Building? */}
                     {currentStep === 1 && (
                       <div className="space-y-4 animate-in fade-in duration-200">
                         <div>
                           <h4 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                            Step 1: Aapko kis type ka software chahiye?
+                            Step 1: What type of software do you need?
                           </h4>
                           <p className="text-xs text-slate-400 mt-1">
-                            Select the primary category that matches your requirements.
+                            Select the primary category that matches your project requirements.
                           </p>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                           {[
-                            { title: 'Website / Brand Presence', tag: 'Fast Web' },
+                            { title: 'Website / Brand Presence', tag: 'High-Speed Web' },
                             { title: 'E-commerce Platform', tag: 'Online Store & B2B' },
                             { title: 'Custom Software', tag: 'Bespoke Workflows' },
-                            { title: 'CRM / ERP System', tag: 'Business Backbone' },
+                            { title: 'CRM / ERP System', tag: 'Operational Backbone' },
                             { title: 'Mobile App (iOS & Android)', tag: 'Native-feel Apps' },
                             { title: 'Existing Software Upgrade / Migration', tag: 'Legacy .NET/PHP' },
-                            { title: 'AI Automation & Voice Bots', tag: 'Automations' },
+                            { title: 'AI Automation & Integrations', tag: 'Automations & APIs' },
                             { title: 'Other Requirement', tag: 'Custom Project' },
                           ].map((item) => {
                             const isSelected = selectedProjectType === item.title;
@@ -489,15 +501,15 @@ export default function ContactClient() {
                       </div>
                     )}
 
-                    {/* STEP 2: Budget Range Aur Timeline */}
+                    {/* STEP 2: Budget Range and Timeline */}
                     {currentStep === 2 && (
                       <div className="space-y-5 animate-in fade-in duration-200">
                         <div>
                           <h4 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                            Step 2: Budget Range Aur Timeline
+                            Step 2: Budget Range &amp; Target Timeline
                           </h4>
                           <p className="text-xs text-slate-400 mt-1">
-                            Yeh estimate se hum aapke project ke liye right architecture plan kar paate hain.
+                            This range helps us architect the right milestone plan and technology stack.
                           </p>
                         </div>
 
@@ -534,7 +546,7 @@ export default function ContactClient() {
 
                         <div>
                           <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
-                            Kab tak start karna chahte hain?
+                            When do you plan to kick off?
                           </label>
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                             {[
@@ -567,7 +579,7 @@ export default function ContactClient() {
                             onClick={goToPrevStep}
                             className="w-1/3 py-3.5 px-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-slate-300 text-xs font-medium transition-colors cursor-pointer"
                           >
-                            ← Back
+                            &larr; Back
                           </button>
                           <button
                             type="button"
@@ -581,15 +593,15 @@ export default function ContactClient() {
                       </div>
                     )}
 
-                    {/* STEP 3: Naam, Phone, Email & Message */}
+                    {/* STEP 3: Name, Phone, Email & Message */}
                     {currentStep === 3 && (
                       <div className="space-y-4 animate-in fade-in duration-200">
                         <div>
                           <h4 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                            Step 3: Aapke Details &amp; Project Overview
+                            Step 3: Your Details &amp; Project Overview
                           </h4>
                           <p className="text-xs text-slate-400 mt-1">
-                            Aapki inquiry direct founder &amp; senior engineer review karenge. 3 ghante mein reply.
+                            Your inquiry is reviewed directly by our founder &amp; senior solutions architect within 3 hours.
                           </p>
                         </div>
 
@@ -597,7 +609,7 @@ export default function ContactClient() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div>
                             <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
-                              Aapka Naam <span className="text-red-400">*</span>
+                              Your Name <span className="text-red-400">*</span>
                             </label>
                             <input
                               type="text"
@@ -643,7 +655,7 @@ export default function ContactClient() {
                             <input
                               type="text"
                               {...register('company')}
-                              placeholder="e.g. Sharma Traders"
+                              placeholder="e.g. Sharma Enterprises"
                               className="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-white/10 text-white text-sm focus:border-blue-500 focus:outline-none transition-colors"
                             />
                           </div>
@@ -664,12 +676,12 @@ export default function ContactClient() {
                         {/* Project Description */}
                         <div>
                           <label className="block text-xs font-mono text-slate-300 uppercase mb-2">
-                            Project Ke Baare Mein Thoda Bataye <span className="text-red-400">*</span>
+                            Project Description &amp; Scope <span className="text-red-400">*</span>
                           </label>
                           <textarea
                             rows={3}
                             {...register('message')}
-                            placeholder="Aapka daily problem kya hai? Kounse main features chahiye? Koi reference website/app ho toh mention karein..."
+                            placeholder="Describe your operational workflow, core features required, or any reference systems..."
                             className={`w-full px-4 py-3 rounded-xl bg-[#090e1a] border text-white text-sm focus:outline-none transition-colors ${
                               errors.message
                                 ? 'border-red-500 focus:border-red-500'
@@ -705,7 +717,7 @@ export default function ContactClient() {
                             onClick={goToPrevStep}
                             className="w-1/3 py-3.5 px-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-slate-300 text-xs font-medium transition-colors cursor-pointer"
                           >
-                            ← Back
+                            &larr; Back
                           </button>
                           <button
                             type="submit"

@@ -5,16 +5,18 @@ import Footer from "@/components/layout/Footer";
 import Container from "@/components/common/Container";
 import Section from "@/components/common/Section";
 import Eyebrow from "@/components/common/Eyebrow";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
+
 
 export const metadata: Metadata = {
-  title: "Cookie Policy",
-  description: "Cookie Policy and analytics tracking transparency at BRAYON Technologies.",
+  title: "Cookie Policy | BRAYON Technologies",
+  description: "Cookie Policy and tracking transparency at BRAYON Technologies.",
   alternates: {
     canonical: "/cookies",
   },
 };
 
-export default function CookiePage() {
+export default function CookiesPage() {
   return (
     <div className="min-h-screen bg-[#070a12] text-slate-100 flex flex-col">
       <Navbar />
@@ -23,40 +25,34 @@ export default function CookiePage() {
         <Section spacing="lg">
           <Container>
             <div className="max-w-3xl mx-auto space-y-8">
-              <Eyebrow>DATA PRIVACY</Eyebrow>
+              <Breadcrumbs items={[{ label: "Cookie Policy" }]} />
+              <Eyebrow>TRANSPARENCY & TRACKING</Eyebrow>
               <h1 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
                 Cookie Policy
               </h1>
-              <p className="text-xs font-mono text-slate-500">Last updated: September 2026</p>
+              <p className="text-xs font-mono text-slate-500">Last updated: October 2026</p>
 
               <div className="space-y-6 text-sm text-slate-300 leading-relaxed">
                 <section className="space-y-2">
-                  <h2 className="text-base font-semibold text-white">1. Use of Cookies</h2>
+                  <h2 className="text-base font-semibold text-white">1. What Are Cookies</h2>
                   <p>
-                    BRAYON Technologies uses essential technical cookies and anonymized performance analytics to understand website performance and improve user experience.
+                    Cookies are small text files stored on your device that help web applications remember preferences, analyze site traffic, and optimize performance.
                   </p>
                 </section>
 
                 <section className="space-y-2">
-                  <h2 className="text-base font-semibold text-white">2. Essential Cookies</h2>
+                  <h2 className="text-base font-semibold text-white">2. Cookies We Use</h2>
                   <p>
-                    Essential cookies are required for site security, navigation state, and form submissions. These cannot be disabled as the site cannot function properly without them.
+                    BRAYON Technologies utilizes essential performance and anonymous telemetry cookies (such as Vercel Speed Insights and aggregated analytics) to understand site performance and visitor interactions without collecting personally identifiable information.
                   </p>
                 </section>
 
                 <section className="space-y-2">
-                  <h2 className="text-base font-semibold text-white">3. Third-Party Tracking</h2>
+                  <h2 className="text-base font-semibold text-white">3. Questions</h2>
                   <p>
-                    We do not deploy invasive third-party cross-site tracking pixels or commercial ad retargeting networks.
-                  </p>
-                </section>
-
-                <section className="space-y-2">
-                  <h2 className="text-base font-semibold text-white">4. Questions</h2>
-                  <p>
-                    Direct questions to{" "}
-                    <a href="mailto:contact@brayontech.com" className="text-blue-400 hover:underline">
-                      contact@brayontech.com
+                    For inquiries regarding cookies or data practices, contact us at{" "}
+                    <a href="mailto:hello@brayontech.com" className="text-blue-400 hover:underline">
+                      hello@brayontech.com
                     </a>.
                   </p>
                 </section>

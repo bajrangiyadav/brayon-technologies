@@ -10,17 +10,16 @@ export function Footer() {
   const footerLinks = {
     company: [
       { label: "About Us", href: "/about" },
-      { label: "Our Process", href: "/about#process" },
+      { label: "Our Process", href: "/#process" },
       { label: "Contact & Inquiries", href: "/contact" },
     ],
     services: [
-      { label: "AI & Automation", href: "/services#ai-automation" },
-      { label: "Web Applications", href: "/services#web-applications" },
-      { label: "E-Commerce Systems", href: "/services#ecommerce" },
-      { label: "Mobile Applications", href: "/services#mobile-apps" },
-      { label: "Enterprise Software", href: "/services#enterprise" },
-      { label: "Cloud & DevOps", href: "/services#cloud-devops" },
-      { label: "API & Integrations", href: "/services#integrations" },
+      { label: "Custom Software", href: "/custom-software-development" },
+      { label: "Laravel Development", href: "/laravel-development" },
+      { label: "E-Commerce Systems", href: "/ecommerce-development" },
+      { label: "CRM & ERP Systems", href: "/crm-erp-development" },
+      { label: "Mobile Applications", href: "/mobile-app-development" },
+      { label: "All Services Overview", href: "/services" },
     ],
     industries: [
       { label: "E-Commerce & Retail", href: "/industries#ecommerce" },

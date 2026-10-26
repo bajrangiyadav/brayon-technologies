@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/layout/Footer";
 import { caseStudies, getCaseStudyBySlug, getRelatedCaseStudies } from "@/data/caseStudies";
-import CaseStudyDetailClient from "./CaseStudyDetailClient";
+import { CaseStudyDetailClient } from "./CaseStudyDetailClient";
+import { SITE_URL, COMPANY_INFO } from "@/utils/siteConfig";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -22,12 +23,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!project) {
     return {
-      title: "Case Study Not Found",
+      title: "Case Study Not Found | BRAYON Technologies",
     };
   }
 
+  const pageUrl = `${SITE_URL}/case-studies/${project.slug}`;
+  const ogImageUrl = project.heroImage.startsWith("http")
+    ? project.heroImage
+    : `${SITE_URL}${project.heroImage}`;
+
   return {
-    title: `${project.title} — Case Study`,
+    title: `${project.title} — Case Study | BRAYON Technologies`,
     description: project.seo.description,
     keywords: project.seo.keywords,
     alternates: {
@@ -36,11 +42,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${project.title} | BRAYON Technologies Case Study`,
       description: project.shortDescription,
-      url: `https://brayontech.com/case-studies/${project.slug}`,
+      url: pageUrl,
       type: "article",
       images: [
         {
-          url: project.heroImage,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: project.title,
@@ -51,7 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: `${project.title} | BRAYON Technologies`,
       description: project.shortDescription,
-      images: [project.heroImage],
+      images: [ogImageUrl],
     },
   };
 }
@@ -66,22 +72,26 @@ export default async function CaseStudyDetailPage({ params }: Props) {
 
   const related = getRelatedCaseStudies(slug, 2);
 
+  const ogImageUrl = project.heroImage.startsWith("http")
+    ? project.heroImage
+    : `${SITE_URL}${project.heroImage}`;
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
     headline: project.title,
     description: project.shortDescription,
-    image: `https://brayontech.com${project.heroImage}`,
-    url: `https://brayontech.com/case-studies/${project.slug}`,
+    image: ogImageUrl,
+    url: `${SITE_URL}/case-studies/${project.slug}`,
     author: {
       "@type": "Organization",
-      name: "BRAYON Technologies",
-      url: "https://brayontech.com",
+      name: COMPANY_INFO.name,
+      url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
-      name: "BRAYON Technologies",
-      url: "https://brayontech.com",
+      name: COMPANY_INFO.name,
+      url: SITE_URL,
     },
     about: {
       "@type": "SoftwareSourceCode",
@@ -97,19 +107,19 @@ export default async function CaseStudyDetailPage({ params }: Props) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://brayontech.com",
+        item: SITE_URL,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Case Studies",
-        item: "https://brayontech.com/case-studies",
+        item: `${SITE_URL}/case-studies`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: project.title,
-        item: `https://brayontech.com/case-studies/${project.slug}`,
+        item: `${SITE_URL}/case-studies/${project.slug}`,
       },
     ],
   };

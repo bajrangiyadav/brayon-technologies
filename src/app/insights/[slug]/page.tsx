@@ -5,6 +5,7 @@ import Navbar from '@/components/navigation/Navbar';
 import Footer from '@/components/layout/Footer';
 import { InsightDetailClient } from './InsightDetailClient';
 import { insights } from '@/data/insights';
+import { SITE_URL, COMPANY_INFO } from '@/utils/siteConfig';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -26,29 +27,38 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const url = `https://brayontech.com/insights/${insight.slug}`;
+  const url = `${SITE_URL}/insights/${insight.slug}`;
 
   return {
-    title: insight.seo.title || insight.title,
-    description: insight.seo.description || insight.excerpt,
-    keywords: insight.seo.keywords,
+    title: `${insight.seo?.title || insight.title} | BRAYON Technologies`,
+    description: insight.seo?.description || insight.excerpt,
+    keywords: insight.seo?.keywords,
     alternates: {
-      canonical: url,
+      canonical: `/insights/${insight.slug}`,
     },
     openGraph: {
       title: insight.title,
       description: insight.excerpt,
       url: url,
-      siteName: 'BRAYON Technologies',
+      siteName: COMPANY_INFO.name,
       type: 'article',
       publishedTime: insight.publishedAt,
       authors: [insight.author],
       tags: insight.tags,
+      images: [
+        {
+          url: '/brayon-logo-showcase.png',
+          width: 1200,
+          height: 630,
+          alt: insight.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: insight.title,
       description: insight.excerpt,
+      images: ['/brayon-logo-showcase.png'],
     },
   };
 }
@@ -61,7 +71,6 @@ export default async function InsightDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  // Find related insights: same category or overlapping tags, excluding current
   const relatedInsights = insights
     .filter(
       (item) =>
@@ -72,7 +81,6 @@ export default async function InsightDetailPage({ params }: PageProps) {
     )
     .slice(0, 3);
 
-  // Structured Data (TechArticle + BreadcrumbList)
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
@@ -86,15 +94,15 @@ export default async function InsightDetailPage({ params }: PageProps) {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'BRAYON Technologies',
+      name: COMPANY_INFO.name,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://brayontech.com/icon.png',
+        url: `${SITE_URL}/brayon-icon-square.png`,
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://brayontech.com/insights/${insight.slug}`,
+      '@id': `${SITE_URL}/insights/${insight.slug}`,
     },
     keywords: insight.tags.join(', '),
   };
@@ -107,19 +115,19 @@ export default async function InsightDetailPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://brayontech.com',
+        item: SITE_URL,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Insights',
-        item: 'https://brayontech.com/insights',
+        item: `${SITE_URL}/insights`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: insight.title,
-        item: `https://brayontech.com/insights/${insight.slug}`,
+        item: `${SITE_URL}/insights/${insight.slug}`,
       },
     ],
   };
@@ -135,11 +143,8 @@ export default async function InsightDetailPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Navbar />
-      <main className="flex-grow pt-20 sm:pt-24">
-        <InsightDetailClient
-          insight={insight}
-          relatedInsights={relatedInsights}
-        />
+      <main className="flex-grow pt-24 sm:pt-28">
+        <InsightDetailClient insight={insight} relatedInsights={relatedInsights} />
       </main>
       <Footer />
     </div>

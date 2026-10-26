@@ -108,7 +108,7 @@ const FEATURED_PROJECTS: ProjectCardData[] = [
 
 export function RealProjectsSection() {
   return (
-    <Section spacing="lg" borderBottom className="bg-[#050811]">
+    <Section id="projects" spacing="lg" borderBottom className="bg-[#050811]">
       <Container>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <SectionHeading

@@ -11,6 +11,7 @@ import Card from "@/components/common/Card";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
 import AIPipelineVisual from "@/components/brayon-ai/AIPipelineVisual";
 import FadeUp from "@/components/animations/FadeUp";
+import { SITE_URL, COMPANY_INFO } from "@/utils/siteConfig";
 import {
   Bot,
   Mic,
@@ -24,7 +25,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Enterprise AI Engineering & Workflow Automation",
+  title: "Enterprise AI Engineering & Workflow Automation | BRAYON Technologies",
   description:
     "AI that works with your business. BRAYON Technologies designs practical AI-powered systems, voice bots, autonomous agents, and document intelligence workflows.",
   alternates: {
@@ -34,7 +35,23 @@ export const metadata: Metadata = {
     title: "BRAYON AI — Enterprise AI Engineering & Automation",
     description:
       "We design practical AI-powered systems that automate workflows, improve customer interactions and help teams work more efficiently.",
-    url: "https://brayontech.com/brayon-ai",
+    url: `${SITE_URL}/brayon-ai`,
+    siteName: COMPANY_INFO.name,
+    type: "website",
+    images: [
+      {
+        url: "/brayon-logo-showcase.png",
+        width: 1200,
+        height: 630,
+        alt: "BRAYON AI Automation Systems",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Enterprise AI Engineering & Workflow Automation | BRAYON Technologies",
+    description: "Practical AI engineered for real business operations.",
+    images: ["/brayon-logo-showcase.png"],
   },
 };
 
@@ -114,8 +131,31 @@ const CAPABILITIES = [
 ];
 
 export default function BrayonAiPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "BRAYON AI",
+        item: `${SITE_URL}/brayon-ai`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-[#070a12] text-slate-100 flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <main className="flex-grow pt-28">

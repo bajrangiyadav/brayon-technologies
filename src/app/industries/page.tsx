@@ -9,23 +9,41 @@ import SectionHeading from "@/components/common/SectionHeading";
 import Eyebrow from "@/components/common/Eyebrow";
 import Button from "@/components/common/Button";
 import Card from "@/components/common/Card";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
 import FadeUp from "@/components/animations/FadeUp";
 import { industries } from "@/data/industries";
 import { caseStudies } from "@/data/caseStudies";
 import { CheckCircle2, ArrowRight } from "lucide-react";
+import { SITE_URL, COMPANY_INFO } from "@/utils/siteConfig";
 
 export const metadata: Metadata = {
-  title: "Industries Served",
+  title: "Industry Software Solutions & Domain Expertise | BRAYON Technologies",
   description:
-    "Technology built around your business. BRAYON Technologies engineers digital platforms around real operational requirements across commerce, logistics, and technology.",
+    "Engineered software solutions tailored to real operational workflows across Education, E-Commerce, Logistics, Automotive, and Enterprise Management.",
   alternates: {
     canonical: "/industries",
   },
   openGraph: {
-    title: "Industries Served",
+    title: "Industry Software Solutions & Domain Expertise | BRAYON Technologies",
     description:
       "Technology built around your business. Resilient software engineering across e-commerce, mobility, automation, and enterprise domains.",
-    url: "https://brayontech.com/industries",
+    url: `${SITE_URL}/industries`,
+    siteName: COMPANY_INFO.name,
+    type: "website",
+    images: [
+      {
+        url: "/brayon-logo-showcase.png",
+        width: 1200,
+        height: 630,
+        alt: "BRAYON Technologies Industries",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Industry Software Solutions & Domain Expertise | BRAYON Technologies",
+    description: "Technology built around your business.",
+    images: ["/brayon-logo-showcase.png"],
   },
 };
 
@@ -33,14 +51,40 @@ export default function IndustriesPage() {
   const verifiedIndustries = industries.filter((ind) => ind.hasDirectExperience);
   const adaptableIndustries = industries.filter((ind) => !ind.hasDirectExperience);
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Industries",
+        item: `${SITE_URL}/industries`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-[#070a12] text-slate-100 flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <main className="flex-grow pt-28">
         {/* Header Hero */}
         <section className="py-16 md:py-24 border-b border-white/[0.08] relative">
           <Container>
+            <div className="mb-6">
+              <Breadcrumbs items={[{ label: "Industries" }]} />
+            </div>
             <div className="max-w-3xl">
               <FadeUp delay={0.05}>
                 <Eyebrow>INDUSTRY DOMAINS</Eyebrow>

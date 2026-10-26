@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SITE_URL, COMPANY_INFO } from "@/utils/siteConfig";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -22,40 +24,39 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://brayontech.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "BRAYON Technologies | Custom Software, Web & Cloud Engineering",
     template: "%s | BRAYON Technologies",
   },
   description:
-    "Looking for a serious technology partner? BRAYON Technologies builds high-performance custom web applications, Next.js SaaS platforms, enterprise ERPs, and cloud automation. Delivered in agile sprints with 100% code ownership. Request a free 15-minute architecture audit.",
-  applicationName: "BRAYON Technologies",
-  authors: [{ name: "Bajrangi Yadav", url: "https://brayontech.com" }],
+    "Enterprise custom software development company in India. BRAYON Technologies engineers scalable web applications, Laravel backends, custom CRM & ERP systems, high-converting e-commerce stores, and cross-platform mobile apps with 100% IP ownership.",
+  applicationName: COMPANY_INFO.name,
+  authors: [{ name: COMPANY_INFO.founder.name, url: SITE_URL }],
   generator: "Next.js",
   keywords: [
-    "custom software development company",
-    "software development agency",
+    "custom software development company India",
+    "software development agency India",
+    "Laravel development company in Mumbai",
+    "Laravel developer India",
+    "hire Laravel developers",
     "Next.js development company",
     "hire Next.js developers",
-    "Laravel development company",
-    "hire Laravel developers",
-    "Vue.js development agency",
-    "hire Vue.js developers",
-    "React full stack developers",
-    "SaaS MVP development in 30 days",
-    "enterprise ERP development",
+    "custom CRM software development",
+    "enterprise ERP software development",
+    "ecommerce website development company",
+    "mobile app development company",
+    "React Native app developers",
     "business workflow automation",
-    "headless ecommerce developers",
-    "React Native mobile app development",
+    "API development services",
     "cloud engineering AWS Docker",
-    "custom software development company India",
     "Bajrangi Yadav technology lead",
     "BRAYON Technologies",
     "brayon tech",
   ],
   referrer: "origin-when-cross-origin",
-  creator: "Bajrangi Yadav",
-  publisher: "BRAYON Technologies",
+  creator: COMPANY_INFO.founder.name,
+  publisher: COMPANY_INFO.name,
   formatDetection: {
     email: true,
     address: true,
@@ -64,10 +65,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "./",
     languages: {
-      "en-US": "https://brayontech.com",
-      "en-GB": "https://brayontech.com",
-      "en-IN": "https://brayontech.com",
-      "x-default": "https://brayontech.com",
+      "en-IN": SITE_URL,
+      "en-US": SITE_URL,
+      "en-GB": SITE_URL,
+      "x-default": SITE_URL,
     },
   },
   icons: {
@@ -82,16 +83,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BRAYON Technologies | Custom Software, Web & Cloud Engineering",
     description:
-      "Enterprise software development, modern web applications, high-performance cloud systems, and custom business automation. Partner directly with senior engineering leadership.",
-    url: "https://brayontech.com",
-    siteName: "BRAYON Technologies",
+      "Enterprise software development, Laravel backends, high-performance cloud systems, and custom CRM/ERP automation. Partner directly with senior engineering leadership.",
+    url: SITE_URL,
+    siteName: COMPANY_INFO.name,
     locale: "en_US",
     type: "website",
     images: [
       {
         url: "/brayon-logo-showcase.png",
-        width: 1024,
-        height: 512,
+        width: 1200,
+        height: 630,
         alt: "BRAYON Technologies - Technology. Innovation. Beyond.",
       },
     ],
@@ -126,62 +127,61 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Comprehensive Schema.org JSON-LD Structured Data for Google Rich Snippets
+  // Comprehensive Schema.org JSON-LD Structured Data for Google Rich Snippets & Knowledge Graph
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": "https://brayontech.com/#organization",
-    name: "BRAYON Technologies",
-    alternateName: ["BRAYON Tech", "BRAYON"],
-    legalName: "BRAYON Technologies",
-    url: "https://brayontech.com",
-    logo: "https://brayontech.com/brayon-icon-square.png",
-    image: "https://brayontech.com/brayon-logo-showcase.png",
-    description:
-      "BRAYON Technologies is an enterprise custom software development company engineering scalable web applications, SaaS MVPs, ERP automation, and cloud platforms.",
-    slogan: "Technology. Innovation. Beyond.",
+    "@id": `${SITE_URL}/#organization`,
+    name: COMPANY_INFO.name,
+    alternateName: COMPANY_INFO.alternateNames,
+    legalName: COMPANY_INFO.legalName,
+    url: SITE_URL,
+    logo: `${SITE_URL}/brayon-icon-square.png`,
+    image: `${SITE_URL}/brayon-logo-showcase.png`,
+    description: COMPANY_INFO.description,
+    slogan: COMPANY_INFO.slogan,
     sameAs: [
-      "https://github.com/bajrangiyadav",
-      "https://github.com/bajrangiyadav/brayon-technologies"
+      COMPANY_INFO.social.github,
+      COMPANY_INFO.social.githubRepo,
     ],
     founder: {
       "@type": "Person",
-      name: "Bajrangi Yadav",
-      jobTitle: "Founder & Technology Lead",
-      url: "https://brayontech.com/#founder",
+      name: COMPANY_INFO.founder.name,
+      jobTitle: COMPANY_INFO.founder.role,
+      url: `${SITE_URL}/about`,
     },
-    telephone: "+91-7385121432",
-    email: "hello@brayontech.com",
+    telephone: COMPANY_INFO.contact.phone,
+    email: COMPANY_INFO.contact.email,
     address: {
       "@type": "PostalAddress",
-      "addressLocality": "Mumbai",
-      "addressRegion": "Maharashtra",
-      "addressCountry": "IN",
+      addressLocality: COMPANY_INFO.contact.address.locality,
+      addressRegion: COMPANY_INFO.contact.address.region,
+      addressCountry: COMPANY_INFO.contact.address.country,
     },
     contactPoint: [
       {
         "@type": "ContactPoint",
         contactType: "customer service",
-        telephone: "+91-7385121432",
-        email: "hello@brayontech.com",
+        telephone: COMPANY_INFO.contact.phone,
+        email: COMPANY_INFO.contact.email,
         availableLanguage: ["English", "Hindi"],
       },
       {
         "@type": "ContactPoint",
         contactType: "sales",
-        telephone: "+91-7385121432",
-        email: "hello@brayontech.com",
+        telephone: COMPANY_INFO.contact.phone,
+        email: COMPANY_INFO.contact.email,
         availableLanguage: ["English", "Hindi"],
       },
     ],
     priceRange: "₹35,000 - ₹5,00,000+ ($550 - $6,000+)",
-    currenciesAccepted: "USD, INR, EUR, GBP, AED",
+    currenciesAccepted: "INR, USD, EUR, GBP, AED",
     paymentAccepted: "Wire Transfer, Stripe, Razorpay, Bank Transfer",
     areaServed: [
+      { "@type": "Country", name: "India" },
       { "@type": "Country", name: "United States" },
       { "@type": "Country", name: "United Kingdom" },
       { "@type": "Country", name: "United Arab Emirates" },
-      { "@type": "Country", name: "India" },
       { "@type": "Country", name: "Canada" },
       { "@type": "Country", name: "Australia" },
       { "@type": "Country", name: "Singapore" },
@@ -194,16 +194,28 @@ export default function RootLayout({
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Custom Web & SaaS Engineering",
+            name: "Enterprise Laravel Development",
+            url: `${SITE_URL}/laravel-development`,
             description:
-              "Bespoke full-stack web applications and SaaS platforms built with Next.js, React, Node.js, and TypeScript.",
+              "High-throughput enterprise Laravel web backends, RESTful APIs, and relational database architectures.",
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Enterprise ERP & Workflow Automation",
+            name: "Custom Software Development",
+            url: `${SITE_URL}/custom-software-development`,
+            description:
+              "Bespoke SaaS platforms and web applications built with Next.js, React, Node.js, and TypeScript.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Custom CRM & ERP Software Development",
+            url: `${SITE_URL}/crm-erp-development`,
             description:
               "Role-based multi-branch ERP systems, warehouse tracking, and automated GST-compliant invoicing.",
           },
@@ -212,9 +224,10 @@ export default function RootLayout({
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "High-Converting Headless E-Commerce",
+            name: "High-Converting E-Commerce Development",
+            url: `${SITE_URL}/ecommerce-development`,
             description:
-              "Sub-second decoupled storefronts with instant catalog search and multi-gateway checkout optimization.",
+              "Sub-second decoupled storefronts, wholesale B2B ordering portals, and multi-gateway checkout optimization.",
           },
         },
         {
@@ -222,22 +235,16 @@ export default function RootLayout({
           itemOffered: {
             "@type": "Service",
             name: "Cross-Platform Mobile App Development",
+            url: `${SITE_URL}/mobile-app-development`,
             description:
               "Native-performance iOS and Android applications built with React Native.",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Free 15-Minute Architecture & Performance Audit",
-            description:
-              "Complimentary 5-point inspection of website speed, database queries, and conversion bottlenecks.",
           },
         },
       ],
     },
   };
+
+  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
   return (
     <html
@@ -251,6 +258,30 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
+        {/* Privacy-Compliant Google Analytics 4 (Only loaded when valid ID is configured) */}
+        {gaMeasurementId && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+            />
+            <Script
+              id="google-analytics-init"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${gaMeasurementId}', {
+                    page_path: window.location.pathname,
+                    anonymize_ip: true
+                  });
+                `,
+              }}
+            />
+          </>
+        )}
       </head>
       <body
         className="min-h-screen bg-[#070B19] text-slate-100 antialiased selection:bg-blue-600 selection:text-white"

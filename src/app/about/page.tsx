@@ -8,7 +8,9 @@ import SectionHeading from "@/components/common/SectionHeading";
 import Eyebrow from "@/components/common/Eyebrow";
 import Button from "@/components/common/Button";
 import Card from "@/components/common/Card";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
 import FadeUp from "@/components/animations/FadeUp";
+import { SITE_URL, COMPANY_INFO } from "@/utils/siteConfig";
 import {
   ShieldCheck,
   Zap,
@@ -21,17 +23,34 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us & Engineering Leadership",
+  title: "About Us & Engineering Leadership | BRAYON Technologies",
   description:
-    "Learn about BRAYON Technologies. Direct engineering leadership, modern software architecture, and zero agency middlemen. We build digital products that move businesses forward.",
+    "Learn about BRAYON Technologies. Direct senior engineering leadership, modern software architecture, and zero agency middlemen. We engineer digital products that move businesses forward.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About Us & Engineering Leadership",
+    title: "About Us & Engineering Leadership | BRAYON Technologies",
     description:
       "Direct senior engineering leadership, modern architecture, and 100% IP ownership. We don't just talk about technology. We build it.",
-    url: "https://brayontech.com/about",
+    url: `${SITE_URL}/about`,
+    siteName: COMPANY_INFO.name,
+    type: "website",
+    images: [
+      {
+        url: "/brayon-logo-showcase.png",
+        width: 1200,
+        height: 630,
+        alt: "About BRAYON Technologies - Engineering Leadership",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us & Engineering Leadership | BRAYON Technologies",
+    description:
+      "Direct senior engineering leadership, modern architecture, and 100% IP ownership.",
+    images: ["/brayon-logo-showcase.png"],
   },
 };
 
@@ -63,14 +82,41 @@ const PRINCIPLES = [
 ];
 
 export default function AboutPage() {
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About BRAYON Technologies & Engineering Leadership",
+    url: `${SITE_URL}/about`,
+    description:
+      "Learn about BRAYON Technologies, our engineering principles, and direct senior technology leadership by Founder Bajrangi Yadav.",
+    mainEntity: {
+      "@type": "Person",
+      name: COMPANY_INFO.founder.name,
+      jobTitle: COMPANY_INFO.founder.role,
+      url: `${SITE_URL}/about`,
+      worksFor: {
+        "@type": "Organization",
+        name: COMPANY_INFO.name,
+        url: SITE_URL,
+      },
+    },
+  };
+
   return (
     <div className="min-h-screen bg-[#070a12] text-slate-100 flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
       <Navbar />
 
       <main className="flex-grow pt-28">
         {/* Editorial Header */}
         <section className="py-16 md:py-24 border-b border-white/[0.08] relative">
           <Container>
+            <div className="mb-6">
+              <Breadcrumbs items={[{ label: "About Us" }]} />
+            </div>
             <div className="max-w-3xl">
               <FadeUp delay={0.05}>
                 <Eyebrow>BRAYON TECHNOLOGIES · ENGINEERING LEADERSHIP</Eyebrow>
