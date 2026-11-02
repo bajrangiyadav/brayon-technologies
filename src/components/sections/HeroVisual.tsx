@@ -41,79 +41,79 @@ export function HeroVisual() {
       {/* Main Terminal / Dashboard Container */}
       <div className="relative rounded-2xl bg-[#0a0f1e] border border-white/[0.12] shadow-2xl shadow-blue-950/40 overflow-hidden backdrop-blur-xl">
         {/* Terminal Header Bar */}
-        <div className="flex items-center justify-between px-4 py-3 bg-[#070b16] border-b border-white/[0.08]">
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
-            <span className="ml-2 font-mono text-[11px] text-slate-400 font-medium">
-              brayon://platform-runtime/v2.6
+        <div className="flex items-center justify-between px-3 sm:px-4 py-2.5 sm:py-3 bg-[#070b16] border-b border-white/[0.08]">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-rose-500/80 inline-block" />
+            <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-amber-500/80 inline-block" />
+            <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-emerald-500/80 inline-block" />
+            <span className="ml-1 sm:ml-2 font-mono text-[10px] sm:text-[11px] text-slate-400 font-medium truncate max-w-[140px] sm:max-w-none">
+              brayon://platform-runtime
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono text-emerald-400">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] sm:text-[10px] font-mono text-emerald-400">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>Production Live</span>
             </span>
-            <span className="text-[11px] font-mono text-slate-500 hidden sm:inline">
+            <span className="text-[10px] sm:text-[11px] font-mono text-slate-500 hidden sm:inline">
               18ms · TLS 1.3
             </span>
           </div>
         </div>
 
         {/* Interactive Tab Switcher */}
-        <div className="flex items-center border-b border-white/[0.08] bg-[#0c1224]/80 p-1.5 gap-1 overflow-x-auto scrollbar-none">
+        <div className="flex items-center border-b border-white/[0.08] bg-[#0c1224]/80 p-1 sm:p-1.5 gap-1 overflow-x-auto scrollbar-none">
           <button
             onClick={() => setActiveTab("verification")}
-            className={`flex-1 min-w-[130px] px-3 py-2 rounded-lg text-xs font-medium transition-all flex items-center justify-center gap-2 ${
+            className={`flex-1 min-w-[110px] sm:min-w-[130px] px-2.5 sm:px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium transition-all flex items-center justify-center gap-1.5 ${
               activeTab === "verification"
-                ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                ? "bg-blue-600 text-white shadow-md shadow-blue-600/30 font-semibold"
                 : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
             }`}
           >
             <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
-            <span className="truncate">Verification Engine</span>
+            <span className="truncate">Verification</span>
           </button>
 
           <button
             onClick={() => setActiveTab("examination")}
-            className={`flex-1 min-w-[130px] px-3 py-2 rounded-lg text-xs font-medium transition-all flex items-center justify-center gap-2 ${
+            className={`flex-1 min-w-[110px] sm:min-w-[130px] px-2.5 sm:px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium transition-all flex items-center justify-center gap-1.5 ${
               activeTab === "examination"
-                ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                ? "bg-blue-600 text-white shadow-md shadow-blue-600/30 font-semibold"
                 : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
             }`}
           >
             <Activity className="w-3.5 h-3.5 shrink-0" />
-            <span className="truncate">Result Publication</span>
+            <span className="truncate">Exam Results</span>
           </button>
 
           <button
             onClick={() => setActiveTab("commerce")}
-            className={`flex-1 min-w-[130px] px-3 py-2 rounded-lg text-xs font-medium transition-all flex items-center justify-center gap-2 ${
+            className={`flex-1 min-w-[110px] sm:min-w-[130px] px-2.5 sm:px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium transition-all flex items-center justify-center gap-1.5 ${
               activeTab === "commerce"
-                ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                ? "bg-blue-600 text-white shadow-md shadow-blue-600/30 font-semibold"
                 : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
             }`}
           >
             <Database className="w-3.5 h-3.5 shrink-0" />
-            <span className="truncate">B2B Commerce ERP</span>
+            <span className="truncate">B2B Commerce</span>
           </button>
         </div>
 
         {/* Tab 1: Verification Engine (JBCE Live Model) */}
         {activeTab === "verification" && (
-          <div className="p-5 sm:p-6 space-y-5">
-            <div className="flex items-start justify-between gap-4">
+          <div className="p-4 sm:p-6 space-y-4 sm:space-y-5">
+            <div className="flex items-start justify-between gap-3">
               <div>
-                <div className="text-[11px] font-mono uppercase tracking-wider text-blue-400 font-semibold flex items-center gap-1.5">
+                <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-blue-400 font-semibold flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                  <span>Real Production System · jbce.in</span>
+                  <span>Real System · jbce.in</span>
                 </div>
-                <h4 className="text-base sm:text-lg font-semibold text-white mt-1">
-                  Jay Balaji Computer Education (ISO 9001:2015)
+                <h4 className="text-sm sm:text-lg font-semibold text-white mt-1">
+                  Jay Balaji Computer Education (ISO 9001)
                 </h4>
-                <p className="text-xs text-slate-400 mt-0.5">
+                <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">
                   Tamper-proof student record indexing &amp; instant digital certificate authentication.
                 </p>
               </div>
@@ -124,27 +124,27 @@ export function HeroVisual() {
                 className="shrink-0 p-2 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-slate-300 hover:text-white transition-colors"
                 title="Open live site jbce.in"
               >
-                <ExternalLink className="w-4 h-4" />
+                <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </a>
             </div>
 
             {/* Simulated Live Query Engine */}
-            <div className="p-3.5 rounded-xl bg-[#070b16] border border-white/[0.08] space-y-3">
-              <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+            <div className="p-3 sm:p-3.5 rounded-xl bg-[#070b16] border border-white/[0.08] space-y-2.5 sm:space-y-3">
+              <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono text-slate-400">
                 <span className="flex items-center gap-1.5">
                   <Search className="w-3.5 h-3.5 text-blue-400" />
-                  <span>Live Student Registry Query</span>
+                  <span>Student Registry Query</span>
                 </span>
                 <span className="text-emerald-400 font-semibold">Sub-0.4s response</span>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                 <div className="relative flex-grow">
                   <input
                     type="text"
                     value={rollQuery}
                     onChange={(e) => setRollQuery(e.target.value)}
-                    placeholder="Enter Student Roll No"
+                    placeholder="Enter Roll No"
                     className="w-full px-3 py-2 rounded-lg bg-white/[0.04] border border-white/[0.1] text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
                   />
                 </div>
@@ -152,7 +152,7 @@ export function HeroVisual() {
                   type="button"
                   onClick={handleSimulatedSearch}
                   disabled={isVerifying}
-                  className="px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium font-mono transition-colors disabled:opacity-50 shrink-0"
+                  className="px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium font-mono transition-colors disabled:opacity-50 shrink-0 text-center"
                 >
                   {isVerifying ? "Verifying..." : "Authenticate"}
                 </button>
@@ -160,15 +160,15 @@ export function HeroVisual() {
 
               {/* Verified Result Card */}
               {verifiedResult && (
-                <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono text-emerald-300 flex items-center justify-between animate-fadeIn">
+                <div className="p-2.5 sm:p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[11px] sm:text-xs font-mono text-emerald-300 flex flex-col sm:flex-row sm:items-center justify-between gap-2 animate-fadeIn">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                     <div>
-                      <span className="font-semibold text-white">Accredited Student:</span>{" "}
-                      <span>Adv. Diploma in Computer Application</span>
+                      <span className="font-semibold text-white">Accredited:</span>{" "}
+                      <span>Adv. Diploma in Comp. App.</span>
                     </div>
                   </div>
-                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-[10px] font-bold uppercase text-emerald-200">
+                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-[9px] sm:text-[10px] font-bold uppercase text-emerald-200 self-start sm:self-auto">
                     Verified Authentic
                   </span>
                 </div>
@@ -176,29 +176,29 @@ export function HeroVisual() {
             </div>
 
             {/* Architecture Telemetry Grid */}
-            <div className="grid grid-cols-3 gap-3 text-left">
-              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="text-[10px] font-mono text-slate-400 uppercase">Verification Speed</div>
-                <div className="text-sm sm:text-base font-bold text-white font-mono mt-0.5">
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-3 text-left">
+              <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[9px] sm:text-[10px] font-mono text-slate-400 uppercase">Verification</div>
+                <div className="text-xs sm:text-base font-bold text-white font-mono mt-0.5">
                   &lt; 0.6s
                 </div>
-                <div className="text-[10px] text-emerald-400 font-mono mt-0.5">Instant Lookup</div>
+                <div className="text-[9px] sm:text-[10px] text-emerald-400 font-mono mt-0.5 truncate">Instant Lookup</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="text-[10px] font-mono text-slate-400 uppercase">Document Fraud</div>
-                <div className="text-sm sm:text-base font-bold text-emerald-400 font-mono mt-0.5">
+              <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[9px] sm:text-[10px] font-mono text-slate-400 uppercase">Fraud</div>
+                <div className="text-xs sm:text-base font-bold text-emerald-400 font-mono mt-0.5">
                   0%
                 </div>
-                <div className="text-[10px] text-slate-400 font-mono mt-0.5">Tamper-Proof</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 font-mono mt-0.5 truncate">Tamper-Proof</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="text-[10px] font-mono text-slate-400 uppercase">Architecture</div>
-                <div className="text-sm sm:text-base font-bold text-blue-400 font-mono mt-0.5">
+              <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[9px] sm:text-[10px] font-mono text-slate-400 uppercase">Stack</div>
+                <div className="text-xs sm:text-base font-bold text-blue-400 font-mono mt-0.5 truncate">
                   PHP · MySQL
                 </div>
-                <div className="text-[10px] text-slate-400 font-mono mt-0.5">B-Tree Indexed</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 font-mono mt-0.5 truncate">B-Tree Indexed</div>
               </div>
             </div>
           </div>
@@ -206,18 +206,18 @@ export function HeroVisual() {
 
         {/* Tab 2: Examination Result Engine (MHVP Live Model) */}
         {activeTab === "examination" && (
-          <div className="p-5 sm:p-6 space-y-5">
-            <div className="flex items-start justify-between gap-4">
+          <div className="p-4 sm:p-6 space-y-4 sm:space-y-5">
+            <div className="flex items-start justify-between gap-3">
               <div>
-                <div className="text-[11px] font-mono uppercase tracking-wider text-cyan-400 font-semibold flex items-center gap-1.5">
+                <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-cyan-400 font-semibold flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                  <span>Real Production System · mhvp.org</span>
+                  <span>Real System · mhvp.org</span>
                 </div>
-                <h4 className="text-base sm:text-lg font-semibold text-white mt-1">
+                <h4 className="text-sm sm:text-lg font-semibold text-white mt-1">
                   Mumbai Hindi Vidyapeeth (मुंबई हिन्दी विद्यापीठ)
                 </h4>
-                <p className="text-xs text-slate-400 mt-0.5">
-                  High-concurrency academic portal powering multi-state examination management &amp; results.
+                <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">
+                  High-concurrency academic portal powering multi-state examination results.
                 </p>
               </div>
               <a
@@ -227,61 +227,61 @@ export function HeroVisual() {
                 className="shrink-0 p-2 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-slate-300 hover:text-white transition-colors"
                 title="Open live site mhvp.org"
               >
-                <ExternalLink className="w-4 h-4" />
+                <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </a>
             </div>
 
             {/* High Concurrency Telemetry Visual */}
-            <div className="p-3.5 rounded-xl bg-[#070b16] border border-white/[0.08] space-y-3">
-              <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-slate-400">Peak Examination Result Traffic</span>
-                <span className="text-emerald-400 font-semibold">0s Downtime Measured</span>
+            <div className="p-3 sm:p-3.5 rounded-xl bg-[#070b16] border border-white/[0.08] space-y-2.5 sm:space-y-3">
+              <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono">
+                <span className="text-slate-400">Peak Exam Result Traffic</span>
+                <span className="text-emerald-400 font-semibold">0s Downtime</span>
               </div>
 
               {/* Concurrency Bar Simulation */}
-              <div className="space-y-1.5">
-                <div className="flex justify-between text-[11px] font-mono text-slate-400">
+              <div className="space-y-1">
+                <div className="flex justify-between text-[10px] sm:text-[11px] font-mono text-slate-400">
                   <span>Simultaneous Lookups</span>
-                  <span className="text-cyan-400 font-semibold">4,200+ candidates/min</span>
+                  <span className="text-cyan-400 font-semibold">4,200+ /min</span>
                 </div>
                 <div className="w-full h-2 rounded-full bg-white/[0.08] overflow-hidden">
                   <div className="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 rounded-full w-[84%]" />
                 </div>
               </div>
 
-              <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 pt-1">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[10px] sm:text-[11px] font-mono text-slate-400 pt-1 gap-1">
                 <span className="flex items-center gap-1.5 text-slate-300">
                   <Lock className="w-3 h-3 text-cyan-400" />
-                  <span>Role Separation: Central Admin / Center Supervisors</span>
+                  <span>Role Separation: Central Admin &amp; Centers</span>
                 </span>
                 <span className="text-emerald-400">100+ Centers</span>
               </div>
             </div>
 
             {/* Metrics */}
-            <div className="grid grid-cols-3 gap-3 text-left">
-              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="text-[10px] font-mono text-slate-400 uppercase">Affiliated Centers</div>
-                <div className="text-sm sm:text-base font-bold text-white font-mono mt-0.5">
-                  100+ Centers
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-3 text-left">
+              <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[9px] sm:text-[10px] font-mono text-slate-400 uppercase">Centers</div>
+                <div className="text-xs sm:text-base font-bold text-white font-mono mt-0.5">
+                  100+
                 </div>
-                <div className="text-[10px] text-emerald-400 font-mono mt-0.5">Multi-State Network</div>
+                <div className="text-[9px] sm:text-[10px] text-emerald-400 font-mono mt-0.5 truncate">Multi-State</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="text-[10px] font-mono text-slate-400 uppercase">Peak Downtime</div>
-                <div className="text-sm sm:text-base font-bold text-emerald-400 font-mono mt-0.5">
+              <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[9px] sm:text-[10px] font-mono text-slate-400 uppercase">Downtime</div>
+                <div className="text-xs sm:text-base font-bold text-emerald-400 font-mono mt-0.5">
                   0 Seconds
                 </div>
-                <div className="text-[10px] text-slate-400 font-mono mt-0.5">Guaranteed Uptime</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 font-mono mt-0.5 truncate">100% Uptime</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="text-[10px] font-mono text-slate-400 uppercase">Languages</div>
-                <div className="text-sm sm:text-base font-bold text-blue-400 font-mono mt-0.5">
+              <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[9px] sm:text-[10px] font-mono text-slate-400 uppercase">Support</div>
+                <div className="text-xs sm:text-base font-bold text-blue-400 font-mono mt-0.5 truncate">
                   Bilingual
                 </div>
-                <div className="text-[10px] text-slate-400 font-mono mt-0.5">Hindi &amp; English</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 font-mono mt-0.5 truncate">Hindi &amp; Eng</div>
               </div>
             </div>
           </div>
@@ -289,17 +289,17 @@ export function HeroVisual() {
 
         {/* Tab 3: B2B Commerce & ERP */}
         {activeTab === "commerce" && (
-          <div className="p-5 sm:p-6 space-y-5">
-            <div className="flex items-start justify-between gap-4">
+          <div className="p-4 sm:p-6 space-y-4 sm:space-y-5">
+            <div className="flex items-start justify-between gap-3">
               <div>
-                <div className="text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-semibold flex items-center gap-1.5">
+                <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-semibold flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  <span>Wholesale &amp; Retail Engine · safegrowtrade.com</span>
+                  <span>Wholesale Engine · safegrowtrade.com</span>
                 </div>
-                <h4 className="text-base sm:text-lg font-semibold text-white mt-1">
+                <h4 className="text-sm sm:text-lg font-semibold text-white mt-1">
                   SafeGrowTrade &amp; Enterprise Operations
                 </h4>
-                <p className="text-xs text-slate-400 mt-0.5">
+                <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">
                   Tiered wholesale pricing, automated order lifecycles &amp; multi-branch inventory sync.
                 </p>
               </div>
@@ -310,18 +310,19 @@ export function HeroVisual() {
                 className="shrink-0 p-2 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-slate-300 hover:text-white transition-colors"
                 title="Open live site safegrowtrade.com"
               >
-                <ExternalLink className="w-4 h-4" />
+                <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </a>
             </div>
 
             {/* Commerce Order Flow Visual */}
-            <div className="p-3.5 rounded-xl bg-[#070b16] border border-white/[0.08] space-y-3">
-              <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-slate-400">Automated Order State Machine</span>
-                <span className="text-emerald-400 font-semibold">100% Digital Reconciled</span>
+            <div className="p-3 sm:p-3.5 rounded-xl bg-[#070b16] border border-white/[0.08] space-y-2.5 sm:space-y-3">
+              <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono">
+                <span className="text-slate-400">Order State Machine</span>
+                <span className="text-emerald-400 font-semibold">100% Reconciled</span>
               </div>
 
-              <div className="grid grid-cols-4 gap-2 text-center text-[10px] font-mono">
+              {/* Order Flow Responsive Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2 text-center text-[10px] font-mono">
                 <div className="p-2 rounded bg-blue-600/20 border border-blue-500/30 text-blue-300">
                   1. Order Placed
                 </div>
@@ -336,50 +337,50 @@ export function HeroVisual() {
                 </div>
               </div>
 
-              <div className="text-[11px] font-mono text-slate-400 flex items-center justify-between pt-1">
+              <div className="text-[10px] sm:text-[11px] font-mono text-slate-400 flex flex-col sm:flex-row sm:items-center justify-between pt-1 gap-1">
                 <span>Wholesale Tier Discount: Applied (-22%)</span>
                 <span className="text-emerald-400 font-semibold">Payment: Gateway Verified ✓</span>
               </div>
             </div>
 
             {/* Metrics */}
-            <div className="grid grid-cols-3 gap-3 text-left">
-              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="text-[10px] font-mono text-slate-400 uppercase">Time Saved</div>
-                <div className="text-sm sm:text-base font-bold text-white font-mono mt-0.5">
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-3 text-left">
+              <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[9px] sm:text-[10px] font-mono text-slate-400 uppercase">Time Saved</div>
+                <div className="text-xs sm:text-base font-bold text-white font-mono mt-0.5">
                   15+ Hrs/Wk
                 </div>
-                <div className="text-[10px] text-emerald-400 font-mono mt-0.5">Manual Work Cut</div>
+                <div className="text-[9px] sm:text-[10px] text-emerald-400 font-mono mt-0.5 truncate">Manual Effort Cut</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="text-[10px] font-mono text-slate-400 uppercase">Stock Discrepancy</div>
-                <div className="text-sm sm:text-base font-bold text-emerald-400 font-mono mt-0.5">
-                  0% Mismatch
+              <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[9px] sm:text-[10px] font-mono text-slate-400 uppercase">Discrepancy</div>
+                <div className="text-xs sm:text-base font-bold text-emerald-400 font-mono mt-0.5">
+                  0%
                 </div>
-                <div className="text-[10px] text-slate-400 font-mono mt-0.5">Real-Time Sync</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 font-mono mt-0.5 truncate">Real-Time Sync</div>
               </div>
 
-              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="text-[10px] font-mono text-slate-400 uppercase">Architecture</div>
-                <div className="text-sm sm:text-base font-bold text-blue-400 font-mono mt-0.5">
-                  Laravel · Next.js
+              <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[9px] sm:text-[10px] font-mono text-slate-400 uppercase">Architecture</div>
+                <div className="text-xs sm:text-base font-bold text-blue-400 font-mono mt-0.5 truncate">
+                  Laravel · Next
                 </div>
-                <div className="text-[10px] text-slate-400 font-mono mt-0.5">Edge Deployed</div>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 font-mono mt-0.5 truncate">Edge Deployed</div>
               </div>
             </div>
           </div>
         )}
 
         {/* Footer Code / Trust Strip */}
-        <div className="px-4 py-2.5 bg-[#070b16] border-t border-white/[0.08] flex items-center justify-between text-[11px] font-mono text-slate-400">
+        <div className="px-3 sm:px-4 py-2.5 bg-[#070b16] border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between text-[11px] font-mono text-slate-400 gap-1.5">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             <span className="text-slate-300">100% Private Git &amp; Cloud Ownership</span>
           </div>
           <Link
-            href="/work"
-            className="text-blue-400 hover:text-blue-300 flex items-center gap-1 transition-colors"
+            href="/portfolio"
+            className="text-blue-400 hover:text-blue-300 flex items-center gap-1 transition-colors self-start sm:self-auto"
           >
             <span>Explore All 6 Case Studies</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -387,7 +388,7 @@ export function HeroVisual() {
         </div>
       </div>
 
-      {/* Floating Accent Cards for depth & art direction */}
+      {/* Floating Accent Cards for depth & art direction (hidden on mobile, visible on tablet/desktop) */}
       <div className="hidden md:flex items-center gap-3 absolute -bottom-6 -left-6 p-3.5 rounded-xl bg-[#0e1629]/95 border border-blue-500/30 shadow-xl backdrop-blur-md text-xs">
         <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
           <Zap className="w-4 h-4" />

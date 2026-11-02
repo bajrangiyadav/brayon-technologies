@@ -123,48 +123,48 @@ export function IndustriesSection() {
   return (
     <Section id="industries" spacing="xl" borderBottom className="bg-[#050812] relative overflow-hidden">
       <Container className="relative z-10">
-        <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <div className="max-w-3xl mx-auto text-center space-y-3 sm:space-y-4 mb-10 sm:mb-16">
           <FadeUp delay={0.05}>
             <Eyebrow>DOMAIN EXPERTISE</Eyebrow>
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
               Technology For Every Business Ambition.
             </h2>
           </FadeUp>
 
           <FadeUp delay={0.15}>
-            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+            <p className="text-sm sm:text-lg text-slate-300 font-normal leading-relaxed">
               Every industry has distinct regulatory requirements, operational models, and customer workflows. We build software shaped directly by your domain realities.
             </p>
           </FadeUp>
         </div>
 
         {/* Sophisticated Editorial Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {INDUSTRIES.map((industry, idx) => {
             const Icon = industry.icon;
             return (
               <FadeUp key={industry.id} delay={0.05 * (idx + 1)}>
-                <div className="group h-full p-8 rounded-2xl bg-[#0a0f20] border border-white/[0.08] hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between text-left hover:shadow-xl hover:shadow-blue-950/20">
+                <div className="group h-full p-5 sm:p-8 rounded-2xl bg-[#0a0f20] border border-white/[0.08] hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between text-left hover:shadow-xl hover:shadow-blue-950/20">
                   <div>
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 flex items-center justify-center group-hover:bg-blue-600/20 group-hover:scale-105 transition-all">
-                        <Icon className="w-6 h-6" />
+                    <div className="flex items-center justify-between mb-5 sm:mb-6">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 flex items-center justify-center group-hover:bg-blue-600/20 group-hover:scale-105 transition-all">
+                        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                       </div>
                       <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 group-hover:text-blue-400 transition-colors">
                         {industry.tag}
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-white tracking-tight mb-2">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight mb-2">
                       {industry.name}
                     </h3>
-                    <div className="text-xs font-mono text-blue-400 mb-4 font-medium">
+                    <div className="text-xs font-mono text-blue-400 mb-3 sm:mb-4 font-medium">
                       {industry.tagline}
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 sm:mb-5">
                       {industry.description}
                     </p>
 
@@ -178,7 +178,7 @@ export function IndustriesSection() {
                     </div>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-white/[0.06] flex items-center justify-between">
+                  <div className="pt-5 sm:pt-6 mt-5 sm:mt-6 border-t border-white/[0.06] flex items-center justify-between">
                     <Link
                       href={`/industries/${industry.slug}`}
                       className="inline-flex items-center gap-1.5 text-xs font-mono text-blue-400 hover:text-blue-300 font-semibold group-hover:translate-x-1 transition-all"

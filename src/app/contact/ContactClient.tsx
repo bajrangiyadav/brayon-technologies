@@ -350,7 +350,7 @@ export default function ContactClient() {
 
             {/* Right Column: Lead Form */}
             <div className="lg:col-span-7">
-              <div className="rounded-3xl bg-[#0d1322]/90 border border-white/10 p-6 sm:p-10 shadow-2xl relative backdrop-blur-md">
+              <div className="rounded-3xl bg-[#0d1322]/90 border border-white/10 p-4 sm:p-8 lg:p-10 shadow-2xl relative backdrop-blur-md">
                 {submissionState === 'success' ? (
                   <div className="py-8 text-center space-y-6">
                     <div className="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/20">
@@ -659,7 +659,7 @@ export default function ContactClient() {
                               type="text"
                               {...register('name')}
                               placeholder="e.g. Rahul Sharma"
-                              className={`w-full px-4 py-3 rounded-xl bg-[#090e1a] border text-white text-sm focus:outline-none transition-colors ${
+                              className={`w-full px-4 py-3 rounded-xl bg-[#090e1a] border text-white text-base sm:text-sm focus:outline-none transition-colors ${
                                 errors.name
                                   ? 'border-red-500 focus:border-red-500'
                                   : 'border-white/10 focus:border-blue-500'
@@ -678,7 +678,7 @@ export default function ContactClient() {
                               type="tel"
                               {...register('phone')}
                               placeholder="e.g. +91 98765 43210"
-                              className={`w-full px-4 py-3 rounded-xl bg-[#090e1a] border text-white text-sm focus:outline-none transition-colors ${
+                              className={`w-full px-4 py-3 rounded-xl bg-[#090e1a] border text-white text-base sm:text-sm focus:outline-none transition-colors ${
                                 errors.phone
                                   ? 'border-red-500 focus:border-red-500'
                                   : 'border-white/10 focus:border-blue-500'
@@ -700,7 +700,7 @@ export default function ContactClient() {
                               type="text"
                               {...register('company')}
                               placeholder="e.g. Sharma Enterprises"
-                              className="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-white/10 text-white text-sm focus:border-blue-500 focus:outline-none transition-colors"
+                              className="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-white/10 text-white text-base sm:text-sm focus:border-blue-500 focus:outline-none transition-colors"
                             />
                           </div>
 
@@ -712,7 +712,7 @@ export default function ContactClient() {
                               type="email"
                               {...register('email')}
                               placeholder="e.g. rahul@company.com"
-                              className="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-white/10 text-white text-sm focus:border-blue-500 focus:outline-none transition-colors"
+                              className="w-full px-4 py-3 rounded-xl bg-[#090e1a] border border-white/10 text-white text-base sm:text-sm focus:border-blue-500 focus:outline-none transition-colors"
                             />
                           </div>
                         </div>
@@ -726,7 +726,7 @@ export default function ContactClient() {
                             rows={3}
                             {...register('message')}
                             placeholder="Describe your operational workflow, core features required, or any reference systems..."
-                            className={`w-full px-4 py-3 rounded-xl bg-[#090e1a] border text-white text-sm focus:outline-none transition-colors ${
+                            className={`w-full px-4 py-3 rounded-xl bg-[#090e1a] border text-white text-base sm:text-sm focus:outline-none transition-colors ${
                               errors.message
                                 ? 'border-red-500 focus:border-red-500'
                                 : 'border-white/10 focus:border-blue-500'

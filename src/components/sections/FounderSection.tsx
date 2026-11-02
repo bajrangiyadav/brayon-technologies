@@ -24,9 +24,9 @@ export function FounderSection() {
       <Container className="relative z-10">
         <div className="max-w-5xl mx-auto">
           <FadeUp delay={0.05}>
-            <div className="text-center mb-12">
+            <div className="text-center mb-8 sm:mb-12">
               <Eyebrow>LEADERSHIP &amp; ACCOUNTABILITY</Eyebrow>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight mt-3">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight mt-3">
                 Engineered Under Direct Senior Leadership.
               </h2>
             </div>
@@ -34,13 +34,13 @@ export function FounderSection() {
 
           {/* Founder Executive Presentation Card */}
           <FadeUp delay={0.15}>
-            <div className="rounded-3xl bg-gradient-to-br from-[#0c1428] via-[#091022] to-[#070b16] border border-blue-500/25 p-8 sm:p-12 lg:p-14 text-left shadow-2xl shadow-blue-950/30">
+            <div className="rounded-3xl bg-gradient-to-br from-[#0c1428] via-[#091022] to-[#070b16] border border-blue-500/25 p-5 sm:p-10 lg:p-14 text-left shadow-2xl shadow-blue-950/30">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 {/* Left Column: Monogram & Profile Badge */}
                 <div className="lg:col-span-4 flex flex-col items-center sm:items-start text-center sm:text-left space-y-4">
                   {/* Distinctive Executive Monogram Visual */}
-                  <div className="relative w-32 h-32 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border-2 border-blue-500/40 shadow-2xl shadow-blue-900/40 bg-gradient-to-tr from-[#0a1228] via-[#0d1a3a] to-[#152854] flex flex-col items-center justify-center p-4 group">
-                    <div className="font-mono text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-200 to-white tracking-tighter">
+                  <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border-2 border-blue-500/40 shadow-2xl shadow-blue-900/40 bg-gradient-to-tr from-[#0a1228] via-[#0d1a3a] to-[#152854] flex flex-col items-center justify-center p-4 group">
+                    <div className="font-mono text-3xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-200 to-white tracking-tighter">
                       BY
                     </div>
                     <div className="text-[10px] font-mono uppercase tracking-widest text-blue-300/80 mt-1">
@@ -50,7 +50,7 @@ export function FounderSection() {
                   </div>
 
                   <div>
-                    <h3 className="text-2xl font-bold text-white tracking-tight">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                       Bajrangi Yadav
                     </h3>
                     <div className="text-xs font-mono text-blue-400 mt-1 uppercase tracking-wider font-semibold">
@@ -59,7 +59,7 @@ export function FounderSection() {
                   </div>
 
                   {/* Verified Links */}
-                  <div className="flex flex-wrap items-center gap-2.5 pt-2">
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 pt-2">
                     <a
                       href="mailto:hello@brayontech.com"
                       className="p-2.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] text-slate-300 hover:text-white transition-colors"
@@ -91,18 +91,18 @@ export function FounderSection() {
                 </div>
 
                 {/* Right Column: Founder Vision & Architectural Standards */}
-                <div className="lg:col-span-8 space-y-5 text-left">
+                <div className="lg:col-span-8 space-y-4 sm:space-y-5 text-left">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 font-mono text-xs uppercase tracking-wider font-semibold">
                     <ShieldCheck className="w-3.5 h-3.5" />
                     <span>FOUNDER VISION</span>
                   </div>
 
                   {/* Exact Suggested Copy from Prompt */}
-                  <blockquote className="text-lg sm:text-xl md:text-2xl font-medium text-slate-100 leading-snug italic border-l-2 border-blue-500 pl-4 py-1">
+                  <blockquote className="text-base sm:text-xl md:text-2xl font-medium text-slate-100 leading-snug italic border-l-2 border-blue-500 pl-3 sm:pl-4 py-1">
                     &ldquo;Building technology with a focus on solving real business challenges. My vision is to make reliable, scalable, and meaningful digital solutions accessible to businesses of every size.&rdquo;
                   </blockquote>
 
-                  <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-base text-slate-300 leading-relaxed font-normal">
                     Traditional agency models suffer from a fundamental disconnection: sales teams sell promises, and then hand off code delivery to rotating junior developers. At BRAYON Technologies, you consult directly with senior engineering leadership. Your database architecture, security policies, and sprint milestones are overseen personally to ensure rock-solid production quality.
                   </p>
 

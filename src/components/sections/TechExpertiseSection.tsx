@@ -75,31 +75,31 @@ export function TechExpertiseSection() {
     <Section id="technology" spacing="xl" borderBottom className="bg-[#060a16] relative overflow-hidden">
       <Container className="relative z-10">
         {/* Section Heading */}
-        <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <div className="max-w-3xl mx-auto text-center space-y-3 sm:space-y-4 mb-10 sm:mb-16">
           <FadeUp delay={0.05}>
             <Eyebrow>VERIFIED ENGINEERING STACK</Eyebrow>
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
               Technology Expertise Proven in Production.
             </h2>
           </FadeUp>
 
           <FadeUp delay={0.15}>
-            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+            <p className="text-sm sm:text-lg text-slate-300 font-normal leading-relaxed">
               We only claim expertise in technologies actively proven across our deployed production systems. Every tool in our stack is chosen for stability, performance, and long-term maintainability.
             </p>
           </FadeUp>
         </div>
 
         {/* 4-Column Technology Matrix */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {techCategories.map((cat, idx) => {
             const Icon = cat.icon;
             return (
               <FadeUp key={cat.category} delay={0.08 * (idx + 1)}>
-                <div className="h-full p-6 sm:p-7 rounded-2xl bg-[#090e1d] border border-white/[0.08] hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between text-left group hover:shadow-xl hover:shadow-blue-950/20">
+                <div className="h-full p-5 sm:p-7 rounded-2xl bg-[#090e1d] border border-white/[0.08] hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between text-left group hover:shadow-xl hover:shadow-blue-950/20">
                   <div>
                     <div className="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-5 group-hover:scale-105 group-hover:bg-blue-600/20 transition-all">
                       <Icon className="w-5 h-5" />

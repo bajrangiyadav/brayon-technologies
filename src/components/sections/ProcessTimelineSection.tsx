@@ -105,26 +105,26 @@ export function ProcessTimelineSection() {
 
       <Container className="relative z-10">
         {/* Section Heading */}
-        <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <div className="max-w-3xl mx-auto text-center space-y-3 sm:space-y-4 mb-10 sm:mb-16">
           <FadeUp delay={0.05}>
             <Eyebrow>OUR DEVELOPMENT PROCESS</Eyebrow>
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
               From First Conversation To Successful Launch.
             </h2>
           </FadeUp>
 
           <FadeUp delay={0.15}>
-            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+            <p className="text-sm sm:text-lg text-slate-300 font-normal leading-relaxed">
               We replace chaotic, unpredictable development cycles with a disciplined 4-stage engineering sprint methodology engineered for certainty and speed.
             </p>
           </FadeUp>
         </div>
 
         {/* Elegant Timeline Process Visualization */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 relative">
           {PROCESS_STEPS.map((step, idx) => {
             const Icon = step.icon;
             const isCurrent = activeStep === idx;
@@ -132,8 +132,9 @@ export function ProcessTimelineSection() {
             return (
               <FadeUp key={step.number} delay={0.08 * (idx + 1)}>
                 <div
+                  onClick={() => setActiveStep(idx)}
                   onMouseEnter={() => setActiveStep(idx)}
-                  className={`h-full p-6 sm:p-7 rounded-2xl border transition-all duration-300 flex flex-col justify-between text-left cursor-pointer ${
+                  className={`h-full p-5 sm:p-7 rounded-2xl border transition-all duration-300 flex flex-col justify-between text-left cursor-pointer ${
                     isCurrent
                       ? "bg-[#0d1428] border-blue-500/60 shadow-xl shadow-blue-950/30"
                       : "bg-[#090e1c] border-white/[0.08] hover:border-white/[0.2]"
@@ -143,7 +144,7 @@ export function ProcessTimelineSection() {
                     {/* Step Header */}
                     <div className="flex items-center justify-between mb-5">
                       <div
-                        className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all ${
+                        className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center transition-all ${
                           isCurrent
                             ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30"
                             : "bg-white/[0.05] text-slate-400 border border-white/[0.08]"
@@ -160,11 +161,11 @@ export function ProcessTimelineSection() {
                       {step.phase}
                     </div>
 
-                    <h3 className="text-xl font-bold text-white tracking-tight mb-2">
+                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight mb-2">
                       {step.name}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5 font-normal">
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 sm:mb-5 font-normal">
                       {step.summary}
                     </p>
 
@@ -180,7 +181,7 @@ export function ProcessTimelineSection() {
                   </div>
 
                   {/* Timeframe & Key Highlight pill */}
-                  <div className="pt-5 mt-5 border-t border-white/[0.06] space-y-2">
+                  <div className="pt-4 sm:pt-5 mt-4 sm:mt-5 border-t border-white/[0.06] space-y-2">
                     <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400">
                       <Clock className="w-3.5 h-3.5 text-blue-400 shrink-0" />
                       <span>{step.timeframe}</span>
@@ -197,8 +198,8 @@ export function ProcessTimelineSection() {
 
         {/* Process Guarantee Banner */}
         <FadeUp delay={0.4}>
-          <div className="mt-12 p-6 rounded-2xl bg-[#090e1c] border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-            <div className="flex items-center gap-3">
+          <div className="mt-8 sm:mt-12 p-5 sm:p-6 rounded-2xl bg-[#090e1c] border border-white/[0.08] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 text-center sm:text-left">
+            <div className="flex items-center gap-3 text-left">
               <div className="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
                 <FileCheck className="w-5 h-5" />
               </div>
@@ -214,7 +215,7 @@ export function ProcessTimelineSection() {
 
             <Link
               href="/contact"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.1] text-white font-mono text-xs transition-colors shrink-0"
+              className="inline-flex items-center justify-center gap-1.5 px-5 py-3 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.1] text-white font-mono text-xs transition-colors shrink-0 w-full sm:w-auto"
             >
               <span>Discuss Your Roadmap</span>
               <ArrowRight className="w-3.5 h-3.5" />

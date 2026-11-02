@@ -27,10 +27,10 @@ export function FloatingWhatsAppButton() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-end flex-col gap-2 pointer-events-none">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex items-end flex-col gap-2 pointer-events-none max-w-[calc(100vw-2rem)]">
       {/* Tooltip Popup */}
       {showTooltip && (
-        <div className="pointer-events-auto bg-[#0d1424] text-slate-100 border border-emerald-500/30 rounded-2xl p-3.5 shadow-2xl shadow-black/60 max-w-xs text-xs animate-in fade-in slide-in-from-bottom-2 duration-200 relative mb-1">
+        <div className="pointer-events-auto bg-[#0d1424] text-slate-100 border border-emerald-500/30 rounded-2xl p-3.5 shadow-2xl shadow-black/60 max-w-[270px] sm:max-w-xs text-xs animate-in fade-in slide-in-from-bottom-2 duration-200 relative mb-1">
           <button
             type="button"
             onClick={() => setShowTooltip(false)}

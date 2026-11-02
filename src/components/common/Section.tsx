@@ -22,10 +22,10 @@ export function Section({
 }: SectionProps) {
   const spacingStyles = {
     none: "",
-    sm: "py-8 md:py-12",
-    md: "py-12 md:py-16 lg:py-20",
-    lg: "py-16 md:py-24 lg:py-28",
-    xl: "py-20 md:py-32 lg:py-36",
+    sm: "py-6 sm:py-8 md:py-12",
+    md: "py-10 sm:py-12 md:py-16 lg:py-20",
+    lg: "py-12 sm:py-16 md:py-20 lg:py-28",
+    xl: "py-14 sm:py-20 md:py-28 lg:py-36",
   }[spacing];
 
   const variantStyles = {

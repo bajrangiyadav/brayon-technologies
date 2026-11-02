@@ -129,19 +129,19 @@ export function HomeInquirySection() {
 
       <Container className="relative z-10">
         {/* Section Heading */}
-        <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <div className="max-w-3xl mx-auto text-center space-y-3 sm:space-y-4 mb-10 sm:mb-16">
           <FadeUp delay={0.05}>
             <Eyebrow>START A CONVERSATION</Eyebrow>
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
               Have an Idea? Let&apos;s Build Something Great.
             </h2>
           </FadeUp>
 
           <FadeUp delay={0.15}>
-            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+            <p className="text-sm sm:text-lg text-slate-300 font-normal leading-relaxed">
               Tell us about your business goals and challenges. Let&apos;s explore how the right technology can move your business forward.
             </p>
           </FadeUp>
@@ -150,31 +150,31 @@ export function HomeInquirySection() {
         {/* Conversion Container */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-6xl mx-auto">
           {/* Left: Contact Info & Reassurance Column */}
-          <div className="lg:col-span-5 space-y-6 text-left">
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#090f1f] border border-white/[0.08] space-y-6">
-              <h3 className="text-xl font-bold text-white tracking-tight">
+          <div className="lg:col-span-5 space-y-4 sm:space-y-6 text-left">
+            <div className="p-5 sm:p-8 rounded-3xl bg-[#090f1f] border border-white/[0.08] space-y-5 sm:space-y-6">
+              <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
                 Direct Engineering Access
               </h3>
-              <p className="text-sm text-slate-300 leading-relaxed font-normal">
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
                 No salespeople. No confusing jargon. You consult directly with senior solutions architect Bajrangi Yadav to map out your software architecture, timeline, and exact milestone costs.
               </p>
 
               {/* Quick Contacts */}
-              <div className="space-y-3 pt-2">
+              <div className="space-y-3 pt-1">
                 <a
                   href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20would%20like%20to%20discuss%20a%20software%20project."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/25 text-emerald-300 transition-all group"
+                  className="flex items-center gap-3 p-3.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/25 text-emerald-300 transition-all group min-h-[48px]"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center shrink-0">
                     <WhatsAppIcon className="w-5 h-5 text-[#25D366]" />
                   </div>
                   <div>
-                    <div className="text-[11px] font-mono uppercase text-emerald-400 font-semibold">
+                    <div className="text-[10px] sm:text-[11px] font-mono uppercase text-emerald-400 font-semibold">
                       WhatsApp Instant Chat
                     </div>
-                    <div className="text-sm font-bold font-mono text-white">
+                    <div className="text-xs sm:text-sm font-bold font-mono text-white">
                       +91 73851 21432
                     </div>
                   </div>
@@ -182,16 +182,16 @@ export function HomeInquirySection() {
 
                 <a
                   href="mailto:hello@brayontech.com"
-                  className="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-slate-200 transition-all group"
+                  className="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-slate-200 transition-all group min-h-[48px]"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0 text-blue-400">
-                    <Mail className="w-5 h-5" />
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0 text-blue-400">
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <div>
-                    <div className="text-[11px] font-mono uppercase text-slate-400 font-semibold">
+                    <div className="text-[10px] sm:text-[11px] font-mono uppercase text-slate-400 font-semibold">
                       Official Project Inquiries
                     </div>
-                    <div className="text-sm font-bold font-mono text-white">
+                    <div className="text-xs sm:text-sm font-bold font-mono text-white">
                       hello@brayontech.com
                     </div>
                   </div>
@@ -199,14 +199,14 @@ export function HomeInquirySection() {
               </div>
 
               {/* Guarantees */}
-              <div className="space-y-3 pt-4 border-t border-white/[0.06] text-xs text-slate-300 font-mono">
+              <div className="space-y-2.5 pt-3 border-t border-white/[0.06] text-xs text-slate-300 font-mono">
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4 text-blue-400 shrink-0" />
-                  <span>24-Hour Scope &amp; Architecture Turnaround</span>
+                  <span>24-Hour Scope Turnaround</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Lock className="w-4 h-4 text-blue-400 shrink-0" />
-                  <span>Strict NDA &amp; Intellectual Property Protection</span>
+                  <span>Strict NDA Protection</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-blue-400 shrink-0" />
@@ -218,21 +218,21 @@ export function HomeInquirySection() {
 
           {/* Right: The Professional Project Inquiry Form */}
           <div className="lg:col-span-7">
-            <div className="p-6 sm:p-10 rounded-3xl bg-[#090e1d] border border-blue-500/25 shadow-2xl shadow-blue-950/30 text-left">
+            <div className="p-4 sm:p-8 lg:p-10 rounded-3xl bg-[#090e1d] border border-blue-500/25 shadow-2xl shadow-blue-950/30 text-left">
               {status === "success" ? (
-                <div className="text-center py-8 space-y-6 animate-fadeIn">
-                  <div className="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-8 h-8" />
+                <div className="text-center py-6 sm:py-8 space-y-5 sm:space-y-6 animate-fadeIn">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
+                    <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8" />
                   </div>
 
                   <div className="space-y-2">
-                    <span className="font-mono text-xs text-emerald-400 uppercase tracking-widest font-semibold">
+                    <span className="font-mono text-[11px] sm:text-xs text-emerald-400 uppercase tracking-widest font-semibold">
                       Inquiry Received · {leadId}
                     </span>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                    <h3 className="text-xl sm:text-3xl font-bold text-white tracking-tight">
                       Thank You, {formData.name}!
                     </h3>
-                    <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
                       Your inquiry has been logged directly with our senior engineering team. We will review your requirements and reach out within 24 hours.
                     </p>
                   </div>
@@ -243,10 +243,10 @@ export function HomeInquirySection() {
                         href={whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-black font-bold text-sm font-mono transition-all shadow-lg shadow-emerald-950/40"
+                        className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-black font-bold text-xs sm:text-sm font-mono transition-all shadow-lg shadow-emerald-950/40 w-full sm:w-auto"
                       >
                         <WhatsAppIcon className="w-4 h-4 text-black shrink-0" />
-                        <span>Accelerate: Open Details on WhatsApp ↗</span>
+                        <span>Accelerate: Open on WhatsApp ↗</span>
                       </a>
                     </div>
                   )}
@@ -273,7 +273,7 @@ export function HomeInquirySection() {
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                   <div className="flex items-center justify-between pb-2 border-b border-white/[0.08]">
                     <span className="font-mono text-xs uppercase tracking-wider text-blue-400 font-semibold flex items-center gap-2">
                       <Sparkles className="w-3.5 h-3.5" />
@@ -285,14 +285,14 @@ export function HomeInquirySection() {
                   </div>
 
                   {errorMessage && (
-                    <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-xs text-rose-300 flex items-center gap-2 font-mono">
+                    <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-xs text-rose-300 flex items-center gap-2 font-mono">
                       <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
                       <span>{errorMessage}</span>
                     </div>
                   )}
 
                   {/* Row 1: Name & Business Email */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-1.5">
                       <label
                         htmlFor="home-name"
@@ -308,7 +308,7 @@ export function HomeInquirySection() {
                         onChange={handleChange}
                         required
                         placeholder="e.g. Rahul Sharma / David Miller"
-                        className="w-full px-4 py-3 rounded-xl bg-[#060913] border border-white/[0.1] text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full px-3.5 py-3 rounded-xl bg-[#060913] border border-white/[0.1] text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
                       />
                     </div>
 
@@ -327,13 +327,13 @@ export function HomeInquirySection() {
                         onChange={handleChange}
                         required
                         placeholder="you@company.com"
-                        className="w-full px-4 py-3 rounded-xl bg-[#060913] border border-white/[0.1] text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full px-3.5 py-3 rounded-xl bg-[#060913] border border-white/[0.1] text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
                       />
                     </div>
                   </div>
 
                   {/* Row 2: Company Name & Phone */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-1.5">
                       <label
                         htmlFor="home-company"
@@ -348,7 +348,7 @@ export function HomeInquirySection() {
                         value={formData.company}
                         onChange={handleChange}
                         placeholder="e.g. Acme Corp / JBCE"
-                        className="w-full px-4 py-3 rounded-xl bg-[#060913] border border-white/[0.1] text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full px-3.5 py-3 rounded-xl bg-[#060913] border border-white/[0.1] text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
                       />
                     </div>
 
@@ -367,13 +367,13 @@ export function HomeInquirySection() {
                         onChange={handleChange}
                         required
                         placeholder="e.g. +91 98765 43210"
-                        className="w-full px-4 py-3 rounded-xl bg-[#060913] border border-white/[0.1] text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full px-3.5 py-3 rounded-xl bg-[#060913] border border-white/[0.1] text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
                       />
                     </div>
                   </div>
 
                   {/* Row 3: Service Required & Estimated Budget */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-1.5">
                       <label
                         htmlFor="home-service"
@@ -386,7 +386,7 @@ export function HomeInquirySection() {
                         name="service"
                         value={formData.service}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl bg-[#060913] border border-white/[0.1] text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full px-3.5 py-3 rounded-xl bg-[#060913] border border-white/[0.1] text-base sm:text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
                       >
                         {SERVICE_OPTIONS.map((srv) => (
                           <option key={srv} value={srv} className="bg-[#0c1224] text-white">
@@ -408,7 +408,7 @@ export function HomeInquirySection() {
                         name="budget"
                         value={formData.budget}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl bg-[#060913] border border-white/[0.1] text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full px-3.5 py-3 rounded-xl bg-[#060913] border border-white/[0.1] text-base sm:text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
                       >
                         {BUDGET_OPTIONS.map((b) => (
                           <option key={b} value={b} className="bg-[#0c1224] text-white">
@@ -435,7 +435,7 @@ export function HomeInquirySection() {
                       onChange={handleChange}
                       required
                       placeholder="Briefly describe what you are building, your operational goals, or current bottlenecks you want software to solve..."
-                      className="w-full px-4 py-3 rounded-xl bg-[#060913] border border-white/[0.1] text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                      className="w-full px-3.5 py-3 rounded-xl bg-[#060913] border border-white/[0.1] text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
                     />
                   </div>
 
@@ -444,7 +444,7 @@ export function HomeInquirySection() {
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm font-mono tracking-wide transition-all shadow-xl shadow-blue-900/30 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed group cursor-pointer"
+                      className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm font-mono tracking-wide transition-all shadow-xl shadow-blue-900/30 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed group cursor-pointer min-h-[48px]"
                     >
                       {status === "loading" ? (
                         <>
@@ -460,7 +460,7 @@ export function HomeInquirySection() {
                     </button>
                   </div>
 
-                  <p className="text-[11px] font-mono text-center text-slate-500">
+                  <p className="text-[10px] sm:text-[11px] font-mono text-center text-slate-500">
                     By submitting, your data is handled under strict NDA confidentiality. Zero spam guaranteed.
                   </p>
                 </form>

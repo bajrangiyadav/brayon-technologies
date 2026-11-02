@@ -53,35 +53,35 @@ export function TestimonialsSection() {
     <Section spacing="xl" borderBottom className="bg-[#050813] relative overflow-hidden">
       <Container className="relative z-10">
         {/* Section Heading */}
-        <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <div className="max-w-3xl mx-auto text-center space-y-3 sm:space-y-4 mb-10 sm:mb-16">
           <FadeUp delay={0.05}>
             <Eyebrow>VERIFIED CLIENT TESTIMONIALS</Eyebrow>
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
               What Our Clients Say.
             </h2>
           </FadeUp>
 
           <FadeUp delay={0.15}>
-            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+            <p className="text-sm sm:text-lg text-slate-300 font-normal leading-relaxed">
               We present only authentic testimonials from real production systems actively running in the real world. No fabricated reviews, no inflated numbers.
             </p>
           </FadeUp>
         </div>
 
         {/* Testimonials Showcase Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {VERIFIED_TESTIMONIALS.map((t, idx) => {
             const Icon = t.icon;
             return (
               <FadeUp key={t.company} delay={0.1 * (idx + 1)}>
-                <div className="h-full p-8 sm:p-10 rounded-3xl bg-[#090f1f] border border-white/[0.08] hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between text-left shadow-xl shadow-blue-950/20 group">
+                <div className="h-full p-5 sm:p-8 lg:p-10 rounded-3xl bg-[#090f1f] border border-white/[0.08] hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between text-left shadow-xl shadow-blue-950/20 group">
                   <div>
                     {/* Header */}
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 flex items-center justify-center">
+                    <div className="flex items-center justify-between mb-5 sm:mb-6">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 flex items-center justify-center">
                         <Quote className="w-5 h-5" />
                       </div>
 
@@ -97,12 +97,12 @@ export function TestimonialsSection() {
                     </div>
 
                     {/* Feedback Quote */}
-                    <blockquote className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal mb-6 italic">
+                    <blockquote className="text-sm sm:text-base lg:text-lg text-slate-200 leading-relaxed font-normal mb-5 sm:mb-6 italic">
                       &ldquo;{t.quote}&rdquo;
                     </blockquote>
 
                     {/* Operational Impact Pill */}
-                    <div className="p-3.5 rounded-xl bg-[#060913] border border-white/[0.06] mb-6">
+                    <div className="p-3 sm:p-3.5 rounded-xl bg-[#060913] border border-white/[0.06] mb-5 sm:mb-6">
                       <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-1 flex items-center gap-1.5">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                         <span>Verified Operational Outcome:</span>

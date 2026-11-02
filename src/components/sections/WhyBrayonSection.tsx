@@ -82,50 +82,50 @@ export function WhyBrayonSection() {
 
       <Container className="relative z-10">
         {/* Section Heading */}
-        <div className="max-w-3xl mx-auto text-center space-y-4 mb-16">
+        <div className="max-w-3xl mx-auto text-center space-y-3 sm:space-y-4 mb-10 sm:mb-16">
           <FadeUp delay={0.05}>
             <Eyebrow>OUR PARTNERSHIP ADVANTAGE</Eyebrow>
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
               More Than Development. A Technology Partner.
             </h2>
           </FadeUp>
 
           <FadeUp delay={0.15}>
-            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+            <p className="text-sm sm:text-lg text-slate-300 font-normal leading-relaxed">
               Most software agencies treat projects as one-off transactions. We operate as an invested technical extension of your team, providing architectural vision and long-term peace of mind.
             </p>
           </FadeUp>
         </div>
 
         {/* Visually Interesting Architectural Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
           {/* Left Anchor Feature: The BRAYON Engineering Guarantee */}
-          <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl bg-gradient-to-br from-[#0c1428] via-[#091022] to-[#070b18] border border-blue-500/30 p-8 sm:p-10 shadow-2xl shadow-blue-950/20 text-left">
-            <div className="space-y-6">
+          <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl bg-gradient-to-br from-[#0c1428] via-[#091022] to-[#070b18] border border-blue-500/30 p-5 sm:p-8 lg:p-10 shadow-2xl shadow-blue-950/20 text-left">
+            <div className="space-y-5 sm:space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 font-mono text-xs uppercase tracking-wider font-semibold">
                 <Lock className="w-3.5 h-3.5" />
                 <span>NON-NEGOTIABLE STANDARDS</span>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-snug">
+              <h3 className="text-xl sm:text-3xl font-bold text-white tracking-tight leading-snug">
                 Built on Senior Technical Leadership &amp; 100% Client Ownership.
               </h3>
 
-              <p className="text-sm text-slate-300 leading-relaxed font-normal">
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
                 Unlike agencies that assign sales reps to pitch you and junior freelancers to write your code, at BRAYON your technical roadmap is designed and overseen by our founder and solutions architect.
               </p>
 
-              <div className="space-y-3.5 pt-2">
+              <div className="space-y-3 pt-2">
                 {[
                   "100% Source Code & Private Git Repository Transfer",
                   "Direct Access to Senior Solutions Architect",
                   "Fixed Milestone Pricing with Zero Hidden Costs",
                   "30-Day Complimentary Post-Launch Hypercare",
                 ].map((item) => (
-                  <div key={item} className="flex items-center gap-3 text-xs sm:text-sm text-slate-200">
+                  <div key={item} className="flex items-center gap-2.5 sm:gap-3 text-xs sm:text-sm text-slate-200">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                     <span>{item}</span>
                   </div>
@@ -133,14 +133,15 @@ export function WhyBrayonSection() {
               </div>
             </div>
 
-            <div className="pt-8 mt-8 border-t border-white/[0.08] flex items-center justify-between">
-              <div className="space-y-0.5">
+            <div className="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+              <div className="space-y-0.5 text-left">
                 <div className="text-xs font-mono text-slate-400">Ready to consult?</div>
                 <div className="text-sm font-bold text-white">Let&apos;s evaluate your project</div>
               </div>
+
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-mono font-medium transition-all group"
+                className="inline-flex items-center justify-center gap-1.5 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-mono font-medium transition-all group w-full sm:w-auto"
               >
                 <span>Start a Project</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -154,7 +155,7 @@ export function WhyBrayonSection() {
               const Icon = pillar.icon;
               return (
                 <FadeUp key={pillar.id} delay={0.08 * (idx + 1)}>
-                  <div className="h-full p-6 rounded-2xl bg-[#090e1c] border border-white/[0.08] hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between text-left group hover:shadow-lg hover:shadow-blue-950/20">
+                  <div className="h-full p-5 sm:p-6 rounded-2xl bg-[#090e1c] border border-white/[0.08] hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between text-left group hover:shadow-lg hover:shadow-blue-950/20">
                     <div>
                       <div className="flex items-center justify-between mb-4">
                         <div className="w-9 h-9 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 flex items-center justify-center group-hover:bg-blue-600/20 group-hover:scale-105 transition-all">
