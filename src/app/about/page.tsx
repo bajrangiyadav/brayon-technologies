@@ -1,13 +1,12 @@
 import React from "react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/common/Container";
 import Section from "@/components/common/Section";
-import SectionHeading from "@/components/common/SectionHeading";
 import Eyebrow from "@/components/common/Eyebrow";
 import Button from "@/components/common/Button";
-import Card from "@/components/common/Card";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
 import FadeUp from "@/components/animations/FadeUp";
 import { SITE_URL, COMPANY_INFO } from "@/utils/siteConfig";
@@ -20,19 +19,23 @@ import {
   Mail,
   Phone,
   Terminal,
+  Globe2,
+  Sparkles,
 } from "lucide-react";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { GitHubIcon } from "@/components/icons/GitHubIcon";
 
 export const metadata: Metadata = {
-  title: "About Us & Engineering Leadership | BRAYON Technologies",
+  title: "About BRAYON Technologies | Digital Engineering Team",
   description:
-    "Learn about BRAYON Technologies. Direct senior engineering leadership, modern software architecture, and zero agency middlemen. We engineer digital products that move businesses forward.",
+    "Learn about BRAYON Technologies. We combine strategy, design, and engineering to build powerful digital solutions that solve real business problems. Direct senior engineering leadership & 100% IP ownership.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About Us & Engineering Leadership | BRAYON Technologies",
+    title: "About BRAYON Technologies | Digital Engineering Team",
     description:
-      "Direct senior engineering leadership, modern architecture, and 100% IP ownership. We don't just talk about technology. We build it.",
+      "Building Digital Experiences That Move Businesses Forward. Partner directly with senior engineering leadership.",
     url: `${SITE_URL}/about`,
     siteName: COMPANY_INFO.name,
     type: "website",
@@ -41,15 +44,14 @@ export const metadata: Metadata = {
         url: "/brayon-logo-showcase.png",
         width: 1200,
         height: 630,
-        alt: "About BRAYON Technologies - Engineering Leadership",
+        alt: "About BRAYON Technologies",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Us & Engineering Leadership | BRAYON Technologies",
-    description:
-      "Direct senior engineering leadership, modern architecture, and 100% IP ownership.",
+    title: "About BRAYON Technologies | Digital Engineering Team",
+    description: "Building Digital Experiences That Move Businesses Forward.",
     images: ["/brayon-logo-showcase.png"],
   },
 };
@@ -76,7 +78,7 @@ const PRINCIPLES = [
   {
     title: "Architected for Real Operations",
     description:
-      "Every architecture is designed to solve real business bottlenecks—from high-throughput wholesale ordering to automated AI voice qualification—engineered for 99.9% uptime.",
+      "Every architecture is designed to solve real business bottlenecks—from high-throughput wholesale ordering to sub-second student certificate verification.",
     icon: Zap,
   },
 ];
@@ -93,7 +95,7 @@ export default function AboutPage() {
       "@type": "Person",
       name: COMPANY_INFO.founder.name,
       jobTitle: COMPANY_INFO.founder.role,
-      url: `${SITE_URL}/about`,
+      url: `${SITE_URL}/about#founder`,
       worksFor: {
         "@type": "Organization",
         name: COMPANY_INFO.name,
@@ -102,63 +104,103 @@ export default function AboutPage() {
     },
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "About Us",
+        item: `${SITE_URL}/about`,
+      },
+    ],
+  };
+
   return (
-    <div className="min-h-screen bg-[#070a12] text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-[#060913] text-slate-100 flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <Navbar />
 
       <main className="flex-grow pt-28">
         {/* Editorial Header */}
-        <section className="py-16 md:py-24 border-b border-white/[0.08] relative">
-          <Container>
-            <div className="mb-6">
+        <section className="py-16 md:py-24 border-b border-white/[0.08] relative overflow-hidden bg-gradient-to-b from-[#080d1a] to-[#060913]">
+          <div className="absolute top-1/4 right-10 w-96 h-96 bg-blue-600/[0.05] rounded-full blur-[140px] pointer-events-none" />
+
+          <Container className="relative z-10">
+            <div className="mb-6 text-left">
               <Breadcrumbs items={[{ label: "About Us" }]} />
             </div>
-            <div className="max-w-3xl">
+
+            <div className="max-w-4xl text-left space-y-4">
               <FadeUp delay={0.05}>
-                <Eyebrow>BRAYON TECHNOLOGIES · ENGINEERING LEADERSHIP</Eyebrow>
+                <Eyebrow>BRAYON TECHNOLOGIES · BRAND MISSION &amp; ORIGIN</Eyebrow>
               </FadeUp>
+
               <FadeUp delay={0.1}>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white mt-4 leading-tight">
-                  We Don&apos;t Just Talk About Technology. We Build It.
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+                  Building Digital Experiences That Move Businesses Forward.
                 </h1>
               </FadeUp>
+
               <FadeUp delay={0.15}>
-                <p className="mt-5 text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-                  BRAYON Technologies was founded on a simple premise: modern businesses deserve software built with rigorous engineering standards, transparent delivery, and direct technical collaboration.
+                <p className="text-lg sm:text-xl text-blue-300 font-medium leading-relaxed">
+                  We combine strategy, design, and engineering to build powerful digital solutions that solve real business problems.
+                </p>
+              </FadeUp>
+
+              <FadeUp delay={0.2}>
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal max-w-3xl">
+                  BRAYON Technologies was founded on a simple premise: modern businesses deserve software built with rigorous engineering standards, transparent milestone delivery, and direct technical collaboration. We partner with ambitious startups, growing enterprises, and established institutions in India, the United States, the United Kingdom, and globally.
                 </p>
               </FadeUp>
             </div>
           </Container>
         </section>
 
-        {/* Engineering Lead Spotlight */}
-        <Section spacing="lg" borderBottom>
+        {/* Founder Spotlight Section */}
+        <Section id="founder" spacing="lg" borderBottom className="bg-[#050813]">
           <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center text-left">
               <div className="lg:col-span-7 space-y-6">
-                <Eyebrow>TECHNICAL LEADERSHIP</Eyebrow>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white tracking-tight">
+                <Eyebrow>LEADERSHIP &amp; TECHNICAL PROMISE</Eyebrow>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
                   Direct Engineering Ownership on Every Engagement
                 </h2>
-                <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                  Too many software projects fail not because of technology, but because of misaligned incentives, fragmented communication, and bloated agency layers that separate engineers from the business problem.
-                </p>
-                <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                  At BRAYON Technologies, technology lead <strong>Bajrangi Yadav</strong> personally oversees the technical specification, database architecture, and code quality for every project. From schema design to production deployment, our engineering standards remain uncompromised.
+
+                <blockquote className="text-base sm:text-lg text-slate-200 leading-relaxed italic border-l-2 border-blue-500 pl-4 py-1">
+                  &ldquo;Building technology with a focus on solving real business challenges. My vision is to make reliable, scalable, and meaningful digital solutions accessible to businesses of every size.&rdquo;
+                </blockquote>
+
+                <p className="text-slate-300 leading-relaxed text-sm sm:text-base font-normal">
+                  Too many software projects fail not because of technology, but because of misaligned incentives, fragmented communication, and bloated agency layers that separate engineers from the real business problem.
                 </p>
 
-                <div className="p-6 rounded-2xl bg-[#0d1322] border border-white/[0.08] space-y-3">
-                  <div className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                <p className="text-slate-300 leading-relaxed text-sm sm:text-base font-normal">
+                  At BRAYON Technologies, founder and solutions architect <strong>Bajrangi Yadav</strong> personally oversees the technical specification, database architecture, and code quality for every project. From schema design to production deployment, our engineering standards remain uncompromised.
+                </p>
+
+                <div className="p-6 rounded-2xl bg-[#090f1f] border border-white/[0.08] space-y-3">
+                  <div className="text-xs font-mono text-blue-400 uppercase tracking-wider font-semibold">
                     Our Engineering Commitments:
                   </div>
                   <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
                     <li className="flex items-center gap-2.5">
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <span>Direct technical collaboration with senior engineers.</span>
+                      <span>Direct technical collaboration with senior engineers—zero junior middlemen.</span>
                     </li>
                     <li className="flex items-center gap-2.5">
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -166,7 +208,7 @@ export default function AboutPage() {
                     </li>
                     <li className="flex items-center gap-2.5">
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <span>Complete source code and cloud ownership transferred upon delivery.</span>
+                      <span>100% complete source code, private Git repositories, and cloud keys transferred upon delivery.</span>
                     </li>
                   </ul>
                 </div>
@@ -174,90 +216,111 @@ export default function AboutPage() {
                 <div className="pt-2 flex flex-wrap items-center gap-3">
                   <a
                     href="mailto:hello@brayontech.com"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-mono text-slate-300 hover:text-white transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-mono text-slate-300 hover:text-white transition-colors"
                   >
                     <Mail className="w-3.5 h-3.5 text-blue-400" />
                     <span>hello@brayontech.com</span>
                   </a>
+
                   <a
-                    href="tel:+917385121432"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-mono text-slate-300 hover:text-white transition-colors"
+                    href="https://github.com/bajrangiyadav"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-mono text-slate-300 hover:text-white transition-colors"
                   >
-                    <Phone className="w-3.5 h-3.5 text-blue-400" />
+                    <GitHubIcon className="w-3.5 h-3.5 text-blue-400" />
+                    <span>GitHub Profile</span>
+                  </a>
+
+                  <a
+                    href={`https://wa.me/${COMPANY_INFO.contact.whatsappNumber}?text=Hi%20Bajrangi,%20I%20would%20like%20to%20discuss%20a%20software%20project.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 text-emerald-400 font-mono text-xs transition-colors"
+                  >
+                    <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] shrink-0" />
                     <span>+91 73851 21432</span>
                   </a>
                 </div>
               </div>
 
+              {/* Delivery Verification Card */}
               <div className="lg:col-span-5">
-                <Card variant="elevated" padding="lg" className="space-y-6 border-blue-500/20">
+                <div className="p-8 rounded-3xl bg-[#090f1f] border border-blue-500/30 space-y-6 shadow-2xl shadow-blue-950/30">
                   <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
-                    <span className="text-xs font-mono uppercase tracking-wider text-slate-400">
-                      DELIVERY VERIFICATION
+                    <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">
+                      ENGINEERING STANDARDS
                     </span>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                      ACTIVE
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
+                      VERIFIED
                     </span>
                   </div>
 
                   <div className="space-y-4">
-                    <div>
-                      <div className="font-mono text-3xl font-semibold text-white">2</div>
+                    <div className="p-3.5 rounded-xl bg-[#060913] border border-white/[0.06]">
+                      <div className="font-mono text-2xl font-bold text-white">100%</div>
                       <div className="text-xs font-mono text-slate-400 mt-1 uppercase">
-                        Active Production Platforms
+                        Private Git &amp; Cloud Ownership Transfer
                       </div>
                     </div>
-                    <div className="pt-3 border-t border-white/[0.06]">
-                      <div className="font-mono text-3xl font-semibold text-white">2</div>
+
+                    <div className="p-3.5 rounded-xl bg-[#060913] border border-white/[0.06]">
+                      <div className="font-mono text-2xl font-bold text-emerald-400">0 Seconds</div>
                       <div className="text-xs font-mono text-slate-400 mt-1 uppercase">
-                        Real Production Clients
+                        Peak Downtime Across Exam Result Portals
                       </div>
                     </div>
-                    <div className="pt-3 border-t border-white/[0.06]">
-                      <div className="font-mono text-3xl font-semibold text-blue-400">0%</div>
+
+                    <div className="p-3.5 rounded-xl bg-[#060913] border border-white/[0.06]">
+                      <div className="font-mono text-2xl font-bold text-blue-400">30-Day</div>
                       <div className="text-xs font-mono text-slate-400 mt-1 uppercase">
-                        Vendor Lock-In Guarantee
+                        Complimentary Hypercare Warranty
                       </div>
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-white/[0.08]">
+                  <div className="pt-2">
                     <Button variant="primary" size="md" href="/contact" className="w-full">
-                      Start a Project
+                      Start a Project Discussion
                     </Button>
                   </div>
-                </Card>
+                </div>
               </div>
             </div>
           </Container>
         </Section>
 
         {/* Operating Principles */}
-        <Section variant="surface" spacing="lg" borderBottom>
+        <Section spacing="lg" borderBottom className="bg-[#060a16]">
           <Container>
-            <SectionHeading
-              eyebrow="CORE VALUES"
-              title="How We Approach Software Development."
-              description="Our principles guide every architectural decision, commit, and client interaction."
-            />
+            <div className="max-w-3xl mx-auto text-center space-y-4 mb-12">
+              <Eyebrow>CORE VALUES</Eyebrow>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                How We Approach Software Development
+              </h2>
+              <p className="text-sm text-slate-300">
+                Our principles guide every architectural decision, database query, and sprint demo.
+              </p>
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {PRINCIPLES.map((principle, idx) => {
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+              {PRINCIPLES.map((principle) => {
                 const Icon = principle.icon;
                 return (
-                  <FadeUp key={principle.title} delay={0.05 * idx}>
-                    <Card variant="default" padding="md" className="h-full">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-9 h-9 rounded-lg bg-blue-600/15 border border-blue-500/30 flex items-center justify-center text-blue-400">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-white">{principle.title}</h3>
+                  <div
+                    key={principle.title}
+                    className="p-8 rounded-2xl bg-[#090e1d] border border-white/[0.08] hover:border-blue-500/30 transition-all space-y-3"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 flex items-center justify-center">
+                        <Icon className="w-5 h-5" />
                       </div>
-                      <p className="text-sm text-slate-400 leading-relaxed">
-                        {principle.description}
-                      </p>
-                    </Card>
-                  </FadeUp>
+                      <h3 className="text-lg font-bold text-white">{principle.title}</h3>
+                    </div>
+                    <p className="text-sm text-slate-300 leading-relaxed font-normal">
+                      {principle.description}
+                    </p>
+                  </div>
                 );
               })}
             </div>
@@ -265,15 +328,15 @@ export default function AboutPage() {
         </Section>
 
         {/* Bottom CTA */}
-        <Section spacing="lg">
+        <Section spacing="lg" className="bg-[#050813]">
           <Container>
-            <div className="p-8 sm:p-12 rounded-3xl bg-[#0d1322] border border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="space-y-2 text-left">
-                <h3 className="text-2xl font-semibold text-white">
+            <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-[#0c1428] via-[#091022] to-[#0c1428] border border-blue-500/30 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold text-white">
                   Have a technical project to discuss?
                 </h3>
-                <p className="text-sm text-slate-400 max-w-lg">
-                  Reach out for a direct technical review of your requirements, timeline, and recommended architecture.
+                <p className="text-sm text-slate-300 max-w-lg leading-relaxed">
+                  Reach out for a direct technical review of your requirements, timeline, and recommended software architecture.
                 </p>
               </div>
               <Button

@@ -1,56 +1,58 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 import Container from "../common/Container";
 import { WhatsAppIcon } from "../icons/WhatsAppIcon";
+import { GitHubIcon } from "../icons/GitHubIcon";
+import { COMPANY_INFO } from "@/utils/siteConfig";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    company: [
+    navigation: [
+      { label: "Home", href: "/" },
       { label: "About Us", href: "/about" },
-      { label: "Our Process", href: "/#process" },
-      { label: "Contact & Inquiries", href: "/contact" },
+      { label: "Services", href: "/services" },
+      { label: "Industries", href: "/industries" },
+      { label: "Our Work", href: "/work" },
+      { label: "Contact Us", href: "/contact" },
     ],
     services: [
-      { label: "Custom Software", href: "/custom-software-development" },
-      { label: "Laravel Development", href: "/laravel-development" },
-      { label: "E-Commerce Systems", href: "/ecommerce-development" },
-      { label: "CRM & ERP Systems", href: "/crm-erp-development" },
-      { label: "Mobile Applications", href: "/mobile-app-development" },
-      { label: "All Services Overview", href: "/services" },
+      { label: "Custom Software Development", href: "/services/custom-software-development" },
+      { label: "Web Application Development", href: "/services/web-application-development" },
+      { label: "CRM & ERP Solutions", href: "/services/crm-development" },
+      { label: "E-commerce Development", href: "/services/ecommerce-development" },
+      { label: "Mobile App Development", href: "/services/mobile-app-development" },
+      { label: "AI & Business Automation", href: "/services/ai-automation" },
+      { label: "API Engineering & Integration", href: "/services/api-development" },
+      { label: "UI/UX Product Design", href: "/services/ui-ux-design" },
     ],
     industries: [
-      { label: "E-Commerce & Retail", href: "/industries#ecommerce" },
-      { label: "Mobility & Logistics", href: "/industries#logistics" },
-      { label: "Wholesale & Trading", href: "/industries#wholesale" },
-      { label: "B2B SaaS & Tech", href: "/industries#saas" },
+      { label: "Education & EdTech", href: "/industries/education" },
+      { label: "Retail & E-commerce", href: "/industries/retail-ecommerce" },
+      { label: "Healthcare & Life Sciences", href: "/industries/healthcare" },
+      { label: "Logistics & Supply Chain", href: "/industries/logistics" },
+      { label: "Finance & Invoicing", href: "/industries/finance" },
+      { label: "Startups & Growth Ventures", href: "/industries/startups" },
     ],
     caseStudies: [
       { label: "Jay Balaji Computer Education (JBCE)", href: "/case-studies/jbce" },
       { label: "Mumbai Hindi Vidyapeeth (MHVP)", href: "/case-studies/mhvp" },
-    ],
-    technology: [
-      { label: "Next.js & React", href: "/technology#frontend" },
-      { label: "Laravel & Node.js", href: "/technology#backend" },
-      { label: "PostgreSQL & MySQL", href: "/technology#database" },
-      { label: "AI & Automation APIs", href: "/technology#ai" },
-      { label: "Cloud Infrastructure", href: "/technology#cloud" },
-    ],
-    insights: [
-      { label: "AI Automation Deep Dive", href: "/insights/ai-automation-from-experiment-to-business-workflow" },
-      { label: "E-Commerce Backend Engineering", href: "/insights/building-scalable-ecommerce-systems-laravel-redis" },
-      { label: "Custom vs. Off-the-Shelf Platforms", href: "/insights/why-modern-businesses-need-custom-digital-platforms" },
+      { label: "SafeGrowTrade B2B Commerce", href: "/case-studies/safegrowtrade" },
+      { label: "Ashapura Dry Fruits D2C", href: "/case-studies/ashapura-dry-fruits" },
+      { label: "DriveZone Automotive Care", href: "/case-studies/drivezone" },
+      { label: "HR SaaS Workforce Platform", href: "/case-studies/hr-saas" },
     ],
   };
 
   return (
-    <footer className="w-full bg-[#05070d] border-t border-white/[0.08] text-slate-400 text-sm">
+    <footer className="w-full bg-[#03050a] border-t border-white/[0.08] text-slate-400 text-sm">
       <Container className="pt-16 pb-12">
         {/* Brand & Value statement */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-14 border-b border-white/[0.08]">
-          <div className="lg:col-span-5 space-y-4">
+          <div className="lg:col-span-6 space-y-4 text-left">
             <Link href="/" className="inline-block relative h-8 w-44">
               <Image
                 src="/brayon-logo-vector-dark.svg"
@@ -59,49 +61,74 @@ export function Footer() {
                 className="object-contain object-left"
               />
             </Link>
-            <p className="text-slate-300 font-medium text-base">
-              We Build Digital Products That Move Businesses Forward.
+            <p className="text-slate-200 font-semibold text-base sm:text-lg">
+              Building Digital Experiences That Move Businesses Forward.
             </p>
-            <p className="text-slate-400 text-sm max-w-md leading-relaxed">
-              BRAYON Technologies designs and engineers scalable digital products, custom platforms, and AI-driven solutions with senior engineering discipline.
+            <p className="text-slate-400 text-sm max-w-lg leading-relaxed font-normal">
+              BRAYON Technologies combines strategy, design, and engineering to build powerful digital solutions that solve real business problems. We partner with ambitious companies in India, the US, the UK, and internationally.
             </p>
-            <div className="pt-2 text-xs font-mono text-slate-500">
-              We don&apos;t just talk about technology. We build it.
+
+            <div className="flex items-center gap-3 pt-2">
+              <a
+                href={COMPANY_INFO.social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-slate-300 hover:text-white transition-colors"
+                title="GitHub"
+              >
+                <GitHubIcon className="w-4 h-4" />
+              </a>
+              <a
+                href={`mailto:${COMPANY_INFO.contact.email}`}
+                className="p-2.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-slate-300 hover:text-white transition-colors"
+                title="Email"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+              <a
+                href={`https://wa.me/${COMPANY_INFO.contact.whatsappNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/25 text-emerald-400 transition-colors"
+                title="WhatsApp"
+              >
+                <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+              </a>
             </div>
           </div>
 
-          {/* Quick Stats / Delivery Highlights */}
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6 self-center">
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-              <div className="font-mono text-2xl font-semibold text-slate-100">2</div>
-              <div className="text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">
-                Completed Projects
+          {/* Quick Engineering Guarantees */}
+          <div className="lg:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-4 self-center">
+            <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] text-left">
+              <div className="font-mono text-xl sm:text-2xl font-bold text-slate-100">100%</div>
+              <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400 mt-1">
+                IP &amp; Git Ownership
               </div>
             </div>
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-              <div className="font-mono text-2xl font-semibold text-slate-100">2</div>
-              <div className="text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">
-                Production Clients
+            <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] text-left">
+              <div className="font-mono text-xl sm:text-2xl font-bold text-emerald-400">0s</div>
+              <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400 mt-1">
+                Peak Load Downtime
               </div>
             </div>
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] col-span-2 sm:col-span-1">
-              <div className="font-mono text-2xl font-semibold text-blue-400">100%</div>
-              <div className="text-xs font-mono uppercase tracking-wider text-slate-400 mt-1">
-                IP & Code Ownership
+            <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] text-left col-span-2 sm:col-span-1">
+              <div className="font-mono text-xl sm:text-2xl font-bold text-blue-400">30-Day</div>
+              <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400 mt-1">
+                Hypercare Warranty
               </div>
             </div>
           </div>
         </div>
 
         {/* Multi-column Navigation */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 py-12">
-          {/* Company */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-12 text-left">
+          {/* Column 1: Navigation */}
           <div>
             <h4 className="font-mono text-xs uppercase tracking-wider font-semibold text-slate-200 mb-4">
-              Company
+              Navigation
             </h4>
             <ul className="space-y-2.5 text-xs">
-              {footerLinks.company.map((link) => (
+              {footerLinks.navigation.map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="hover:text-white transition-colors">
                     {link.label}
@@ -111,7 +138,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Column 2: Services */}
           <div>
             <h4 className="font-mono text-xs uppercase tracking-wider font-semibold text-slate-200 mb-4">
               Services
@@ -127,7 +154,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Industries */}
+          {/* Column 3: Industries */}
           <div>
             <h4 className="font-mono text-xs uppercase tracking-wider font-semibold text-slate-200 mb-4">
               Industries
@@ -143,12 +170,12 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Case Studies */}
+          {/* Column 4: Production Projects & Contact */}
           <div>
             <h4 className="font-mono text-xs uppercase tracking-wider font-semibold text-slate-200 mb-4">
-              Case Studies
+              Verified Projects
             </h4>
-            <ul className="space-y-2.5 text-xs">
+            <ul className="space-y-2.5 text-xs mb-6">
               {footerLinks.caseStudies.map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="hover:text-white transition-colors">
@@ -157,74 +184,46 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
 
-          {/* Technology */}
-          <div>
-            <h4 className="font-mono text-xs uppercase tracking-wider font-semibold text-slate-200 mb-4">
-              Technology
+            <h4 className="font-mono text-xs uppercase tracking-wider font-semibold text-slate-200 mb-2">
+              Direct Contact
             </h4>
-            <ul className="space-y-2.5 text-xs">
-              {footerLinks.technology.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="hover:text-white transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-mono text-xs uppercase tracking-wider font-semibold text-slate-200 mb-4">
-              Contact
-            </h4>
-            <div className="space-y-2.5 text-xs">
-              <Link href="/contact" className="block text-blue-400 hover:text-blue-300 font-medium">
-                Start a Project &rarr;
-              </Link>
-              <div className="text-slate-400 font-mono text-[11px] pt-1">
-                Mumbai, Maharashtra, India
-              </div>
+            <div className="space-y-1.5 text-xs font-mono">
               <a
                 href="mailto:hello@brayontech.com"
-                className="block hover:text-white font-mono text-[11px] transition-colors"
+                className="block text-slate-300 hover:text-white transition-colors"
               >
                 hello@brayontech.com
               </a>
               <a
-                href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20would%20like%20to%20discuss%20a%20software%20project."
+                href={`https://wa.me/${COMPANY_INFO.contact.whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 font-mono text-[11px] transition-colors"
+                className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors"
               >
                 <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] shrink-0" />
-                <span>+91 73851 21432 (WhatsApp)</span>
+                <span>+91 73851 21432</span>
               </a>
-              <a
-                href="tel:+917385121432"
-                className="block hover:text-white font-mono text-[11px] transition-colors"
-              >
-                +91 73851 21432 (Call)
-              </a>
+              <div className="text-slate-500 text-[11px] pt-1">
+                Mumbai, Maharashtra, India
+              </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Legal bar */}
-        <div className="pt-8 mt-4 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-mono">
+        <div className="pt-8 mt-4 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-mono">
           <div>
             &copy; {currentYear} BRAYON Technologies. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
-            <Link href="/privacy" className="hover:text-slate-200 transition-colors">
+            <Link href="/privacy-policy" className="hover:text-slate-300 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-slate-200 transition-colors">
-              Terms of Service
+            <Link href="/terms-and-conditions" className="hover:text-slate-300 transition-colors">
+              Terms &amp; Conditions
             </Link>
-            <Link href="/cookies" className="hover:text-slate-200 transition-colors">
+            <Link href="/cookies" className="hover:text-slate-300 transition-colors">
               Cookie Policy
             </Link>
           </div>

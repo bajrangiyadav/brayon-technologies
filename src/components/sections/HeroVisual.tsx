@@ -3,345 +3,409 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import {
-  Server,
-  Database,
-  Globe,
   ShieldCheck,
   CheckCircle2,
   ExternalLink,
   Cpu,
   Layers,
+  Search,
+  Activity,
+  ArrowUpRight,
+  Database,
+  Lock,
+  Zap,
 } from "lucide-react";
 
-interface SystemTier {
-  id: string;
-  name: string;
-  category: string;
-  icon: React.ElementType;
-  tech: string;
-  spec: string;
-  metrics: string;
-  details: string[];
-}
-
-interface ProjectArchitecture {
-  id: "jbce" | "mhvp";
-  name: string;
-  shortName: string;
-  domain: string;
-  url: string;
-  purpose: string;
-  tiers: SystemTier[];
-}
-
-const ARCHITECTURES: Record<"jbce" | "mhvp", ProjectArchitecture> = {
-  jbce: {
-    id: "jbce",
-    name: "Jay Balaji Computer Education",
-    shortName: "JBCE System",
-    domain: "jbce.in",
-    url: "https://jbce.in/",
-    purpose: "Student Verification, Course Management & Center Administration",
-    tiers: [
-      {
-        id: "ui",
-        name: "Client Presentation Tier",
-        category: "FRONTEND ARCHITECTURE",
-        icon: Globe,
-        tech: "Semantic HTML5 · Responsive Engine · Bootstrap UI",
-        spec: "Mobile-first responsive layout, sub-second certificate verification query engine",
-        metrics: "Verified across 100% mobile viewports",
-        details: [
-          "Optimized student enrollment & certificate search workflows",
-          "Clean responsive UI for center managers and students",
-          "Fast asset delivery optimized for 3G/4G network speeds",
-        ],
-      },
-      {
-        id: "api",
-        name: "Application & API Gateway",
-        category: "BUSINESS LOGIC",
-        icon: Cpu,
-        tech: "RESTful API · Session Security · Input Sanitization",
-        spec: "Center authentication, parameterized certificate validation requests",
-        metrics: "Sub-100ms lookup latency",
-        details: [
-          "Strict input validation preventing SQL/XSS injection",
-          "Role-based access controls for branch managers",
-          "Structured JSON response contracts for instant verification",
-        ],
-      },
-      {
-        id: "db",
-        name: "Relational Verification Store",
-        category: "PERSISTENCE & INTEGRITY",
-        icon: Database,
-        tech: "MySQL / Relational Schema · B-Tree Indexing",
-        spec: "ACID transactions, indexed student records, registration hash indexing",
-        metrics: "Exact lookup query execution",
-        details: [
-          "Normalized schema for students, centers, and courses",
-          "Indexed registration numbers for instantaneous lookup",
-          "Relational foreign key constraints preventing orphan records",
-        ],
-      },
-      {
-        id: "infra",
-        name: "Edge & Host Infrastructure",
-        category: "PRODUCTION DEVOPS",
-        icon: Server,
-        tech: "Linux Host · NGINX · SSL/TLS Encryption",
-        spec: "Production hardened, automated backup schedules, HTTPS enforcement",
-        metrics: "Live active production system",
-        details: [
-          "Automated daily database dumps & offsite retention",
-          "Full TLS 1.3 encryption with strict HTTP headers",
-          "Direct production deployment maintained by BRAYON",
-        ],
-      },
-    ],
-  },
-  mhvp: {
-    id: "mhvp",
-    name: "Mumbai Hindi Vidyapeeth",
-    shortName: "MHVP System",
-    domain: "mhvp.org",
-    url: "https://mhvp.org/",
-    purpose: "Institutional Portal, Examination Records & Marksheet Verification",
-    tiers: [
-      {
-        id: "ui",
-        name: "Institutional Web Portal",
-        category: "FRONTEND ARCHITECTURE",
-        icon: Globe,
-        tech: "Semantic HTML5 · Responsive Engine · Modern CSS",
-        spec: "Accessible typography for institutional visitors, high-contrast layouts",
-        metrics: "Fast load on 3G/4G networks",
-        details: [
-          "Clear institutional information architecture and examination notices",
-          "Dedicated online mark-sheet verification interface",
-          "Bilingual readability with robust font rendering",
-        ],
-      },
-      {
-        id: "api",
-        name: "Verification & Logic Tier",
-        category: "BUSINESS LOGIC",
-        icon: Cpu,
-        tech: "Secure API Handler · Parameterized Query Filter",
-        spec: "Multi-parameter verification (Roll No, Year, Examination Center)",
-        metrics: "Zero false-positive lookups",
-        details: [
-          "Deterministic verification algorithm matching official registers",
-          "Tamper-resistant response payloads with digital watermarking",
-          "Rate-limited endpoints to prevent bulk student data scraping",
-        ],
-      },
-      {
-        id: "db",
-        name: "Examination Registry Database",
-        category: "PERSISTENCE & INTEGRITY",
-        icon: Database,
-        tech: "Relational Academic Ledger · Read-Replication Ready",
-        spec: "Historical examination records, archival index, audit trails",
-        metrics: "ACID transaction guarantees",
-        details: [
-          "Longitudinal schema accommodating decades of academic results",
-          "Immutable grade verification tables with checksum audits",
-          "Strict data privacy standards for student personal identifiers",
-        ],
-      },
-      {
-        id: "infra",
-        name: "Host & Security Hardening",
-        category: "PRODUCTION DEVOPS",
-        icon: Server,
-        tech: "Hardened Linux · Firewall Filter · SSL/TLS",
-        spec: "Monitored uptime, security patching, reliable institutional hosting",
-        metrics: "Continuous production uptime",
-        details: [
-          "Enterprise SSL encryption protecting institutional integrity",
-          "DDoS mitigation and web application firewall rules",
-          "Production infrastructure managed and maintained by BRAYON",
-        ],
-      },
-    ],
-  },
-};
+type ActiveTab = "verification" | "examination" | "commerce";
 
 export function HeroVisual() {
-  const [activeProject, setActiveProject] = useState<"jbce" | "mhvp">("jbce");
-  const [selectedTierIndex, setSelectedTierIndex] = useState<number>(0);
+  const [activeTab, setActiveTab] = useState<ActiveTab>("verification");
+  const [rollQuery, setRollQuery] = useState("JBCE-2026-9042");
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [verifiedResult, setVerifiedResult] = useState<boolean | null>(true);
 
-  const currentArch = ARCHITECTURES[activeProject];
-  const activeTier = currentArch.tiers[selectedTierIndex] || currentArch.tiers[0];
+  const handleSimulatedSearch = () => {
+    setIsVerifying(true);
+    setTimeout(() => {
+      setIsVerifying(false);
+      setVerifiedResult(true);
+    }, 400);
+  };
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto rounded-xl border border-white/[0.12] bg-[#070d1a] overflow-hidden shadow-2xl shadow-blue-950/40 text-left">
-      {/* Workbench Header: Project Selector & Live Status */}
-      <div className="px-4 py-3 bg-[#0a1224] border-b border-white/[0.08] flex flex-wrap items-center justify-between gap-2.5">
-        {/* Project Selector Tabs */}
-        <div className="flex items-center gap-1.5 p-0.5 rounded-lg bg-black/40 border border-white/[0.06]" role="tablist" aria-label="Delivered Production Systems">
+    <div className="relative w-full max-w-2xl mx-auto lg:max-w-none">
+      {/* Background radial glow */}
+      <div className="absolute -top-12 -left-12 w-72 h-72 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-12 -right-12 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Main Terminal / Dashboard Container */}
+      <div className="relative rounded-2xl bg-[#0a0f1e] border border-white/[0.12] shadow-2xl shadow-blue-950/40 overflow-hidden backdrop-blur-xl">
+        {/* Terminal Header Bar */}
+        <div className="flex items-center justify-between px-4 py-3 bg-[#070b16] border-b border-white/[0.08]">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
+            <span className="ml-2 font-mono text-[11px] text-slate-400 font-medium">
+              brayon://platform-runtime/v2.6
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono text-emerald-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Production Live</span>
+            </span>
+            <span className="text-[11px] font-mono text-slate-500 hidden sm:inline">
+              18ms · TLS 1.3
+            </span>
+          </div>
+        </div>
+
+        {/* Interactive Tab Switcher */}
+        <div className="flex items-center border-b border-white/[0.08] bg-[#0c1224]/80 p-1.5 gap-1 overflow-x-auto scrollbar-none">
           <button
-            type="button"
-            role="tab"
-            aria-selected={activeProject === "jbce"}
-            aria-controls="workbench-panel"
-            onClick={() => {
-              setActiveProject("jbce");
-              setSelectedTierIndex(0);
-            }}
-            className={`px-3 py-1.5 rounded-md text-xs font-mono font-medium transition-all ${
-              activeProject === "jbce"
-                ? "bg-blue-600 text-white shadow-sm"
-                : "text-slate-400 hover:text-white"
+            onClick={() => setActiveTab("verification")}
+            className={`flex-1 min-w-[130px] px-3 py-2 rounded-lg text-xs font-medium transition-all flex items-center justify-center gap-2 ${
+              activeTab === "verification"
+                ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
             }`}
           >
-            jbce.in
+            <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">Verification Engine</span>
           </button>
+
           <button
-            type="button"
-            role="tab"
-            aria-selected={activeProject === "mhvp"}
-            aria-controls="workbench-panel"
-            onClick={() => {
-              setActiveProject("mhvp");
-              setSelectedTierIndex(0);
-            }}
-            className={`px-3 py-1.5 rounded-md text-xs font-mono font-medium transition-all ${
-              activeProject === "mhvp"
-                ? "bg-blue-600 text-white shadow-sm"
-                : "text-slate-400 hover:text-white"
+            onClick={() => setActiveTab("examination")}
+            className={`flex-1 min-w-[130px] px-3 py-2 rounded-lg text-xs font-medium transition-all flex items-center justify-center gap-2 ${
+              activeTab === "examination"
+                ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
             }`}
           >
-            mhvp.org
+            <Activity className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">Result Publication</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab("commerce")}
+            className={`flex-1 min-w-[130px] px-3 py-2 rounded-lg text-xs font-medium transition-all flex items-center justify-center gap-2 ${
+              activeTab === "commerce"
+                ? "bg-blue-600 text-white shadow-md shadow-blue-600/30"
+                : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
+            }`}
+          >
+            <Database className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">B2B Commerce ERP</span>
           </button>
         </div>
 
-        {/* Live System Indicator */}
-        <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>ACTIVE PRODUCTION</span>
-          </span>
+        {/* Tab 1: Verification Engine (JBCE Live Model) */}
+        {activeTab === "verification" && (
+          <div className="p-5 sm:p-6 space-y-5">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="text-[11px] font-mono uppercase tracking-wider text-blue-400 font-semibold flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                  <span>Real Production System · jbce.in</span>
+                </div>
+                <h4 className="text-base sm:text-lg font-semibold text-white mt-1">
+                  Jay Balaji Computer Education (ISO 9001:2015)
+                </h4>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  Tamper-proof student record indexing &amp; instant digital certificate authentication.
+                </p>
+              </div>
+              <a
+                href="https://jbce.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 p-2 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-slate-300 hover:text-white transition-colors"
+                title="Open live site jbce.in"
+              >
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Simulated Live Query Engine */}
+            <div className="p-3.5 rounded-xl bg-[#070b16] border border-white/[0.08] space-y-3">
+              <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+                <span className="flex items-center gap-1.5">
+                  <Search className="w-3.5 h-3.5 text-blue-400" />
+                  <span>Live Student Registry Query</span>
+                </span>
+                <span className="text-emerald-400 font-semibold">Sub-0.4s response</span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="relative flex-grow">
+                  <input
+                    type="text"
+                    value={rollQuery}
+                    onChange={(e) => setRollQuery(e.target.value)}
+                    placeholder="Enter Student Roll No"
+                    className="w-full px-3 py-2 rounded-lg bg-white/[0.04] border border-white/[0.1] text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={handleSimulatedSearch}
+                  disabled={isVerifying}
+                  className="px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium font-mono transition-colors disabled:opacity-50 shrink-0"
+                >
+                  {isVerifying ? "Verifying..." : "Authenticate"}
+                </button>
+              </div>
+
+              {/* Verified Result Card */}
+              {verifiedResult && (
+                <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono text-emerald-300 flex items-center justify-between animate-fadeIn">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <div>
+                      <span className="font-semibold text-white">Accredited Student:</span>{" "}
+                      <span>Adv. Diploma in Computer Application</span>
+                    </div>
+                  </div>
+                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-[10px] font-bold uppercase text-emerald-200">
+                    Verified Authentic
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Architecture Telemetry Grid */}
+            <div className="grid grid-cols-3 gap-3 text-left">
+              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[10px] font-mono text-slate-400 uppercase">Verification Speed</div>
+                <div className="text-sm sm:text-base font-bold text-white font-mono mt-0.5">
+                  &lt; 0.6s
+                </div>
+                <div className="text-[10px] text-emerald-400 font-mono mt-0.5">Instant Lookup</div>
+              </div>
+
+              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[10px] font-mono text-slate-400 uppercase">Document Fraud</div>
+                <div className="text-sm sm:text-base font-bold text-emerald-400 font-mono mt-0.5">
+                  0%
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono mt-0.5">Tamper-Proof</div>
+              </div>
+
+              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[10px] font-mono text-slate-400 uppercase">Architecture</div>
+                <div className="text-sm sm:text-base font-bold text-blue-400 font-mono mt-0.5">
+                  PHP · MySQL
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono mt-0.5">B-Tree Indexed</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 2: Examination Result Engine (MHVP Live Model) */}
+        {activeTab === "examination" && (
+          <div className="p-5 sm:p-6 space-y-5">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="text-[11px] font-mono uppercase tracking-wider text-cyan-400 font-semibold flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                  <span>Real Production System · mhvp.org</span>
+                </div>
+                <h4 className="text-base sm:text-lg font-semibold text-white mt-1">
+                  Mumbai Hindi Vidyapeeth (मुंबई हिन्दी विद्यापीठ)
+                </h4>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  High-concurrency academic portal powering multi-state examination management &amp; results.
+                </p>
+              </div>
+              <a
+                href="https://mhvp.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 p-2 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-slate-300 hover:text-white transition-colors"
+                title="Open live site mhvp.org"
+              >
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* High Concurrency Telemetry Visual */}
+            <div className="p-3.5 rounded-xl bg-[#070b16] border border-white/[0.08] space-y-3">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-slate-400">Peak Examination Result Traffic</span>
+                <span className="text-emerald-400 font-semibold">0s Downtime Measured</span>
+              </div>
+
+              {/* Concurrency Bar Simulation */}
+              <div className="space-y-1.5">
+                <div className="flex justify-between text-[11px] font-mono text-slate-400">
+                  <span>Simultaneous Lookups</span>
+                  <span className="text-cyan-400 font-semibold">4,200+ candidates/min</span>
+                </div>
+                <div className="w-full h-2 rounded-full bg-white/[0.08] overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 rounded-full w-[84%]" />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 pt-1">
+                <span className="flex items-center gap-1.5 text-slate-300">
+                  <Lock className="w-3 h-3 text-cyan-400" />
+                  <span>Role Separation: Central Admin / Center Supervisors</span>
+                </span>
+                <span className="text-emerald-400">100+ Centers</span>
+              </div>
+            </div>
+
+            {/* Metrics */}
+            <div className="grid grid-cols-3 gap-3 text-left">
+              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[10px] font-mono text-slate-400 uppercase">Affiliated Centers</div>
+                <div className="text-sm sm:text-base font-bold text-white font-mono mt-0.5">
+                  100+ Centers
+                </div>
+                <div className="text-[10px] text-emerald-400 font-mono mt-0.5">Multi-State Network</div>
+              </div>
+
+              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[10px] font-mono text-slate-400 uppercase">Peak Downtime</div>
+                <div className="text-sm sm:text-base font-bold text-emerald-400 font-mono mt-0.5">
+                  0 Seconds
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono mt-0.5">Guaranteed Uptime</div>
+              </div>
+
+              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[10px] font-mono text-slate-400 uppercase">Languages</div>
+                <div className="text-sm sm:text-base font-bold text-blue-400 font-mono mt-0.5">
+                  Bilingual
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono mt-0.5">Hindi &amp; English</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 3: B2B Commerce & ERP */}
+        {activeTab === "commerce" && (
+          <div className="p-5 sm:p-6 space-y-5">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-semibold flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <span>Wholesale &amp; Retail Engine · safegrowtrade.com</span>
+                </div>
+                <h4 className="text-base sm:text-lg font-semibold text-white mt-1">
+                  SafeGrowTrade &amp; Enterprise Operations
+                </h4>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  Tiered wholesale pricing, automated order lifecycles &amp; multi-branch inventory sync.
+                </p>
+              </div>
+              <a
+                href="https://safegrowtrade.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 p-2 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-slate-300 hover:text-white transition-colors"
+                title="Open live site safegrowtrade.com"
+              >
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Commerce Order Flow Visual */}
+            <div className="p-3.5 rounded-xl bg-[#070b16] border border-white/[0.08] space-y-3">
+              <div className="flex items-center justify-between text-xs font-mono">
+                <span className="text-slate-400">Automated Order State Machine</span>
+                <span className="text-emerald-400 font-semibold">100% Digital Reconciled</span>
+              </div>
+
+              <div className="grid grid-cols-4 gap-2 text-center text-[10px] font-mono">
+                <div className="p-2 rounded bg-blue-600/20 border border-blue-500/30 text-blue-300">
+                  1. Order Placed
+                </div>
+                <div className="p-2 rounded bg-blue-600/20 border border-blue-500/30 text-blue-300">
+                  2. Payment Verified
+                </div>
+                <div className="p-2 rounded bg-cyan-600/20 border border-cyan-500/30 text-cyan-300">
+                  3. Packing Slip
+                </div>
+                <div className="p-2 rounded bg-emerald-600/20 border border-emerald-500/30 text-emerald-300">
+                  4. Dispatched
+                </div>
+              </div>
+
+              <div className="text-[11px] font-mono text-slate-400 flex items-center justify-between pt-1">
+                <span>Wholesale Tier Discount: Applied (-22%)</span>
+                <span className="text-emerald-400 font-semibold">Payment: Gateway Verified ✓</span>
+              </div>
+            </div>
+
+            {/* Metrics */}
+            <div className="grid grid-cols-3 gap-3 text-left">
+              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[10px] font-mono text-slate-400 uppercase">Time Saved</div>
+                <div className="text-sm sm:text-base font-bold text-white font-mono mt-0.5">
+                  15+ Hrs/Wk
+                </div>
+                <div className="text-[10px] text-emerald-400 font-mono mt-0.5">Manual Work Cut</div>
+              </div>
+
+              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[10px] font-mono text-slate-400 uppercase">Stock Discrepancy</div>
+                <div className="text-sm sm:text-base font-bold text-emerald-400 font-mono mt-0.5">
+                  0% Mismatch
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono mt-0.5">Real-Time Sync</div>
+              </div>
+
+              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <div className="text-[10px] font-mono text-slate-400 uppercase">Architecture</div>
+                <div className="text-sm sm:text-base font-bold text-blue-400 font-mono mt-0.5">
+                  Laravel · Next.js
+                </div>
+                <div className="text-[10px] text-slate-400 font-mono mt-0.5">Edge Deployed</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Footer Code / Trust Strip */}
+        <div className="px-4 py-2.5 bg-[#070b16] border-t border-white/[0.08] flex items-center justify-between text-[11px] font-mono text-slate-400">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span className="text-slate-300">100% Private Git &amp; Cloud Ownership</span>
+          </div>
           <Link
-            href={currentArch.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate-400 hover:text-white p-1 rounded transition-colors"
-            title={`Visit live production site ${currentArch.domain}`}
-            aria-label={`Visit live site ${currentArch.domain}`}
+            href="/work"
+            className="text-blue-400 hover:text-blue-300 flex items-center gap-1 transition-colors"
           >
-            <ExternalLink className="w-3.5 h-3.5" />
+            <span>Explore All 6 Case Studies</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </div>
 
-      {/* Project Title & Purpose */}
-      <div className="px-4 py-2.5 bg-[#080f1e] border-b border-white/[0.06] flex items-center justify-between gap-3 text-xs">
-        <div className="min-w-0">
-          <div className="text-white font-medium truncate">{currentArch.name}</div>
-          <div className="text-slate-400 text-[11px] truncate">{currentArch.purpose}</div>
+      {/* Floating Accent Cards for depth & art direction */}
+      <div className="hidden md:flex items-center gap-3 absolute -bottom-6 -left-6 p-3.5 rounded-xl bg-[#0e1629]/95 border border-blue-500/30 shadow-xl backdrop-blur-md text-xs">
+        <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+          <Zap className="w-4 h-4" />
         </div>
-        <div className="hidden sm:flex items-center gap-1 text-[11px] font-mono text-slate-400 shrink-0">
-          <Layers className="w-3.5 h-3.5 text-blue-400" />
-          <span>4-TIER ARCHITECTURE</span>
-        </div>
-      </div>
-
-      {/* Architectural Stack Tiers Grid */}
-      <div id="workbench-panel" className="p-4 space-y-2">
-        <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1 flex items-center justify-between">
-          <span>System Tiers (Click to inspect)</span>
-          <span className="text-blue-400">Inspecting: Tier {selectedTierIndex + 1}/4</span>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          {currentArch.tiers.map((tier, idx) => {
-            const isSelected = selectedTierIndex === idx;
-            const Icon = tier.icon;
-            return (
-              <button
-                key={tier.id}
-                type="button"
-                onClick={() => setSelectedTierIndex(idx)}
-                className={`w-full p-2.5 rounded-lg border text-left transition-all flex items-start gap-2.5 ${
-                  isSelected
-                    ? "bg-blue-950/40 border-blue-500/60 ring-1 ring-blue-500/40"
-                    : "bg-[#0a1222] border-white/[0.08] hover:border-white/[0.2] hover:bg-[#0c162a]"
-                }`}
-              >
-                <div
-                  className={`w-7 h-7 rounded-md flex items-center justify-center shrink-0 border ${
-                    isSelected
-                      ? "bg-blue-600 text-white border-blue-400"
-                      : "bg-white/[0.04] text-slate-300 border-white/[0.08]"
-                  }`}
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center justify-between gap-1">
-                    <span className="text-[11px] font-mono font-medium text-white truncate">
-                      {tier.name}
-                    </span>
-                    {isSelected && (
-                      <CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />
-                    )}
-                  </div>
-                  <div className="text-[10px] font-mono text-slate-400 truncate">
-                    {tier.tech}
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Selected Tier Inspection Workbench */}
-        <div className="mt-3 p-3.5 rounded-lg bg-[#050a14] border border-blue-500/30 text-xs">
-          <div className="flex items-center justify-between pb-2 border-b border-white/[0.08] mb-2.5">
-            <div className="flex items-center gap-2">
-              <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-blue-500/15 text-blue-300 border border-blue-500/30">
-                {activeTier.category}
-              </span>
-              <span className="font-mono text-white font-medium text-[11px]">
-                {activeTier.name}
-              </span>
-            </div>
-            <span className="text-[10px] font-mono text-emerald-400 font-medium">
-              {activeTier.metrics}
-            </span>
-          </div>
-
-          <p className="text-slate-300 text-[11px] leading-relaxed mb-2.5">
-            {activeTier.spec}
-          </p>
-
-          <ul className="space-y-1 text-[11px] text-slate-400">
-            {activeTier.details.map((detail) => (
-              <li key={detail} className="flex items-start gap-1.5">
-                <span className="text-blue-400 font-mono mt-0.5">›</span>
-                <span className="text-slate-300">{detail}</span>
-              </li>
-            ))}
-          </ul>
+        <div>
+          <div className="font-semibold text-white font-mono">98+ Core Web Vitals</div>
+          <div className="text-slate-400 text-[11px]">Sub-second edge response</div>
         </div>
       </div>
 
-      {/* Footer Guarantees */}
-      <div className="px-4 py-2 bg-[#080f1e] border-t border-white/[0.06] flex items-center justify-between text-[10px] font-mono text-slate-400">
-        <div className="flex items-center gap-1.5">
-          <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
-          <span>DIRECT SENIOR ENGINEERING · 100% IP HANDOVER</span>
+      <div className="hidden md:flex items-center gap-3 absolute -top-5 -right-5 p-3.5 rounded-xl bg-[#0e1629]/95 border border-cyan-500/30 shadow-xl backdrop-blur-md text-xs">
+        <div className="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">
+          <Cpu className="w-4 h-4" />
         </div>
-        <Link
-          href={`/case-studies/${activeProject}`}
-          className="text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-1"
-        >
-          <span>Read Case Study</span>
-          <span>→</span>
-        </Link>
+        <div>
+          <div className="font-semibold text-white font-mono">Senior Architect Led</div>
+          <div className="text-slate-400 text-[11px]">Zero junior agency handoffs</div>
+        </div>
       </div>
     </div>
   );

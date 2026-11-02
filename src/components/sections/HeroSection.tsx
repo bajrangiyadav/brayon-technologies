@@ -1,5 +1,6 @@
 import React from "react";
-import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import Container from "../common/Container";
 import Button from "../common/Button";
 import Eyebrow from "../common/Eyebrow";
@@ -10,10 +11,10 @@ import { WhatsAppIcon } from "../icons/WhatsAppIcon";
 
 export function HeroSection() {
   return (
-    <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 lg:pt-44 lg:pb-32 overflow-hidden border-b border-white/[0.08]">
+    <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 lg:pt-44 lg:pb-32 overflow-hidden border-b border-white/[0.08] bg-gradient-to-b from-[#060913] via-[#080d1a] to-[#070b16]">
       {/* Background Architectural Grid Lines */}
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 opacity-[0.035] pointer-events-none"
         style={{
           backgroundImage: `
             linear-gradient(to right, #ffffff 1px, transparent 1px),
@@ -23,28 +24,33 @@ export function HeroSection() {
         }}
       />
 
+      {/* Subtle radial ambient glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-600/[0.07] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-[450px] h-[300px] bg-cyan-500/[0.05] rounded-full blur-[100px] pointer-events-none" />
+
       <Container className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Editorial Headline & Value Messaging */}
           <div className="lg:col-span-6 xl:col-span-6 space-y-6 text-left">
             <FadeUp delay={0.05}>
-              <Eyebrow>BRAYON TECHNOLOGIES · CUSTOM SOFTWARE &amp; DIGITAL SYSTEMS</Eyebrow>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 font-mono text-[11px] sm:text-xs tracking-wider uppercase font-semibold">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>DIGITAL ENGINEERING &amp; BUSINESS SOLUTIONS</span>
+              </div>
             </FadeUp>
 
             <FadeUp delay={0.1}>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-semibold tracking-tight text-white leading-[1.14]">
-                Your Business Idea. <br />
+              <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-[1.12]">
+                Turning Ambitious Ideas Into{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500">
-                  Our Technology.
-                </span>{" "}
-                <br className="hidden sm:inline" />
-                One Complete Solution.
+                  Powerful Digital Products.
+                </span>
               </h1>
             </FadeUp>
 
             <FadeUp delay={0.15}>
               <p className="text-base sm:text-lg md:text-xl text-slate-300 font-normal leading-relaxed max-w-xl">
-                Custom Software, CRM, ERP, E-commerce &amp; Mobile Apps — built around the way your business actually works.
+                From intelligent software and scalable platforms to beautiful digital experiences, we help businesses build technology that creates real impact.
               </p>
             </FadeUp>
 
@@ -53,41 +59,41 @@ export function HeroSection() {
                 <Button
                   variant="primary"
                   size="lg"
-                  href="/contact"
+                  href="#inquiry"
                   iconRight={<ArrowRight className="w-4 h-4" />}
                 >
-                  Discuss My Project
+                  Start a Project
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
-                  href="https://wa.me/917385121432?text=Hi%20Bajrangi,%20I%20would%20like%20to%20book%20a%20free%2030-minute%20call%20for%20my%20software%20project."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  iconLeft={<WhatsAppIcon className="w-4 h-4 text-[#25D366] shrink-0" />}
+                  href="/work"
                 >
-                  Book a Free 30-Min Call
+                  Explore Our Work
                 </Button>
               </div>
             </FadeUp>
 
-            {/* Trust Line */}
+            {/* Trust Line & Key Standards */}
             <FadeUp delay={0.25}>
               <div className="pt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm font-medium text-slate-300">
                 <span className="inline-flex items-center gap-1.5 text-emerald-400">
-                  <span>✓</span> Clear Pricing &amp; Timeline
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Business-First Thinking</span>
                 </span>
                 <span className="inline-flex items-center gap-1.5 text-emerald-400">
-                  <span>✓</span> Milestone Based Development
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>Senior Engineering Oversight</span>
                 </span>
                 <span className="inline-flex items-center gap-1.5 text-emerald-400">
-                  <span>✓</span> Post-Launch Support
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>100% IP &amp; Code Transfer</span>
                 </span>
               </div>
             </FadeUp>
           </div>
 
-          {/* Right Column: Original Technical Visual System */}
+          {/* Right Column: Layered Dashboard UI Visual System */}
           <div className="lg:col-span-6 xl:col-span-6">
             <FadeIn delay={0.2}>
               <HeroVisual />

@@ -6,7 +6,7 @@ import nodemailer from "nodemailer";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, company, service, budget, details } = body;
+    const { name, email, phone, company, service, budget, details } = body;
 
     // 1. Validation
     if (!name || typeof name !== "string" || name.trim().length === 0) {
@@ -34,8 +34,9 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString(),
       name: name.trim(),
       email: email.trim().toLowerCase(),
+      phone: (phone || "").trim() || "Not specified",
       company: (company || "").trim() || "Not specified",
-      service: service || "Web & SaaS Development",
+      service: service || "Custom Software Development",
       budget: budget || "Not specified",
       details: (details || "").trim() || "No additional details provided",
       ip: request.headers.get("x-forwarded-for") || "unknown",
@@ -74,6 +75,7 @@ export async function POST(request: NextRequest) {
 
 *Name:* ${newLead.name}
 *Email:* ${newLead.email}
+*Phone:* ${newLead.phone}
 *Company / URL:* ${newLead.company}
 *Service:* ${newLead.service}
 *Budget:* ${newLead.budget}

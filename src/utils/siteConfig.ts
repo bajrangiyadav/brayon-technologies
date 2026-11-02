@@ -15,13 +15,17 @@ export const COMPANY_INFO = {
   name: 'BRAYON Technologies',
   legalName: 'BRAYON Technologies',
   alternateNames: ['BRAYON Tech', 'BRAYON'],
-  slogan: 'Technology. Innovation. Beyond.',
+  slogan: 'Building Digital Experiences That Move Businesses Forward.',
   tagline: 'Custom Software, Web Platforms, ERP/CRM & Cloud Engineering',
+  brandMessage: 'Building Digital Experiences That Move Businesses Forward.',
+  supportingMessage:
+    'We combine strategy, design, and engineering to build powerful digital solutions that solve real business problems.',
   description:
-    'BRAYON Technologies is an enterprise custom software engineering partner in India. We design, build, and deploy high-performance web applications, custom CRM/ERP platforms, e-commerce systems, and mobile applications with senior engineering leadership and 100% IP ownership.',
+    'BRAYON Technologies is a modern technology and digital solutions company helping businesses in India, the US, the UK, and globally transform ideas into scalable digital products. We engineer custom software, web applications, CRM/ERP platforms, e-commerce systems, and mobile applications with senior technical leadership.',
   founder: {
     name: 'Bajrangi Yadav',
-    role: 'Founder & Solutions Architect',
+    role: 'Founder — BRAYON Technologies',
+    title: 'Founder & Solutions Architect',
     url: `${SITE_URL}/about#founder`,
   },
   contact: {

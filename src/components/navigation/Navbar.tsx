@@ -18,11 +18,11 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: "Services", href: "/services" },
-  { label: "Solutions", href: "/#solutions" },
-  { label: "Work", href: "/#projects" },
-  { label: "Process", href: "/#process" },
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Industries", href: "/industries" },
+  { label: "Our Work", href: "/work" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -76,15 +76,15 @@ export function Navbar() {
               aria-label="Main Navigation"
             >
               {NAV_ITEMS.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`relative px-3 py-1.5 rounded-lg transition-all duration-150 flex items-center gap-1.5 ${
+                    className={`relative px-3.5 py-2 rounded-lg transition-all duration-150 flex items-center gap-1.5 text-[13px] ${
                       isActive
-                        ? "text-white bg-white/[0.06] font-semibold after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[2px] after:rounded-full after:bg-blue-500"
-                        : "hover:text-white hover:bg-white/[0.04]"
+                        ? "text-white bg-white/[0.08] font-semibold after:absolute after:bottom-0 after:left-3.5 after:right-3.5 after:h-[2px] after:rounded-full after:bg-blue-500"
+                        : "text-slate-300 hover:text-white hover:bg-white/[0.04]"
                     }`}
                     aria-current={isActive ? "page" : undefined}
                   >
@@ -119,7 +119,7 @@ export function Navbar() {
                   href="/contact"
                   iconRight={<ArrowRight className="w-3.5 h-3.5" />}
                 >
-                  Start a Project
+                  Let&apos;s Talk
                 </Button>
               </div>
 

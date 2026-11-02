@@ -5,28 +5,37 @@ import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/common/Container";
 import Section from "@/components/common/Section";
-import SectionHeading from "@/components/common/SectionHeading";
 import Eyebrow from "@/components/common/Eyebrow";
 import Button from "@/components/common/Button";
-import Card from "@/components/common/Card";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
 import FadeUp from "@/components/animations/FadeUp";
-import { industries } from "@/data/industries";
+import { industryDetailData, getAllIndustrySlugs } from "@/data/industryDetailData";
 import { caseStudies } from "@/data/caseStudies";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import {
+  GraduationCap,
+  ShoppingCart,
+  HeartPulse,
+  Truck,
+  Landmark,
+  Rocket,
+  CheckCircle2,
+  ArrowRight,
+  Sparkles,
+  ExternalLink,
+} from "lucide-react";
 import { SITE_URL, COMPANY_INFO } from "@/utils/siteConfig";
 
 export const metadata: Metadata = {
   title: "Industry Software Solutions & Domain Expertise | BRAYON Technologies",
   description:
-    "Engineered software solutions tailored to real operational workflows across Education, E-Commerce, Logistics, Automotive, and Enterprise Management.",
+    "Engineered software solutions tailored to real operational workflows across Education, Retail & E-Commerce, Healthcare, Logistics, Finance, and Startups.",
   alternates: {
     canonical: "/industries",
   },
   openGraph: {
     title: "Industry Software Solutions & Domain Expertise | BRAYON Technologies",
     description:
-      "Technology built around your business. Resilient software engineering across e-commerce, mobility, automation, and enterprise domains.",
+      "Technology built around your business. Resilient software engineering across education, e-commerce, mobility, logistics, and enterprise domains.",
     url: `${SITE_URL}/industries`,
     siteName: COMPANY_INFO.name,
     type: "website",
@@ -47,9 +56,17 @@ export const metadata: Metadata = {
   },
 };
 
+const ICONS_MAP: Record<string, React.ElementType> = {
+  education: GraduationCap,
+  "retail-ecommerce": ShoppingCart,
+  healthcare: HeartPulse,
+  logistics: Truck,
+  finance: Landmark,
+  startups: Rocket,
+};
+
 export default function IndustriesPage() {
-  const verifiedIndustries = industries.filter((ind) => ind.hasDirectExperience);
-  const adaptableIndustries = industries.filter((ind) => !ind.hasDirectExperience);
+  const industriesList = Object.values(industryDetailData);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -71,7 +88,7 @@ export default function IndustriesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070a12] text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-[#060913] text-slate-100 flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -80,99 +97,101 @@ export default function IndustriesPage() {
 
       <main className="flex-grow pt-28">
         {/* Header Hero */}
-        <section className="py-16 md:py-24 border-b border-white/[0.08] relative">
-          <Container>
-            <div className="mb-6">
+        <section className="py-16 md:py-24 border-b border-white/[0.08] relative overflow-hidden bg-gradient-to-b from-[#080d1a] to-[#060913]">
+          <div className="absolute top-1/4 right-10 w-96 h-96 bg-blue-600/[0.05] rounded-full blur-[140px] pointer-events-none" />
+
+          <Container className="relative z-10">
+            <div className="mb-6 text-left">
               <Breadcrumbs items={[{ label: "Industries" }]} />
             </div>
-            <div className="max-w-3xl">
+
+            <div className="max-w-3xl text-left space-y-4">
               <FadeUp delay={0.05}>
-                <Eyebrow>INDUSTRY DOMAINS</Eyebrow>
+                <Eyebrow>DOMAIN SPECIFIC ENGINEERING</Eyebrow>
               </FadeUp>
               <FadeUp delay={0.1}>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white mt-4 leading-tight">
-                  Technology Built Around Your Business.
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+                  Technology For Every Business Ambition.
                 </h1>
               </FadeUp>
               <FadeUp delay={0.15}>
-                <p className="mt-5 text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-                  Every business operates differently. BRAYON Technologies builds digital platforms around real operational requirements, workflows and customer experiences.
+                <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+                  Every business operates under distinct industry realities. BRAYON Technologies engineers digital platforms around real operational workflows, customer touchpoints, and regulatory demands.
                 </p>
               </FadeUp>
             </div>
           </Container>
         </section>
 
-        {/* Verified Industry Sectors */}
-        <Section spacing="lg" borderBottom>
+        {/* Industry Grid */}
+        <Section spacing="lg" borderBottom className="bg-[#050813]">
           <Container>
-            <SectionHeading
-              eyebrow="DIRECT PROJECT EVIDENCE"
-              title="Verified Industry Experience"
-              description="Domains where BRAYON Technologies has delivered production software and verified operational systems."
-            />
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {verifiedIndustries.map((ind, idx) => {
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+              {industriesList.map((ind, idx) => {
+                const Icon = ICONS_MAP[ind.slug] || Sparkles;
                 const relatedProjects = caseStudies.filter((cs) =>
-                  ind.caseStudyIds.includes(cs.slug)
+                  ind.caseStudySlugs.includes(cs.slug)
                 );
 
                 return (
-                  <FadeUp key={ind.id} delay={0.05 * idx}>
-                    <Card
-                      variant="interactive"
-                      padding="md"
-                      className="h-full flex flex-col justify-between"
-                    >
+                  <FadeUp key={ind.slug} delay={0.08 * (idx + 1)}>
+                    <div className="h-full p-8 rounded-3xl bg-[#090f1f] border border-white/[0.08] hover:border-blue-500/40 transition-all duration-300 flex flex-col justify-between shadow-xl shadow-blue-950/20 group">
                       <div>
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                            <CheckCircle2 className="w-3 h-3" />
-                            <span>Verified Project Delivery</span>
+                        <div className="flex items-center justify-between mb-6">
+                          <div className="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 flex items-center justify-center group-hover:scale-105 group-hover:bg-blue-600/20 transition-all">
+                            <Icon className="w-6 h-6" />
+                          </div>
+                          <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 group-hover:text-blue-400 transition-colors">
+                            {ind.category}
                           </span>
-                          <span className="font-mono text-xs text-slate-500">0{idx + 1}</span>
                         </div>
 
-                        <h3 className="text-xl font-semibold text-white mb-2">{ind.name}</h3>
+                        <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2">
+                          {ind.name}
+                        </h2>
 
-                        <p className="text-sm text-slate-400 leading-relaxed mb-5">
-                          {ind.description}
+                        <p className="text-xs font-mono text-blue-400 mb-4 font-medium">
+                          {ind.headline}
                         </p>
 
-                        <div className="mb-6">
-                          <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500 mb-2">
-                            CORE CAPABILITIES
-                          </div>
-                          <ul className="space-y-1.5 text-xs text-slate-300 font-mono">
-                            {ind.capabilities.map((cap) => (
-                              <li key={cap} className="flex items-start gap-2">
-                                <span className="h-1 w-1 rounded-full bg-blue-400 shrink-0 mt-1.5" />
-                                <span>{cap}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
+                        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6 font-normal">
+                          {ind.overview}
+                        </p>
 
-                      <div className="pt-4 border-t border-white/[0.06] space-y-2">
-                        <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500">
-                          VERIFIED CASE STUDIES
-                        </div>
-                        <div className="flex flex-col gap-1.5">
-                          {relatedProjects.map((p) => (
-                            <Link
-                              key={p.slug}
-                              href={`/case-studies/${p.slug}`}
-                              className="inline-flex items-center justify-between text-xs font-mono text-blue-400 hover:text-blue-300 transition-colors group/link"
-                            >
-                              <span>{p.title}</span>
-                              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1" />
-                            </Link>
+                        {/* Capabilities preview */}
+                        <div className="space-y-2 pt-2 border-t border-white/[0.06] mb-6">
+                          {ind.keyCapabilities.slice(0, 3).map((cap) => (
+                            <div key={cap} className="flex items-start gap-2 text-xs text-slate-300 font-normal">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                              <span>{cap}</span>
+                            </div>
                           ))}
                         </div>
+
+                        {/* Related Projects Pill */}
+                        {relatedProjects.length > 0 && (
+                          <div className="p-3 rounded-xl bg-[#060913] border border-white/[0.06] mb-4 text-xs font-mono">
+                            <span className="text-slate-400 block text-[10px] uppercase mb-1">
+                              Production Projects:
+                            </span>
+                            <div className="text-emerald-300 font-semibold truncate">
+                              {relatedProjects.map((p) => p.title).join(", ")}
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    </Card>
+
+                      <div className="pt-6 border-t border-white/[0.06] flex items-center justify-between">
+                        <Link
+                          href={`/industries/${ind.slug}`}
+                          className="inline-flex items-center gap-1.5 text-xs font-mono text-blue-400 hover:text-blue-300 font-semibold group-hover:translate-x-1 transition-all"
+                        >
+                          <span>Explore Domain Blueprints</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                        <span className="text-[11px] font-mono text-slate-500">Tailored Stack</span>
+                      </div>
+                    </div>
                   </FadeUp>
                 );
               })}
@@ -180,73 +199,21 @@ export default function IndustriesPage() {
           </Container>
         </Section>
 
-        {/* Adaptable Industry Sectors */}
-        <Section variant="surface" spacing="lg" borderBottom>
+        {/* Consultation Callout */}
+        <Section spacing="lg" className="bg-[#060a16]">
           <Container>
-            <SectionHeading
-              eyebrow="CROSS-INDUSTRY ADAPTABILITY"
-              title="Adaptable Architecture Framework"
-              description="For sectors without direct case studies, we apply our proven full-stack and cloud architectures tailored to your specific business requirements."
-            />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {adaptableIndustries.map((ind, idx) => (
-                <FadeUp key={ind.id} delay={0.04 * idx}>
-                  <div className="p-6 rounded-2xl bg-[#090e1b] border border-white/[0.08] hover:border-white/[0.18] transition-colors flex flex-col justify-between h-full">
-                    <div>
-                      <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500 mb-2">
-                        ADAPTABLE DOMAIN
-                      </div>
-                      <h3 className="text-lg font-semibold text-white mb-2">{ind.name}</h3>
-                      <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4">
-                        {ind.description}
-                      </p>
-
-                      <div className="space-y-1.5 mb-4">
-                        {ind.capabilities.map((cap) => (
-                          <div
-                            key={cap}
-                            className="p-1.5 rounded-lg bg-white/[0.02] text-[11px] font-mono text-slate-300"
-                          >
-                            {cap}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="pt-3 border-t border-white/[0.06]">
-                      <span className="text-[11px] font-mono text-slate-500">
-                        Tailored architecture on consultation
-                      </span>
-                    </div>
-                  </div>
-                </FadeUp>
-              ))}
-            </div>
-          </Container>
-        </Section>
-
-        {/* Bottom Consultation CTA */}
-        <Section spacing="lg">
-          <Container>
-            <div className="p-8 sm:p-12 rounded-3xl bg-[#0d1322] border border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="space-y-2 text-left">
-                <h3 className="text-2xl font-semibold text-white">
-                  Operating in a Specialized Industry?
-                </h3>
-                <p className="text-sm text-slate-400 max-w-lg">
-                  Let&apos;s evaluate your operational workflows, data schemas, and regulatory constraints together.
-                </p>
+            <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-[#0c1428] via-[#091022] to-[#0c1428] border border-blue-500/30 text-center space-y-5 max-w-4xl mx-auto">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Don&apos;t See Your Specific Industry Listed?
+              </h2>
+              <p className="text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
+                Our architectural principles apply to any complex, data-driven business workflow. Reach out to discuss your specific operations with our senior engineering team.
+              </p>
+              <div className="pt-2">
+                <Button variant="primary" size="lg" href="/contact">
+                  Discuss Your Industry Requirements
+                </Button>
               </div>
-              <Button
-                variant="primary"
-                size="lg"
-                href="/contact"
-                iconRight={<ArrowRight className="w-4 h-4" />}
-                className="shrink-0"
-              >
-                Schedule Technical Review
-              </Button>
             </div>
           </Container>
         </Section>
